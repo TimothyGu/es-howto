@@ -1,0 +1,941 @@
+<pre class=metadata>
+Title: How to Read the ECMAScript Specification
+Shortname: es-howto
+Editor: Timothy Gu, timothygu99@gmail.com, https://timothygu.me/
+Status: LD
+Abstract: How to read the ECMAScript specification.
+Default Biblio Status: current
+Markup Shorthands: css no, markdown yes
+Default Highlight: javascript
+Editor Term: Author, Authors
+Warning: Custom
+Custom Warning Title: Work in Progress
+Custom Warning Text: This document is still under heavy iteration. Parts may appear to be unedited, incomplete, or outright wrong. If it sounds either offsensive to you or just patently wrong, please <a href="https://twitter.com/Timothy__Gu">DM</a> me, but beware that it's not a finished product.
+</pre>
+
+<pre class="link-defaults">
+spec: ecma-262; type: dfn; for: /; text: internal method
+spec: ecma-262; type: dfn; for: /; text: internal slot
+spec: ecma-262; type: interface; for: ECMAScript; text: ArrayBuffer
+spec: ecma-262; type: interface; for: ECMAScript; text: Function
+spec: ecma-262; type: interface; for: ECMAScript; text: Promise
+spec: ecma-262; type: interface; for: ECMAScript; text: Uint8Array
+</pre>
+
+<pre class="anchors">
+urlPrefix: https://caniuse.com/; for: Can I Use; type: dfn
+    text: ECMAScript 5; url: #feat=es5
+
+urlPrefix: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/; for: MDN
+    type: method
+        text: Object.getPrototypeOf(); url: Global_Objects/Object/getPrototypeOf#
+        text: String.prototype.substring(); url: Global_Objects/String/substring#
+    type: attribute
+        text: new.target; url: Operators/new.target#
+    type: dfn
+        text: abstract equality algorithm; url: Operators/Comparison_Operators#Using_the_Equality_Operators
+        text: equality operators; url: Operators/Comparison_Operators#Equality_operators
+        text: label; url: Statements/label#
+
+urlPrefix: https://nodejs.org/api/; spec: NODEJS; for: Node.js
+    type: dfn
+        text: globals; url: globals.html#globals_global_objects
+        text: modules; url: modules.html#modules_modules
+    type: interface
+        text: Buffer; url: buffer.html#buffer_class_buffer
+    type: namespace
+        for: NodeJSGlobal; urlPrefix: globals.html
+            text: process; url: #globals_process
+        for: NodeJSModuleScope; urlPrefix: modules.html
+            text: module; url: #modules_module
+    type: attribute
+        for: NodeJSGlobal; urlPrefix: globals.html
+            text: global; url: #globals_global
+        for: NodeJSModuleScope; urlPrefix: modules.html
+            text: exports; url: #modules_exports
+            text: __dirname; url: #modules_dirname
+            text: __filename; url: #modules_filename
+    type: method
+        for: NodeJSGlobal; urlPrefix: globals.html
+            text: clearImmediate(); url: #globals_clearimmediate_immediateobject
+            text: setImmediate(); url: #globals_setimmediate_callback_args
+        for: NodeJSModuleScope; urlPrefix: modules.html
+            text: require(); url: #modules_require
+
+urlPrefix: https://tc39.github.io/ecma262/; for: ECMA-262; type: dfn
+    text: §5 Notational Conventions; url: sec-notational-conventions
+    text: §5.2 Algorithm Conventions; url: sec-algorithm-conventions
+    text: §5.2.1 Abstract Operations; url: sec-algorithm-conventions-abstract-operations
+    text: §5.2.3.4 ReturnIfAbrupt Shorthands; url: sec-returnifabrupt-shorthands
+    text: §6.2.1 The List and Record Specification Types; url: sec-list-and-record-specification-type
+    text: §6.2.3 The Completion Record Specification Type; url: sec-completion-record-specification-type
+    text: §7.2.14 Abstract Equality Comparison; url: sec-abstract-equality-comparison
+    text: §9 Ordinary and Exotic Objects Behaviours; url: sec-ordinary-and-exotic-objects-behaviours
+    text: §9.1 Ordinary Object Internal Methods and Internal Slots; url: sec-ordinary-object-internal-methods-and-internal-slots
+    text: §9.1.8 [[Get]] ( P, Receiver ); url: sec-ordinary-object-internal-methods-and-internal-slots-get-p-receiver
+    text: §9.3 Built-in Function Objects; url: sec-built-in-function-objects
+    text: §10 ECMAScript Language: Source Code; url: sec-ecmascript-language-source-code
+    text: §13.6 The if Statement; url: sec-if-statement
+    text: §13.7 Iteration Statements; url: sec-iteration-statements
+    text: §15 ECMAScript Language: Scripts and Modules; url: sec-ecmascript-language-scripts-and-modules
+    text: §18 The Global Object; url: sec-global-object
+    text: §21.1.3.21 String.prototype.substring ( start, end ); url: sec-string.prototype.substring
+    text: §26 Reflection; url: sec-reflection
+
+urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
+    type: interface
+        text: Array; url: sec-array-objects
+        text: ArrayBuffer; url: sec-arraybuffer-objects
+        text: DataView; url: sec-dataview-objects
+        text: Function; url: sec-function-objects
+        text: Map; url: sec-map-objects
+        text: Math; url: sec-math-object
+        text: Number; url: sec-number-objects
+        text: Object; url: sec-object-objects
+        text: Promise; url: sec-promise-objects
+        text: RegExp; url: sec-regexp-regular-expression-objects
+        text: Proxy; url: sec-proxy-objects
+        text: Set; url: sec-set-objects
+        text: SharedArrayBuffer; url: sec-sharedarraybuffer-objects
+        text: Uint8Array; url: sec-typedarray-objects
+        text: %ArrayPrototype%; url: sec-properties-of-the-array-prototype-object
+        text: %ErrorPrototype%; url: sec-properties-of-the-error-prototype-object
+        text: %FunctionPrototype%; url: sec-properties-of-the-function-prototype-object
+        text: %IteratorPrototype%; url: sec-%iteratorprototype%-object
+        text: %MapPrototype%; url: sec-properties-of-the-map-prototype-object
+        text: %ObjectPrototype%; url: sec-properties-of-the-object-prototype-object
+        text: %Promise%; url: sec-promise-constructor
+        text: %SetPrototype%; url: sec-properties-of-the-set-prototype-object
+    type: exception
+        text: Error; url: sec-error-objects
+        text: SyntaxError; url: sec-native-error-types-used-in-this-standard-syntaxerror
+        text: TypeError; url: sec-native-error-types-used-in-this-standard-typeerror
+    type: method
+        text: Array.prototype.forEach(); url: sec-array.prototype.foreach
+        text: Boolean(); url: sec-boolean-constructor-boolean-value
+        text: JSON.stringify(); url: sec-json.stringify
+        text: String(); url: sec-string-constructor-string-value
+        text: String.prototype.substring(); url: sec-string.prototype.substring
+        text: %ArrayProto_entries%; url: sec-array.prototype.entries
+        text: %ArrayProto_forEach%; url: sec-array.prototype.foreach
+        text: %ArrayProto_keys%; url: sec-array.prototype.keys
+        text: %ArrayProto_values%; url: sec-array.prototype.values
+        text: %ObjProto_toString%; url: sec-object.prototype.tostring
+        text: %Promise_reject%; url: sec-promise.reject
+        text: %Promise_resolve%; url: sec-promise.resolve
+    type: const
+        url: sec-well-known-symbols
+            text: @@iterator
+            text: @@toStringTag
+            text: @@unscopables
+    type: argument
+        text: NewTarget; url: sec-built-in-function-objects
+    type: abstract-op
+        text: ArrayCreate; url: sec-arraycreate
+        text: Call; url: sec-call
+        text: CanonicalNumericIndexString; url: sec-canonicalnumericindexstring
+        text: Completion; url: sec-completion
+        text: Construct; url: sec-construct
+        text: CreateArrayIterator; url: sec-createarrayiterator
+        text: CreateBuiltinFunction; url: sec-createbuiltinfunction
+        text: CreateDataProperty; url: sec-createdataproperty
+        text: CreateIterResultObject; url: sec-createiterresultobject
+        text: CreateMapIterator; url: sec-createmapiterator
+        text: CreateSetIterator; url: sec-createsetiterator
+        text: DefinePropertyOrThrow; url: sec-definepropertyorthrow
+        text: DetachArrayBuffer; url: sec-detacharraybuffer
+        text: Get; url: sec-get-o-p
+        text: GetIterator; url: sec-getiterator
+        text: GetMethod; url: sec-getmethod
+        text: GetPrototypeFromConstructor; url: sec-getprototypefromconstructor
+        text: GetV; url: sec-getv
+        text: IsAccessorDescriptor; url: sec-isaccessordescriptor
+        text: IsCallable; url: sec-iscallable
+        text: IsConstructor; url: sec-isconstructor
+        text: IsDataDescriptor; url: sec-isdatadescriptor
+        text: IsDetachedBuffer; url: sec-isdetachedbuffer
+        text: IsSharedArrayBuffer; url: sec-issharedarraybuffer
+        text: IteratorStep; url: sec-iteratorstep
+        text: IteratorValue; url: sec-iteratorvalue
+        text: NormalCompletion; url: sec-normalcompletion
+        text: NumberToString; url: sec-numbertostring
+        text: ObjectCreate; url: sec-objectcreate
+        text: OrdinaryCreateFromConstructor; url: sec-ordinarycreatefromconstructor
+        text: OrdinaryDefineOwnProperty; url: sec-ordinarydefineownproperty
+        text: OrdinaryGet; url: sec-ordinaryget
+        text: OrdinaryGetOwnProperty; url: sec-ordinarygetownproperty
+        text: OrdinaryGetPrototypeOf; url: sec-ordinarygetprototypeof
+        text: OrdinaryPreventExtensions; url: sec-ordinarypreventextensions
+        text: OrdinarySetWithOwnDescriptor; url: sec-ordinarysetwithowndescriptor
+        text: OrdinaryToPrimitive; url: sec-ordinarytoprimitive
+        text: RequireObjectCoercible; url: sec-requireobjectcoercible
+        text: ReturnIfAbrupt; url: sec-returnifabrupt
+        text: Set; url: sec-set-o-p-v-throw
+        text: SetFunctionName; url: sec-setfunctionname
+        text: SetImmutablePrototype; url: sec-set-immutable-prototype
+        text: SetIntegrityLevel; url: sec-setintegritylevel
+        text: StringCreate; url: sec-stringcreate
+        text: SymbolDescriptiveString; url: sec-symboldescriptivestring
+        text: ToBoolean; url: sec-toboolean
+        text: ToInt32; url: sec-toint32
+        text: ToNumber; url: sec-tonumber
+        text: ToObject; url: sec-toobject
+        text: ToPrimitive; url: sec-toprimitive
+        text: ToString; url: sec-tostring
+        text: ToUint16; url: sec-touint16
+        text: ToUint32; url: sec-touint32
+        text: Type; url: sec-ecmascript-data-types-and-values
+        text: abs; url: eqn-abs
+        text: floor; url: eqn-floor
+        text: max; url: eqn-max
+        text: min; url: eqn-min
+    type: dfn
+        text: NumericLiteral; url: sec-literals-numeric-literals
+        text: modulo; url: eqn-modulo
+        url: sec-returnifabrupt-shorthands
+            text: !
+            text: ?
+        text: abrupt completion; url: sec-completion-record-specification-type
+        text: array index; url: array-index
+        text: array iterator object; url: sec-array-iterator-objects
+        text: built-in function object; url: sec-built-in-function-objects
+        text: callable; url: sec-iscallable
+        text: Completion Record; url: sec-completion-record-specification-type
+        text: constructor; url: constructor
+        text: conventions; url: sec-algorithm-conventions
+        text: current Realm; url: current-realm
+        text: element; url: sec-ecmascript-language-types-string-type
+        text: enumerable; url: sec-property-attributes
+        text: equally close values; url: sec-ecmascript-language-types-number-type
+        text: error objects; url: sec-error-objects
+        text: function object; url: function-object
+        text: immutable prototype exotic object; url: sec-immutable-prototype-exotic-objects
+        url: sec-object-internal-methods-and-internal-slots
+            text: internal method
+            text: internal slot
+        text: Number type; url: sec-ecmascript-language-types-number-type
+        for: ordinary object; url: sec-ordinary-object-internal-methods-and-internal-slots
+            text: internal method
+            text: internal slot
+        text: own property; url: sec-own-property
+        text: Property Descriptor; url: sec-property-descriptor-specification-type
+        text: realm; url: realm
+</pre>
+
+<pre class=biblio>
+{
+    "CANIUSE": {
+        "href": "https://caniuse.com",
+        "title": "Can I use... Support tables for HTML5, CSS3, etc"
+    },
+    "ECMA-262-2017": {
+        "href": "https://ecma-international.org/ecma-262/8.0/",
+        "title": "ECMAScript® 2017 Language Specification",
+        "publisher": "Ecma International"
+    },
+    "ECMA-262-GLOBAL": {
+        "href": "https://github.com/tc39/proposal-global",
+        "title": "tc39/proposal-global: ECMAScript Proposal, specs, and reference implementation for `global`",
+        "publisher": "GitHub Inc."
+    },
+    "ISO-16262-2011": {
+        "href": "https://www.iso.org/standard/55755.html",
+        "title": "ISO/IEC 16262:2011 - Information technology -- Programming languages, their environments and system software interfaces -- ECMAScript language specification",
+        "publisher": "ISO/IEC"
+    },
+    "JOHNNY-FIVE": {
+        "href": "http://johnny-five.io/",
+        "title": "Johnny-Five: The JavaScript Robotics & IoT Platform",
+        "publisher": "Bocoup LLC"
+    },
+    "MDN": {
+        "href": "https://developer.mozilla.org/en-US/",
+        "title": "Mozilla Developer Network",
+        "publisher": "Mozilla Inc."
+    },
+    "NODEJS": {
+        "href": "https://nodejs.org/",
+        "title": "Node.js",
+        "publisher": "Node.js Foundation"
+    },
+    "NODEJS-NASA": {
+        "href": "https://foundation.nodejs.org/wp-content/uploads/sites/50/2017/09/Node_CaseStudy_Nasa_FNL.pdf",
+        "title": "Node.js Helps NASA Keep Astronauts Safe and Data Accessible",
+        "publisher": "Node.js Foundation"
+    },
+    "TC39": {
+        "href": "https://www.ecma-international.org/memento/TC39.htm",
+        "title": "TC39 - ECMAScript",
+        "publisher": "Ecma International"
+    },
+    "WAT": {
+        "authors": [
+            "Gary Bernhardt"
+        ],
+        "href": "https://www.destroyallsoftware.com/talks/wat",
+        "title": "Wat",
+        "rawDate": "2012"
+    },
+    "WHATISMYBROWSER": {
+        "href": "https://www.whatsmybrowser.org/",
+        "title": "What browser am I using?"
+    },
+    "XKCD-703": {
+        "authors": [
+            "Randall Munroe"
+        ],
+        "href": "https://www.xkcd.com/703/",
+        "title": "xkcd: Honor Societies"
+    }
+}
+</pre>
+
+<div class=non-normative>
+
+# Prelude # {#prelude}
+
+So you've decided that reading a bit of ECMAScript spec each day is good for your health. Maybe it was a New Year's resolution, or maybe it was just your doctor's prescription. Whatever it is, welcome aboard!
+
+Note: In this document, I will only use the term "ECMAScript" to refer to the specification itself, and "JavaScript" anywhere else. However, both terms refer to the same thing. (There are some historical distinctions of ECMAScript vs. JavaScript, but discussing that is outside the scope of this document, and you can <a href="https://www.google.com/search?q=ecmascript+vs.+javascript">Google that distinction</a> very easily.)
+
+## Why should I read the ECMAScript specification ## {#why-should-i-read-the-ecmascript-specification}
+
+The ECMAScript specification is the authoritative source of the behavior of all JavaScript implementations, whether it be in your browser [[WHATISMYBROWSER]], on your server through Node.js [[NODEJS]], in spacesuits [[NODEJS-NASA]], or on your IoT device [[JOHNNY-FIVE]]. All developers of JavaScript engines depend on the spec to make sure their shiny new feature works as intended, in the same way other JavaScript engines do.
+
+But I claim that the utility of the spec extends beyond the mythical creatures known as "developers of JavaScript engines." In fact, I say that **it is useful to you, the average JavaScript coder, and you just haven't realized it.**
+
+Suppose you discover the following peculiar juxtaposition at work one day
+
+```js
+> Array.prototype.push(42)
+1
+> Array.prototype
+[ 42 ]
+> Array.isArray(Array.prototype)
+true
+> Set.prototype.add(42)
+TypeError: Method Set.prototype.add called on incompatible receiver #<Set>
+    at Set.add (<anonymous>)
+> Set.prototype
+Set {}
+```
+
+and are very confused why a method works on its prototype, but another method does not work on *its* prototype. <a href="https://www.google.com/search?q=array+prototype+push+on+prototype">Google unfortunately always fails when you need it the most</a>, and <a href="https://stackoverflow.com/search?q=array+prototype+push+on+prototype">so does the ever-helpful Stack Overflow</a>.
+
+Reading the spec can help.
+
+Or, you might wonder just how the heck does the notorious [=MDN/equality operators|loose equality operator=] (`==`) actually function (using the word "function" *loosely* here [[WAT]]). Ever the studious software engineer, you look it up on MDN, only to find its [=MDN/abstract equality algorithm|paragraphs of explanation=] hurt your eyes more than they help.
+
+Reading the spec can help.
+
+On the other hand, I do not recommend reading the ECMAScript specification to developers new to JavaScript. If you are new to JavaScript, then play around with the web! build some web apps! or some JavaScript-based nannycams! or anything! and consider returning to this document when you have either experienced enough JavaScript warts or gotten rich enough to not have to worry about JavaScript.
+
+Okay, now you know specifications can be very helpful tools in helping you understand the intricacies in a language or platform. But what exactly falls into in the realm of the ECMAScript specification?
+
+## What belongs to the ECMAScript specification, and what does not ## {#what-belongs-to-the-ecmascript-specification}
+
+The textbook answer to this question is "only language features go into the ECMAScript specification." But that doesn't help, since that's like saying "JavaScript features are JavaScript." And I'm not one for tautologies [[XKCD-703]].
+
+Instead, what I'm going to do is list some things that are commonly seen in JavaScript apps, and tell you if each of them is a language feature or not.
+
+<table class=data>
+  <tr>
+    <td>Syntax of syntactic elements (i.e., what a valid <code>for</code>..<code>in</code> loop looks like)
+    <td>✔
+  </tr>
+  <tr>
+    <td>Semantics of syntactic elements (i.e., what <code>typeof null</code>, or <code>{ a: b }</code> returns)
+    <td>✔
+  </tr>
+  <tr>
+    <td><code>import a from 'a';</code>
+    <td>🤔<sup>[1]</sup>
+  </tr>
+  <tr>
+    <td>{{Object}}, {{Array}}, {{Function}}, {{Number}}, {{Math}}, {{RegExp}}, {{Proxy}}, {{Map}}, {{Promise}}, {{ArrayBuffer}}, {{Uint8Array}}, ...
+    <td>✔
+  </tr>
+  <tr>
+    <td><code class=idl>console</code>, <code class=idl>setTimeout()</code>, <code class=idl>setInterval()</code>, <code class=idl>clearTimeout()</code>, <code class=idl>clearInterval()</code>
+    <td>✘<sup>[2]</sup>
+  </tr>
+  <tr>
+    <td>{{Buffer}}, {{process}}, {{global}}*, {{setImmediate()}}, {{clearImmediate()}}
+    <td>✘<sup>[3]</sup>
+  </tr>
+  <tr>
+    <td>{{module}}, {{exports}}, {{require()}}, {{__dirname}}, {{__filename}}
+    <td>✘<sup>[4]</sup>
+  </tr>
+  <tr>
+    <td>{{Window/window}}, {{alert()}}, {{confirm()}}, the DOM ({{Window/document}}, {{HTMLElement}}, {{EventTarget/addEventListener()}}, {{Worker}}, ...)
+    <td>✘<sup>[5]</sup>
+  </tr>
+</table>
+
+<div class=note>
+<sup>[1]</sup> The ECMAScript spec specifies the syntax of such declarations and what are supposed to mean, but does not specify how the module is loaded.
+
+<sup>[2]</sup> These things are available in both browsers and Node.js, but are non-standard. For Node.js, they are documented/specified by [=Node.js/globals|its documentation=]. For browsers, {{/console}} is specified by the Console Standard [[CONSOLE]], while the rest is specified by the HTML Standard [[HTML]].
+
+<sup>[3]</sup> These are all Node.js-only globals, documented/specified by [=Node.js/globals|its documentation=]. \* <code class=idl>global</code> actually has a chance of becoming a part of ECMAScript and be implemented in browsers as well [[ECMA-262-GLOBAL]].
+
+<sup>[4]</sup> These are Node.js-only module-wide "globals", documented/specified by [=Node.js/modules|its documentation=].
+
+<sup>[5]</sup> These are all browser-only things.
+</div>
+
+## Before going any further, *where* is the ECMAScript specification? ## {#where-is-the-ecmascript-specification}
+
+When you <a href="https://www.google.com/search?q=ecmascript+specification">Google "ECMAScript specification"</a> you see *so many results,* all claiming to be the legitimate specification. Which one should you read??
+
+**Tl;dr, most likely than not, the specification published at tc39.github.io/ecma262/ is the one you want** [[ECMA-262]].
+
+Long version:
+
+The ECMAScript language specification is developed by a group of people from diverse backgrounds, known as the Ecma International Technical Committee 39 (or as they are more familiarly known, TC39 [[TC39]]). TC39 maintains the latest specification for the ECMAScript language at tc39.github.io [[ECMA-262]].
+
+What complicates the matter is that, every year, TC39 picks a point in time to take a snapshot of the spec to become the ECMAScript Language *Standard* of that year, along with an edition number. For example, the *ECMAScript® 2017 Language Specification (ECMA-262, 8th edition)* [[ECMA-262-2017]] (popularly known as ES8) is simply the spec as seen at tc39.github.io [[ECMA-262]] in June 2017, put into formaldehyde, properly shrinkwrapped and PDFified for permanent archives.
+
+Because of that, unless you want your web application to run on only browsers from June 2017 that are put into formaldehyde, properly shrinkwrapped, and PDFified for permanent archives, you want to always look at the latest spec at tc39.github.io [[ECMA-262]]. But if you want to (or have to) support older browsers or Node.js versions, then referencing the older specifications may help.
+
+Note: The ISO/IEC also publishes the ECMAScript Language Standard as ISO/IEC 16262 [[ISO-16262-2011]]. But as you can tell from the linked page, the ISO/IEC standard is currently stuck on Edition 3 (which ironically is supposed to be fully "current"). So if you want to look at a spec written [=Can I Use/ECMAScript 5|before=] {{Array.prototype.forEach()}} was introduced to the language [[CANIUSE]], you may purchase the standard from ISO for <a href="https://www.google.com/search?q=198+swiss+francs+in+my+currency">198 Swiss Francs</a>. (In other words, don't.)
+
+## Navigating the Spec ## {#navigating-the-spec}
+
+The ECMAScript specification talks about a **HUGE** amount of things. Even though its authors try their best to separate it into logical chunks, it's still a huge text. I generally like to divide the spec into four parts:
+
+-   Conventions and Basics ("what is a Number? what does it mean when the spec says 'throw a **TypeError** exception'?")
+-   The Language (a `for`-`in` loop)
+    - Grammar production ("how does one write a `for`-`in` loop?")
+    - Static semantics ("how are variable names determined in a `var` statement?")
+    - Runtime semantics ("how is a `for`-`in` loop executed?")
+-   APIs ("what does `String.prototype.slice()` do?")
+
+but that's not how the spec organizes it. Instead, it puts the first bullet point in clauses [=§5 Notational Conventions=] through [=§9 Ordinary and Exotic Objects Behaviours=], the next three in a multiplexed form in clauses [=§10 ECMAScript Language: Source Code=] through [=§15 ECMAScript Language: Scripts and Modules=], like
+
+> -   <a>§13.6 The <code>if</code> Statement</a> **Grammar production**
+>     -   §13.6.1-6 **Static semantics**
+>     -   §13.6.7 **Runtime sematics**
+> -   [=§13.7 Iteration Statements=] **Grammar production**
+>     -   §13.7.1 Shared **static** and **runtime semantics**
+>     -   §13.7.2 The `do`-`while` Statement
+>         -   §13.7.2.1-5 **Static semantics**
+>         -   §13.7.2.6 **Runtime semantics**
+>     -   §13.7.3 The `while` Statement
+>         -   ...
+
+while the APIs are spread out through clauses [=§18 The Global Object=] through [=§26 Reflection=].
+
+At this point, I'd like to point out that **absolutely no one** reads the spec from top to bottom. Rather, only look at the section corresponding to what you are trying to look for, and *in* that section only look at what you need. Try to determine which one of the five big sections your specific question relates to; and if you are having trouble determining which one it is, ask yourself the question "at which time is *this* (whatever you are trying to confirm) evaluated?" which may help. Don't worry, navigating the spec will only become easier with practice.
+
+# Runtime Semantics # {#runtime-semantics}
+
+Runtime semantics of The Language and APIs are the biggest parts of the spec, and usually the ones people have the most questions about.
+
+On the whole, reading these sections in the spec is pretty straightforward. However, the spec employs a lot of shorthands that are pretty icky for people just starting out (at least for me). I'm going to try explaining some of these conventions, and then apply them to a usual workflow of figuring out how several things work.
+
+## Algorithm steps ## {#algorithm-steps}
+
+Most runtime semantics in ECMAScript are specified by a series of algorithm steps, not unlike pseudocode but in a much more precise form.
+
+<div class=example>
+
+<div algorithm="sample set of algorithm steps">
+
+A sample set of algorithm steps are:
+
+1.  Let |a| be **1**.
+1.  Let |b| be |a|+|a|.
+1.  If |b| is **2**, then
+    1.  Hooray! Arithmetics isn't broken.
+1.  Else
+    1.  Boo!
+
+</div>
+
+</div>
+
+<p class=note>Further reading: [=§5.2 Algorithm Conventions=]</p>
+
+## Abstract operations ## {#abstract-operations}
+
+You will sometimes see a function-like thing being called in the spec. The first step of the {{Boolean()}} function is:
+
+<div algorithm="to execute Boolean() (excerpt)">
+
+When <code class=idl>Boolean</code> is called with argument |value|, the following steps are taken:
+
+1.  Let |b| be [$ECMAScript/ToBoolean$](|value|).
+1.  ...
+
+</div>
+
+That "ToBoolean" function is called an <dfn>abstract operation</dfn>: it's abstract because it is not actually exposed as a function to JavaScript code. It is simply an notation spec writers invented to allow them to not write the same things over and over again.
+
+<p class=note>Further reading: [=§5.2.1 Abstract Operations=]</p>
+
+## What is \[[This]] ## {#what-is-this}
+
+From time to time, you may see the <dfn lt="double brackets notation">\[[Notation]]</dfn> being used like "Let |proto| be |obj|.\[[Prototype]]." This notation can technically mean several different things depending on the context in which it appears, but you would go a long way with the understanding that this notation refers to some internal property that is not observable through JavaScript code.
+
+Precisely, it can mean three different things, which I will illustrate with examples from the specification. Feel free to skip them for now, however.
+
+### A field of a Record ### {#field-of-record}
+
+The ECMAScript spec uses the term <dfn>Record</dfn> to refer to a key-value map with a fixed set of keys -- a bit like a structure in C-like languages. Each key-value pair of a [=Record=] is called a <dfn for=Record>field</dfn>. Because [=Records=] can only appear in specifications and not in actual JavaScript code, it makes sense to use the [=double brackets notation|[[Notation]]=] to refer to [=fields=] of a [=Record=].
+
+<div class=example>
+
+Notably, [=Property Descriptors=] are also modeled as [=Records=] with [=fields=] \[[Value]], \[[Writable]], \[[Get]], \[[Set]], \[[Enumerable]], and \[[Configurable]]. The [$ECMAScript/IsDataDescriptor$] abstract operation uses this notation to extensively:
+
+<div algorithm="to call the abstract operation IsDataDescriptor">
+
+When the abstract operation IsDataDescriptor is called with [=Property Descriptor=] |Desc|, the following steps are taken:
+
+1.  If |Desc| is **undefined**, return **false**.
+1.  If both |Desc|.\[[Value]] and |Desc|.\[[Writable]] are absent, return **false**.
+1.  Return **true**.
+
+</div>
+
+</div>
+
+Another concrete example of [=Records=] can be found in the next section, [[#completion-records-and-shorthands]]. 
+
+<p class=note>Further reading: [=§6.2.1 The List and Record Specification Types=]</p>
+
+### An internal slot of a JavaScript Object ### {#internal-slot-of-javascript-object}
+
+JavaScript Objects may have so-called <dfn lt="internal slot">internal slots</dfn> that the specification uses to keep data in them. Like [=Record/field|Record fields=], these [=internal slots=] also cannot be observed using JavaScript, but some of them may be exposed through implementation-specific tools like Google Chrome's DevTools. Thus, it makes sense also to use the [=double brackets notation|[[Notation]]=] to describe [=internal slots=].
+
+The specifics of [=internal slots=] will be covered in a later section. For now, don't worry too much about what they are used for, but do note the following example.
+
+<div class=example>
+
+Most JavaScript Objects have an internal slot \[[Prototype]] that contains the Object they inherit from. The value of this [=internal slot=] is usually the value {{MDN/Object.getPrototypeOf()}} returns. In the [$ECMAScript/OrdinaryGetPrototypeOf$] abstract operation, the value of this [=internal slot=] is accessed:
+
+<div algorithm="to call the abstract operation OrdinaryGetPrototypeOf">
+
+When the abstract operation OrdinaryGetPrototypeOf is called with Object |O|, the following steps are taken:
+
+1.  Return |O|.\[[Prototype]].
+
+</div>
+
+</div>
+
+Note: [=Internal slots=] of Objects and [=Record/field|Record fields=] are identical in appearance, but they can be disambiguated by looking at the precedent of this notation (the part that came before the dot), whether it is an Object or a [=Record=]. This is usually fairly obvious from the surrounding context.
+
+### An internal method of a JavaScript Object ### {#internal-method-of-javascript-object}
+
+JavaScript Objects may also have so-called <dfn lt="internal method">internal methods</dfn> that the specification call on to do certain things with that Object, like getting a property of that Object through the \[[Get]] internal method. Like [=internal slots=], these [=internal methods=] are not directly observable through JavaScript. Thus, it makes sense also to use the [=double brackets notation|[[Notation]]=] to describe [=internal methods=].
+
+The specifics of [=internal methods=] will be covered in a later section. For now, don't worry too much about what they are used for, but do note the following example.
+
+<div class=example>
+
+All JavaScript functions have an internal method \[[Call]] that runs that function. The [$ECMAScript/Call$] abstract operation has the following step:
+
+> 3.  Return ? |F|.\[[Call]](|V|, |argumentsList|).
+
+where |F| is a JavaScript function object. In this case, the \[[Call]] internal method of |F| is itself called with arguments |V| and |argumentsList|.
+
+</div>
+
+Note: This third sense of the [=double brackets notation|[[Notation]]=] can be distinguished from the rest by looking like a function call.
+
+## Completion Records; `?` and `!` ## {#completion-records-and-shorthands}
+
+Every runtime semantic in the ECMAScript spec either explicitly or implicitly returns a <dfn>Completion Record</dfn> that reports its outcome. This [=Completion Record=] is a [=Record=] that has three possible [=Record/fields=]:
+
+*   a <dfn for="Completion Record">\[[Type]]</dfn> (<dfn enum-value for="Completion Record/[[Type]]">normal</dfn>, <dfn enum-value for="Completion Record/[[Type]]">return</dfn>, <dfn enum-value for="Completion Record/[[Type]]">throw</dfn>, <dfn enum-value for="Completion Record/[[Type]]">break</dfn>, or <dfn enum-value for="Completion Record/[[Type]]">continue</dfn>)
+*   if the [=Completion Record/[[Type]]=] is {{Completion Record/[[Type]]/normal}}, {{Completion Record/[[Type]]/return}}, or {{Completion Record/[[Type]]/throw}}, then it can also have a <dfn for="Completion Record">\[[Value]]</dfn> ("what's returned/thrown")
+*   if the [=Completion Record/[[Type]]=] is {{Completion Record/[[Type]]/break}} or {{Completion Record/[[Type]]/continue}}, then it can optionally carry a [=MDN/label=] known as <dfn for="Completion Record">\[[Target]]</dfn> that script execution breaks from/continues to as a result of this runtime semantic
+
+Note: Two brackets are used to denote [=Record/fields=] of [=Records=]. See [[#field-of-record]] for a primer on [=Records=] and the notations associated with them.
+
+A [=Completion Record=] whose [=Completion Record/[[Type]]=] is {{Completion Record/[[Type]]/normal}} is called a <dfn>normal completion</dfn>. Every [=Completion Record=] other than a [=normal completion=] is also known as an <dfn>abrupt completion</dfn>.
+
+Most of the time, you are only going to deal with [=abrupt completions=] whose [=Completion Record/[[Type]]=] is {{Completion Record/[[Type]]/throw}}. The other three abrupt completion types are only useful in seeing how a specific syntactic element is evaluated. In fact, you will never see any of those other types in the definition of a built-in function, since `break`/`continue`/`return` don't work across function boundaries.
+
+<p class=note>Further reading: [=§6.2.3 The Completion Record Specification Type=]</p>
+
+----
+
+Because of the definition of [=Completion Records=], niceties in JavaScript like bubbling errors until a `try`-`catch` block don't exist in the spec. In fact, errors (or more precisely abrupt completions) are handled explicitly.
+
+Without any shorthands, the spec text for an ordinary call to an abstract operation that may either return a computation result or throw an error would look like:
+
+<div class=example>
+
+<div algorithm="to call an abstract operation that may throw without any shorthands">
+
+A few steps that call an abstract operation that may throw <strong><em>without any shorthands</em></strong>:
+
+1.  Let |resultCompletionRecord| be AbstractOp().
+
+    Note: |resultCompletionRecord| is a [=Completion Record=].
+
+1.  If |resultCompletionRecord| is an abrupt completion, return |resultCompletionRecord|.
+
+    Note: Here, |resultCompletionRecord| is directly returned if it is an [=abrupt completion=]. In other words, errors thrown in AbstractOp are forwarded, and the remaining steps aborted.
+
+1.  Let |result| be |resultCompletionRecord|.\[[Value]].
+
+    Note: After ensuring we got a [=normal completion=], we can now unwrap the [=Completion Record=] to get the actual result of the computation we need.
+
+1.  |result| is the result we need. We can now do more things with it.
+
+</div>
+
+This may possibly vaguely remind you of manual error handling in C:
+
+```c
+int result = abstractOp();              // Step 1
+if (result < 0)                         // Step 2
+  return result;                        // Step 2 (continued)
+                                        // Step 3 is unneeded
+// func() succeeded; carrying on...     // Step 4
+```
+
+</div>
+
+But to reduce these heavily boilerplated steps, editors of the ECMAScript spec added a few shorthands. Since ES2016, the same spec text can instead be written in the following two equivalent ways:
+
+<div class=example>
+
+<div algorithm="to call an abstract operation that may throw with ReturnIfAbrupt">
+
+A few steps that call an abstract operation that may throw <strong><em>with [$ReturnIfAbrupt$]</em></strong>:
+
+1.  Let |result| be AbstractOp().
+    
+    Note: Here, just like the step 1 in the previous example, |result| is a [=Completion Record=].
+
+1.  [$ECMAScript/ReturnIfAbrupt$](|result|).
+
+    Note: [$ReturnIfAbrupt$] deals with any possible [=abrupt completions=] by forwarding it, and unwraps the |result| to its [=Completion Record/[[Value]]=] automatically.
+
+1.  |result| is the result we need. We can now do more things with it.
+
+</div>
+
+</div>
+
+or, even more concisely, with a special <dfn lt="?" id="question-mark">question mark (?)</dfn> notation:
+
+<div class=example>
+
+<div algorithm="to call an abstract operation that may throw with a ReturnIfAbrupt shorthand">
+
+A few steps that call an abstract operation that may throw <strong><em>with a [=?|question mark (?)=]</em></strong>:
+
+1.  Let |result| be ? AbstractOp().
+
+    Note: In this notation we don't deal with [=Completion Records=] at all. The [=?=] shorthand handles *everything* for us, and |result| is ready to use immediately after.
+
+1.  |result| is the result we need. We can now do more things with it.
+
+</div>
+
+</div>
+
+----
+
+Sometimes, it can convey more information to the reader about the spec's intent if we know that AbstractOp will never return an abrupt completion. In those cases, an <dfn lt="!" id="exclamation-mark">exclamation mark (!)</dfn> is used:
+
+<div class=example>
+
+<div algorithm="to call an abstract operation that cannot never throw with a ReturnIfAbrupt shorthand">
+
+A few steps that call an abstract operation that cannot ever throw <strong><em>with an [=!|exclamation mark (!)=]</em></strong>:
+
+1.  Let |result| be ! AbstractOp().
+
+    Note: While [=?=] forwards any errors we may have gotten, [=!=] asserts that we *never* get any errors, and it would be a bug in the specification if we do. Like the case with [=?=], we don't deal with [=Completion Records=] at all. |result| is ready to use immediately after.
+
+1.  |result| is the result we need. We can now do more things with it.
+
+</div>
+
+</div>
+
+<div class=advisement heading=CAUTION:>
+
+The [=!=] can admittedly become pretty confusing if it is part of a comparison:
+
+> 5.  ..., return the result of the comparison ! [$ECMAScript/ToNumber$](|x|) == |y|.
+>
+> <cite>— Excerpted from [=§7.2.14 Abstract Equality Comparison=].</cite>
+
+Here, the [=!=] just means that we are certain [$ToNumber$] will never return an exception, *not* that the comparison is inverted!
+
+</div>
+
+<p class=note>Further reading: [=§5.2.3.4 ReturnIfAbrupt Shorthands=].</p>
+
+## Example: <code class=idl>String.prototype.substring()</code> ## {#example-string-prototype-substring}
+
+Now that we have a pretty good understanding of how the spec is organized and written, let's practice!
+
+Suppose I now have the following question:
+
+> Without running the code, what does the following code fragment return?
+>
+> ```js
+> String.prototype.substring.call(undefined, 2, 4)
+> ```
+
+This is a pretty tricky question. It seems that there are two plausible outcomes:
+
+1. <code class=idl>String.prototype.substring()</code> could first cast **undefined** to the string `"undefined"`, and then take characters at positions two and three (i.e., the interval [2, 4)) of that string to <strong>result in `"de"`</strong>
+2. On the other hand, <code class=idl>String.prototype.substring()</code> may just as reasonably **throw an error**, thus rejecting **undefined** as an input.
+
+Unfortunately, <a method for=MDN lt="String.prototype.substring()">MDN</a> also doesn't really offer any insights on how the function behaves when the **this** value isn't a string.
+
+*Spec to the rescue!* After typing in `substring` in the search box in the top-left corner on the spec [[ECMA-262]], we arrive at <a>§21.1.3.21 String.prototype.substring ( <var>start</var>, <var>end</var> )</a>, which is the normative specification of how the function works.
+
+Before reading the algorithm steps, let's think about what we know first. I assume we have a basic understanding of how `str.substring()` ordinarily works, which is to return a part of the given string. What we are not really sure of right now, is how it acts with the **this** value being **undefined**. So, we would specifically look for algorithm steps that address the **this** value.
+
+Lucky for us, the first step of the algorithm for {{ECMAScript/String.prototype.substring()}} deals specifically with the **this** value:
+
+> 1.  Let *O* be ? [$ECMAScript/RequireObjectCoercible$](**this** value).
+
+The [=?=] shorthand allows us to conclude that there may be some cases where the [$RequireObjectCoercible$] abstract operation may actually throw exceptions, since otherwise [=!=] would have been used instead. In fact, if it throws an error it would correspond with our second hypothesis above! With hope, we look into what [$RequireObjectCoercible$] does by clicking on the hyperlink.
+
+The [$ECMAScript/RequireObjectCoercible$] abstract operation is a little odd. Unlike most abstract operations, it is defined through a table rather than steps:
+
+> <table class="data">
+>  <tr>
+>   <th>Argument Type</th><th>Result</th>
+>  </tr>
+>  <tr>
+>   <td>Undefined</td><td>Throw a **TypeError** exception.</td>
+>  </tr>
+>  <tr>
+>   <td>...</td><td>...</td>
+>  </tr>
+> </table>
+
+No matter though -- in the row corresponding to Undefined (the type of the **this** value we passed to {{ECMAScript/String.prototype.substring()|substring()}}) the spec says that [$RequireObjectCoercible$] should throw an exception. And because the [=?=] notation is used in the definition of the function, we know that the thrown exception must bubble up to the caller of the function. Bingo!
+
+And there we have our answer: **the given code fragment throws a TypeError exception.**
+
+<div class=note heading=>
+
+The spec only specifies the type of the Error thrown, not what message it contains. This means that implementations can have different error messages, maybe even localized ones.
+
+On Google's V8 6.4 (included in Google Chrome 64), for example, the message is
+
+<pre class=highlight highlight="">
+TypeError: String.prototype.substring called on null or undefined
+</pre>
+
+while Mozilla Firefox 57.0 gives a somewhat less helpful
+
+<pre class=highlight highlight="">
+TypeError: can't convert undefined to object
+</pre>
+
+At the same time, ChakraCore version 1.7.5.0 (the JavaScript engine in Microsoft Edge) take's V8's route and throws
+
+<pre class=highlight highlight="">
+TypeError: String.prototype.substring: 'this' is null or undefined<Paste>
+</pre>
+
+</div>
+
+## Example: Can <code class=idl>Boolean()</code> and <code class=idl>String()</code> ever throw exceptions? ## {#example-can-boolean-and-string-ever-throw-exceptions}
+
+When writing mission-critical code, one must put exception handling at the forefront in programming. As such, the question of "can *some built-in function* ever throw an exception?" may be oft-pondered.
+
+In this example, we shall try to answer this question for two language built-in functions, <code class=idl>Boolean()</code> and <code class=idl>String()</code>. We will only look at direct calls to those functions, not the cases of `new Boolean()` and `new String()` which form boxed objects -- easily one of the [most undesirable features in JavaScript][ydkjs-object-wrappers] and a very much discouraged practice in pretty much all JS style guides out there.
+
+After navigating to the section for {{ECMAScript/Boolean()}} in the spec, we see that the algorithm seems to be fairly short:
+
+<div algorithm="to execute Boolean()">
+
+When <code class=idl>Boolean</code> is called with argument |value|, the following steps are taken:
+
+1.  Let |b| be [$ECMAScript/ToBoolean$](|value|).
+1.  If NewTarget is **undefined**, return |b|.
+1.  Let |O| be ? [$ECMAScript/OrdinaryCreateFromConstructor$](NewTarget, `"%BooleanPrototype%"`, « \[[BooleanData]] »).
+1.  Set |O|.\[[BooleanData]] to |b|.
+1.  Return |O|.
+
+</div>
+
+But on the other hand, it's not totally straightforward, with some complex acrobatics around [$OrdinaryCreateFromConstructor$] involved. More importantly, there is a [=?=] shorthand in step 3 that *may* indicate this function can throw errors in certain cases. Let's take a closer look.
+
+Step 1 casts |value| (the function argument) to a Boolean value. Interestingly there isn't a [=?=] or [=!=] shorthand for this step, but usually not having a Completion Record shorthand means the same thing as [=!=]. So step 1 cannot throw an exception.
+
+Step 2 checks if something called [$NewTarget$] is **undefined**. <dfn abstract-op>NewTarget</dfn> is the spec equivalent for the {{MDN/new.target}} meta property that was first added in ES2015, allowing the spec to distinguish between a `new Boolean()` call (where it is `Boolean`) and a `Boolean()` call (where it is **undefined**). Because we are only looking at direct calls to `Boolean()` at this moment, we know that [$NewTarget$] is always going to be **undefined**, and the algorithm will always return |b| straightaway without any additional processing.
+
+Because calling `Boolean()` without `new` can only access the first two steps in the algorithm for `Boolean()`, neither of which can throw exceptions, we conclude that <strong><code class=idl>Boolean()</code> never throws exceptions</strong> no matter what the input is.
+
+----
+
+Let's turn our attention to {{ECMAScript/String()}}:
+
+<div algorithm="to execute String()">
+
+When <code class=idl>String</code> is called with argument |value|, the following steps are taken:
+
+1.  If no arguments were passed to this function invocation, let |s| be `""`.
+1.  Else,
+    1.  If NewTarget is **undefined** and [$ECMAScript/Type$](|value|) is Symbol, return [$ECMAScript/SymbolDescriptiveString$](|value|).
+    1.  Let |s| be ? [$ECMAScript/ToString$](|value|).
+1.  If NewTarget is **undefined**, return |s|.
+1.  Return ? [$ECMAScript/StringCreate$](|s|, ? [$ECMAScript/GetPrototypeFromConstructor$](NewTarget, `"%StringPrototype%"`)).
+
+</div>
+
+From our experience with doing the same kind of analysis with the {{ECMAScript/Boolean()}} function, we know that [$NewTarget$] will always be **undefined** for our case, and therefore the last step can be skipped from our consideration. We also know that [$Type$] and [$SymbolDescriptiveString$] are safe as well, since abrupt completions are not handled for either of them. Yet, there is still a tell-tale [=?=] preceding the call to the [$ToString$] abstract operation. Let's take a closer look.
+
+Like [$RequireObjectCoercible$] we looked at earlier, [$ECMAScript/ToString$](|argument|) is also defined with a table:
+
+> <table class="data">
+>  <tr>
+>   <th>Argument Type</th>
+>   <th>Result</th>
+>  </tr>
+>  <tr>
+>   <td>Undefined</td>
+>   <td>Return `"undefined"`.</td>
+>  </tr>
+>  <tr>
+>   <td>Null</td>
+>   <td>Return `"null"`.</td>
+>  </tr>
+>  <tr>
+>   <td>Boolean</td>
+>   <td>
+>    If |argument| is **true**, return `"true"`.
+>
+>    If |argument| is **false**, return `"false"`.
+>   </td>
+>  </tr>
+>  <tr>
+>   <td>Number</td>
+>   <td>Return [$ECMAScript/NumberToString$](|argument|).</td>
+>  </tr>
+>  <tr>
+>   <td>String</td>
+>   <td>Return |argument|.</td>
+>  </tr>
+>  <tr>
+>   <td>Symbol</td>
+>   <td>Throw a **TypeError** exception.</td>
+>  </tr>
+>  <tr>
+>   <td>Object</td>
+>   <td>
+>
+>    Apply the following steps:
+>
+>    1.  Let |primValue| be ? [$ECMAScript/ToPrimitive$](|argument|, hint String).
+>    1.  Return ? [$ECMAScript/ToString$](|primValue|).
+>
+>   </td>
+>  </tr>
+> </table>
+
+At the point where [$ToString$] is called in {{ECMAScript/String()}}, |value| can be any value other than a Symbol (which is filtered out in the step immediately before). Yet, there still remain two [=?=] in the row for Object. We can follow the link to [$ECMAScript/ToPrimitive$] and beyond, and see that there are in fact a lot of opportunities for an error to be thrown if |value| is an Object:
+
+<div class=example>
+
+<details><summary>Several examples where {{ECMAScript/String()}} throws</summary>
+
+<pre>
+// Spec stack trace:
+//   <a abstract-op>OrdinaryGet</a> step 8.
+//   <a lt="§9.1.8 [[Get]] ( P, Receiver )">Ordinary Object's [[Get]]()</a> step 1.
+//   <a abstract-op>GetV</a> step 3.
+//   <a abstract-op>GetMethod</a> step 2.
+//   <a abstract-op>ToPrimitive</a> step 2.d.
+
+String({
+  get [Symbol.toPrimitive]() {
+    throw new Error("Breaking JavaScript");
+  }
+});
+</pre>
+
+<pre>
+// Spec stack trace:
+//   <a abstract-op>GetMethod</a> step 4.
+//   <a abstract-op>ToPrimitive</a> step 2.d.
+
+String({
+  get [Symbol.toPrimitive]() {
+    return "Breaking JavaScript";
+  }
+});
+</pre>
+
+<pre>
+// Spec stack trace:
+//   <a abstract-op>ToPrimitive</a> step 2.e.i.
+
+String({
+  [Symbol.toPrimitive]() {
+    throw new Error("Breaking JavaScript");
+  }
+});
+</pre>
+
+<pre>
+// Spec stack trace:
+//   <a abstract-op>ToPrimitive</a> step 2.e.iii.
+
+String({
+  [Symbol.toPrimitive]() {
+    return { "breaking": "JavaScript" };
+  }
+});
+</pre>
+
+<pre>
+// Spec stack trace:
+//   <a abstract-op>OrdinaryToPrimitive</a> step 5.b.i.
+//   <a abstract-op>ToPrimitive</a> step 2.g.
+
+String({
+  toString() {
+    throw new Error("Breaking JavaScript");
+  }
+});
+</pre>
+
+<pre>
+// Spec stack trace:
+//   <a abstract-op>OrdinaryToPrimitive</a> step 5.b.i.
+//   <a abstract-op>ToPrimitive</a> step 2.g.
+
+String({
+  valueOf() {
+    throw new Error("Breaking JavaScript");
+  }
+});
+</pre>
+
+<pre>
+// Spec stack trace:
+//   <a abstract-op>OrdinaryToPrimitive</a> step 6.
+//   <a abstract-op>ToPrimitive</a> step 2.g.
+
+String(Object.create(null));
+</pre>
+
+</details>
+
+</div>
+
+So for {{ECMAScript/String()}}, our conclusion is that <strong>it never throws exceptions for primitive values, but *may* throw errors for Objects.</strong>
+
+## Example: `typeof` operator ## {#example-typeof-operator}
+
+So far, we've only analyzed API functions, let's try something different.
+
+</div>
