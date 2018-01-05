@@ -1,16 +1,19 @@
 <pre class=metadata>
 Title: How to Read the ECMAScript Specification
+Status: LD
+URL: https://timothygu.me/es-howto/
 Shortname: es-howto
 Editor: Timothy Gu, timothygu99@gmail.com, https://timothygu.me/
-Status: LD
 Abstract: How to read the ECMAScript specification.
-Default Biblio Status: current
-Markup Shorthands: css no, markdown yes
-Default Highlight: javascript
-Editor Term: Author, Authors
 Warning: Custom
 Custom Warning Title: Work in Progress
 Custom Warning Text: This document is still under heavy iteration. Parts may appear to be unedited, incomplete, or outright wrong. If it sounds either offsensive to you or just patently wrong, please <a href="https://twitter.com/Timothy__Gu">DM</a> me, but beware that it's not a finished product.
+Indent: 2
+Editor Term: Author, Authors
+Default Ref Status: current
+Markup Shorthands: css no, markdown yes
+Repository: TimothyGu/es-howto
+Default Highlight: javascript
 </pre>
 
 <pre class="link-defaults">
@@ -24,269 +27,271 @@ spec: ecma-262; type: interface; for: ECMAScript; text: Uint8Array
 
 <pre class="anchors">
 urlPrefix: https://caniuse.com/; for: Can I Use; type: dfn
-    text: ECMAScript 5; url: #feat=es5
+  text: ECMAScript 5; url: #feat=es5
 
 urlPrefix: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/; for: MDN
-    type: method
-        text: Object.getPrototypeOf(); url: Global_Objects/Object/getPrototypeOf#
-        text: String.prototype.substring(); url: Global_Objects/String/substring#
-    type: attribute
-        text: new.target; url: Operators/new.target#
-    type: dfn
-        text: abstract equality algorithm; url: Operators/Comparison_Operators#Using_the_Equality_Operators
-        text: equality operators; url: Operators/Comparison_Operators#Equality_operators
-        text: label; url: Statements/label#
+  type: method
+    text: Object.getPrototypeOf(); url: Global_Objects/Object/getPrototypeOf#
+    text: String.prototype.substring(); url: Global_Objects/String/substring#
+  type: attribute
+    text: new.target; url: Operators/new.target#
+  type: dfn
+    text: abstract equality algorithm; url: Operators/Comparison_Operators#Using_the_Equality_Operators
+    text: equality operators; url: Operators/Comparison_Operators#Equality_operators
+    text: label; url: Statements/label#
 
 urlPrefix: https://nodejs.org/api/; spec: NODEJS; for: Node.js
-    type: dfn
-        text: globals; url: globals.html#globals_global_objects
-        text: modules; url: modules.html#modules_modules
-    type: interface
-        text: Buffer; url: buffer.html#buffer_class_buffer
-    type: namespace
-        for: NodeJSGlobal; urlPrefix: globals.html
-            text: process; url: #globals_process
-        for: NodeJSModuleScope; urlPrefix: modules.html
-            text: module; url: #modules_module
-    type: attribute
-        for: NodeJSGlobal; urlPrefix: globals.html
-            text: global; url: #globals_global
-        for: NodeJSModuleScope; urlPrefix: modules.html
-            text: exports; url: #modules_exports
-            text: __dirname; url: #modules_dirname
-            text: __filename; url: #modules_filename
-    type: method
-        for: NodeJSGlobal; urlPrefix: globals.html
-            text: clearImmediate(); url: #globals_clearimmediate_immediateobject
-            text: setImmediate(); url: #globals_setimmediate_callback_args
-        for: NodeJSModuleScope; urlPrefix: modules.html
-            text: require(); url: #modules_require
+  type: dfn
+    text: globals; url: globals.html#globals_global_objects
+    text: modules; url: modules.html#modules_modules
+  type: interface
+    text: Buffer; url: buffer.html#buffer_class_buffer
+  type: namespace
+    for: NodeJSGlobal; urlPrefix: globals.html
+      text: process; url: #globals_process
+    for: NodeJSModuleScope; urlPrefix: modules.html
+      text: module; url: #modules_module
+  type: attribute
+    for: NodeJSGlobal; urlPrefix: globals.html
+      text: global; url: #globals_global
+    for: NodeJSModuleScope; urlPrefix: modules.html
+      text: exports; url: #modules_exports
+      text: __dirname; url: #modules_dirname
+      text: __filename; url: #modules_filename
+  type: method
+    for: NodeJSGlobal; urlPrefix: globals.html
+      text: clearImmediate(); url: #globals_clearimmediate_immediateobject
+      text: setImmediate(); url: #globals_setimmediate_callback_args
+    for: NodeJSModuleScope; urlPrefix: modules.html
+      text: require(); url: #modules_require
 
 urlPrefix: https://tc39.github.io/ecma262/; for: ECMA-262; type: dfn
-    text: §5 Notational Conventions; url: sec-notational-conventions
-    text: §5.2 Algorithm Conventions; url: sec-algorithm-conventions
-    text: §5.2.1 Abstract Operations; url: sec-algorithm-conventions-abstract-operations
-    text: §5.2.3.4 ReturnIfAbrupt Shorthands; url: sec-returnifabrupt-shorthands
-    text: §6.2.1 The List and Record Specification Types; url: sec-list-and-record-specification-type
-    text: §6.2.3 The Completion Record Specification Type; url: sec-completion-record-specification-type
-    text: §7.2.14 Abstract Equality Comparison; url: sec-abstract-equality-comparison
-    text: §9 Ordinary and Exotic Objects Behaviours; url: sec-ordinary-and-exotic-objects-behaviours
-    text: §9.1 Ordinary Object Internal Methods and Internal Slots; url: sec-ordinary-object-internal-methods-and-internal-slots
-    text: §9.1.8 [[Get]] ( P, Receiver ); url: sec-ordinary-object-internal-methods-and-internal-slots-get-p-receiver
-    text: §9.3 Built-in Function Objects; url: sec-built-in-function-objects
-    text: §10 ECMAScript Language: Source Code; url: sec-ecmascript-language-source-code
-    text: §13.6 The if Statement; url: sec-if-statement
-    text: §13.7 Iteration Statements; url: sec-iteration-statements
-    text: §15 ECMAScript Language: Scripts and Modules; url: sec-ecmascript-language-scripts-and-modules
-    text: §18 The Global Object; url: sec-global-object
-    text: §21.1.3.21 String.prototype.substring ( start, end ); url: sec-string.prototype.substring
-    text: §26 Reflection; url: sec-reflection
+  text: §5 Notational Conventions; url: sec-notational-conventions
+  text: §5.2 Algorithm Conventions; url: sec-algorithm-conventions
+  text: §5.2.1 Abstract Operations; url: sec-algorithm-conventions-abstract-operations
+  text: §5.2.3.4 ReturnIfAbrupt Shorthands; url: sec-returnifabrupt-shorthands
+  text: §6.1.7.2 Object Internal Methods and Internal Slots; url: sec-object-internal-methods-and-internal-slots
+  text: §6.2.1 The List and Record Specification Types; url: sec-list-and-record-specification-type
+  text: §6.2.3 The Completion Record Specification Type; url: sec-completion-record-specification-type
+  text: §7.2.14 Abstract Equality Comparison; url: sec-abstract-equality-comparison
+  text: §9 Ordinary and Exotic Objects Behaviours; url: sec-ordinary-and-exotic-objects-behaviours
+  text: §9.1 Ordinary Object Internal Methods and Internal Slots; url: sec-ordinary-object-internal-methods-and-internal-slots
+  text: §9.1.8 [[Get]] ( P, Receiver ); url: sec-ordinary-object-internal-methods-and-internal-slots-get-p-receiver
+  text: §9.2 ECMAScript Function Objects; url: sec-ecmascript-function-objects
+  text: §9.3 Built-in Function Objects; url: sec-built-in-function-objects
+  text: §10 ECMAScript Language: Source Code; url: sec-ecmascript-language-source-code
+  text: §13.6 The if Statement; url: sec-if-statement
+  text: §13.7 Iteration Statements; url: sec-iteration-statements
+  text: §15 ECMAScript Language: Scripts and Modules; url: sec-ecmascript-language-scripts-and-modules
+  text: §18 The Global Object; url: sec-global-object
+  text: §21.1.3.21 String.prototype.substring ( start, end ); url: sec-string.prototype.substring
+  text: §26 Reflection; url: sec-reflection
 
 urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
-    type: interface
-        text: Array; url: sec-array-objects
-        text: ArrayBuffer; url: sec-arraybuffer-objects
-        text: DataView; url: sec-dataview-objects
-        text: Function; url: sec-function-objects
-        text: Map; url: sec-map-objects
-        text: Math; url: sec-math-object
-        text: Number; url: sec-number-objects
-        text: Object; url: sec-object-objects
-        text: Promise; url: sec-promise-objects
-        text: RegExp; url: sec-regexp-regular-expression-objects
-        text: Proxy; url: sec-proxy-objects
-        text: Set; url: sec-set-objects
-        text: SharedArrayBuffer; url: sec-sharedarraybuffer-objects
-        text: Uint8Array; url: sec-typedarray-objects
-        text: %ArrayPrototype%; url: sec-properties-of-the-array-prototype-object
-        text: %ErrorPrototype%; url: sec-properties-of-the-error-prototype-object
-        text: %FunctionPrototype%; url: sec-properties-of-the-function-prototype-object
-        text: %IteratorPrototype%; url: sec-%iteratorprototype%-object
-        text: %MapPrototype%; url: sec-properties-of-the-map-prototype-object
-        text: %ObjectPrototype%; url: sec-properties-of-the-object-prototype-object
-        text: %Promise%; url: sec-promise-constructor
-        text: %SetPrototype%; url: sec-properties-of-the-set-prototype-object
-    type: exception
-        text: Error; url: sec-error-objects
-        text: SyntaxError; url: sec-native-error-types-used-in-this-standard-syntaxerror
-        text: TypeError; url: sec-native-error-types-used-in-this-standard-typeerror
-    type: method
-        text: Array.prototype.forEach(); url: sec-array.prototype.foreach
-        text: Boolean(); url: sec-boolean-constructor-boolean-value
-        text: JSON.stringify(); url: sec-json.stringify
-        text: String(); url: sec-string-constructor-string-value
-        text: String.prototype.substring(); url: sec-string.prototype.substring
-        text: %ArrayProto_entries%; url: sec-array.prototype.entries
-        text: %ArrayProto_forEach%; url: sec-array.prototype.foreach
-        text: %ArrayProto_keys%; url: sec-array.prototype.keys
-        text: %ArrayProto_values%; url: sec-array.prototype.values
-        text: %ObjProto_toString%; url: sec-object.prototype.tostring
-        text: %Promise_reject%; url: sec-promise.reject
-        text: %Promise_resolve%; url: sec-promise.resolve
-    type: const
-        url: sec-well-known-symbols
-            text: @@iterator
-            text: @@toStringTag
-            text: @@unscopables
-    type: argument
-        text: NewTarget; url: sec-built-in-function-objects
-    type: abstract-op
-        text: ArrayCreate; url: sec-arraycreate
-        text: Call; url: sec-call
-        text: CanonicalNumericIndexString; url: sec-canonicalnumericindexstring
-        text: Completion; url: sec-completion
-        text: Construct; url: sec-construct
-        text: CreateArrayIterator; url: sec-createarrayiterator
-        text: CreateBuiltinFunction; url: sec-createbuiltinfunction
-        text: CreateDataProperty; url: sec-createdataproperty
-        text: CreateIterResultObject; url: sec-createiterresultobject
-        text: CreateMapIterator; url: sec-createmapiterator
-        text: CreateSetIterator; url: sec-createsetiterator
-        text: DefinePropertyOrThrow; url: sec-definepropertyorthrow
-        text: DetachArrayBuffer; url: sec-detacharraybuffer
-        text: Get; url: sec-get-o-p
-        text: GetIterator; url: sec-getiterator
-        text: GetMethod; url: sec-getmethod
-        text: GetPrototypeFromConstructor; url: sec-getprototypefromconstructor
-        text: GetV; url: sec-getv
-        text: IsAccessorDescriptor; url: sec-isaccessordescriptor
-        text: IsCallable; url: sec-iscallable
-        text: IsConstructor; url: sec-isconstructor
-        text: IsDataDescriptor; url: sec-isdatadescriptor
-        text: IsDetachedBuffer; url: sec-isdetachedbuffer
-        text: IsSharedArrayBuffer; url: sec-issharedarraybuffer
-        text: IteratorStep; url: sec-iteratorstep
-        text: IteratorValue; url: sec-iteratorvalue
-        text: NormalCompletion; url: sec-normalcompletion
-        text: NumberToString; url: sec-numbertostring
-        text: ObjectCreate; url: sec-objectcreate
-        text: OrdinaryCreateFromConstructor; url: sec-ordinarycreatefromconstructor
-        text: OrdinaryDefineOwnProperty; url: sec-ordinarydefineownproperty
-        text: OrdinaryGet; url: sec-ordinaryget
-        text: OrdinaryGetOwnProperty; url: sec-ordinarygetownproperty
-        text: OrdinaryGetPrototypeOf; url: sec-ordinarygetprototypeof
-        text: OrdinaryPreventExtensions; url: sec-ordinarypreventextensions
-        text: OrdinarySetWithOwnDescriptor; url: sec-ordinarysetwithowndescriptor
-        text: OrdinaryToPrimitive; url: sec-ordinarytoprimitive
-        text: RequireObjectCoercible; url: sec-requireobjectcoercible
-        text: ReturnIfAbrupt; url: sec-returnifabrupt
-        text: Set; url: sec-set-o-p-v-throw
-        text: SetFunctionName; url: sec-setfunctionname
-        text: SetImmutablePrototype; url: sec-set-immutable-prototype
-        text: SetIntegrityLevel; url: sec-setintegritylevel
-        text: StringCreate; url: sec-stringcreate
-        text: SymbolDescriptiveString; url: sec-symboldescriptivestring
-        text: ToBoolean; url: sec-toboolean
-        text: ToInt32; url: sec-toint32
-        text: ToNumber; url: sec-tonumber
-        text: ToObject; url: sec-toobject
-        text: ToPrimitive; url: sec-toprimitive
-        text: ToString; url: sec-tostring
-        text: ToUint16; url: sec-touint16
-        text: ToUint32; url: sec-touint32
-        text: Type; url: sec-ecmascript-data-types-and-values
-        text: abs; url: eqn-abs
-        text: floor; url: eqn-floor
-        text: max; url: eqn-max
-        text: min; url: eqn-min
-    type: dfn
-        text: NumericLiteral; url: sec-literals-numeric-literals
-        text: modulo; url: eqn-modulo
-        url: sec-returnifabrupt-shorthands
-            text: !
-            text: ?
-        text: abrupt completion; url: sec-completion-record-specification-type
-        text: array index; url: array-index
-        text: array iterator object; url: sec-array-iterator-objects
-        text: built-in function object; url: sec-built-in-function-objects
-        text: callable; url: sec-iscallable
-        text: Completion Record; url: sec-completion-record-specification-type
-        text: constructor; url: constructor
-        text: conventions; url: sec-algorithm-conventions
-        text: current Realm; url: current-realm
-        text: element; url: sec-ecmascript-language-types-string-type
-        text: enumerable; url: sec-property-attributes
-        text: equally close values; url: sec-ecmascript-language-types-number-type
-        text: error objects; url: sec-error-objects
-        text: function object; url: function-object
-        text: immutable prototype exotic object; url: sec-immutable-prototype-exotic-objects
-        url: sec-object-internal-methods-and-internal-slots
-            text: internal method
-            text: internal slot
-        text: Number type; url: sec-ecmascript-language-types-number-type
-        for: ordinary object; url: sec-ordinary-object-internal-methods-and-internal-slots
-            text: internal method
-            text: internal slot
-        text: own property; url: sec-own-property
-        text: Property Descriptor; url: sec-property-descriptor-specification-type
-        text: realm; url: realm
+  type: interface
+    text: Array; url: sec-array-objects
+    text: ArrayBuffer; url: sec-arraybuffer-objects
+    text: DataView; url: sec-dataview-objects
+    text: Function; url: sec-function-objects
+    text: Map; url: sec-map-objects
+    text: Math; url: sec-math-object
+    text: Number; url: sec-number-objects
+    text: Object; url: sec-object-objects
+    text: Promise; url: sec-promise-objects
+    text: RegExp; url: sec-regexp-regular-expression-objects
+    text: Proxy; url: sec-proxy-objects
+    text: Set; url: sec-set-objects
+    text: SharedArrayBuffer; url: sec-sharedarraybuffer-objects
+    text: Uint8Array; url: sec-typedarray-objects
+    text: %ArrayPrototype%; url: sec-properties-of-the-array-prototype-object
+    text: %ErrorPrototype%; url: sec-properties-of-the-error-prototype-object
+    text: %FunctionPrototype%; url: sec-properties-of-the-function-prototype-object
+    text: %IteratorPrototype%; url: sec-%iteratorprototype%-object
+    text: %MapPrototype%; url: sec-properties-of-the-map-prototype-object
+    text: %ObjectPrototype%; url: sec-properties-of-the-object-prototype-object
+    text: %Promise%; url: sec-promise-constructor
+    text: %SetPrototype%; url: sec-properties-of-the-set-prototype-object
+  type: exception
+    text: Error; url: sec-error-objects
+    text: SyntaxError; url: sec-native-error-types-used-in-this-standard-syntaxerror
+    text: TypeError; url: sec-native-error-types-used-in-this-standard-typeerror
+  type: method
+    text: Array.prototype.forEach(); url: sec-array.prototype.foreach
+    text: Boolean(); url: sec-boolean-constructor-boolean-value
+    text: JSON.stringify(); url: sec-json.stringify
+    text: String(); url: sec-string-constructor-string-value
+    text: String.prototype.substring(); url: sec-string.prototype.substring
+    text: %ArrayProto_entries%; url: sec-array.prototype.entries
+    text: %ArrayProto_forEach%; url: sec-array.prototype.foreach
+    text: %ArrayProto_keys%; url: sec-array.prototype.keys
+    text: %ArrayProto_values%; url: sec-array.prototype.values
+    text: %ObjProto_toString%; url: sec-object.prototype.tostring
+    text: %Promise_reject%; url: sec-promise.reject
+    text: %Promise_resolve%; url: sec-promise.resolve
+  type: const
+    url: sec-well-known-symbols
+      text: @@iterator
+      text: @@toStringTag
+      text: @@unscopables
+  type: argument
+    text: NewTarget; url: sec-built-in-function-objects
+  type: abstract-op
+    text: ArrayCreate; url: sec-arraycreate
+    text: Call; url: sec-call
+    text: CanonicalNumericIndexString; url: sec-canonicalnumericindexstring
+    text: Completion; url: sec-completion
+    text: Construct; url: sec-construct
+    text: CreateArrayIterator; url: sec-createarrayiterator
+    text: CreateBuiltinFunction; url: sec-createbuiltinfunction
+    text: CreateDataProperty; url: sec-createdataproperty
+    text: CreateIterResultObject; url: sec-createiterresultobject
+    text: CreateMapIterator; url: sec-createmapiterator
+    text: CreateSetIterator; url: sec-createsetiterator
+    text: DefinePropertyOrThrow; url: sec-definepropertyorthrow
+    text: DetachArrayBuffer; url: sec-detacharraybuffer
+    text: Get; url: sec-get-o-p
+    text: GetIterator; url: sec-getiterator
+    text: GetMethod; url: sec-getmethod
+    text: GetPrototypeFromConstructor; url: sec-getprototypefromconstructor
+    text: GetV; url: sec-getv
+    text: IsAccessorDescriptor; url: sec-isaccessordescriptor
+    text: IsCallable; url: sec-iscallable
+    text: IsConstructor; url: sec-isconstructor
+    text: IsDataDescriptor; url: sec-isdatadescriptor
+    text: IsDetachedBuffer; url: sec-isdetachedbuffer
+    text: IsSharedArrayBuffer; url: sec-issharedarraybuffer
+    text: IteratorStep; url: sec-iteratorstep
+    text: IteratorValue; url: sec-iteratorvalue
+    text: NormalCompletion; url: sec-normalcompletion
+    text: NumberToString; url: sec-numbertostring
+    text: ObjectCreate; url: sec-objectcreate
+    text: OrdinaryCreateFromConstructor; url: sec-ordinarycreatefromconstructor
+    text: OrdinaryDefineOwnProperty; url: sec-ordinarydefineownproperty
+    text: OrdinaryGet; url: sec-ordinaryget
+    text: OrdinaryGetOwnProperty; url: sec-ordinarygetownproperty
+    text: OrdinaryGetPrototypeOf; url: sec-ordinarygetprototypeof
+    text: OrdinaryPreventExtensions; url: sec-ordinarypreventextensions
+    text: OrdinarySetWithOwnDescriptor; url: sec-ordinarysetwithowndescriptor
+    text: OrdinaryToPrimitive; url: sec-ordinarytoprimitive
+    text: RequireObjectCoercible; url: sec-requireobjectcoercible
+    text: ReturnIfAbrupt; url: sec-returnifabrupt
+    text: Set; url: sec-set-o-p-v-throw
+    text: SetFunctionName; url: sec-setfunctionname
+    text: SetImmutablePrototype; url: sec-set-immutable-prototype
+    text: SetIntegrityLevel; url: sec-setintegritylevel
+    text: StringCreate; url: sec-stringcreate
+    text: SymbolDescriptiveString; url: sec-symboldescriptivestring
+    text: ToBoolean; url: sec-toboolean
+    text: ToInt32; url: sec-toint32
+    text: ToNumber; url: sec-tonumber
+    text: ToObject; url: sec-toobject
+    text: ToPrimitive; url: sec-toprimitive
+    text: ToString; url: sec-tostring
+    text: ToUint16; url: sec-touint16
+    text: ToUint32; url: sec-touint32
+    text: Type; url: sec-ecmascript-data-types-and-values
+    text: abs; url: eqn-abs
+    text: floor; url: eqn-floor
+    text: max; url: eqn-max
+    text: min; url: eqn-min
+  type: dfn
+    text: NumericLiteral; url: sec-literals-numeric-literals
+    text: modulo; url: eqn-modulo
+    url: sec-returnifabrupt-shorthands
+      text: !
+      text: ?
+    text: abrupt completion; url: sec-completion-record-specification-type
+    text: array index; url: array-index
+    text: array iterator object; url: sec-array-iterator-objects
+    text: built-in function object; url: sec-built-in-function-objects
+    text: callable; url: sec-iscallable
+    text: Completion Record; url: sec-completion-record-specification-type
+    text: constructor; url: constructor
+    text: conventions; url: sec-algorithm-conventions
+    text: current Realm; url: current-realm
+    text: element; url: sec-ecmascript-language-types-string-type
+    text: enumerable; url: sec-property-attributes
+    text: equally close values; url: sec-ecmascript-language-types-number-type
+    text: error objects; url: sec-error-objects
+    text: function object; url: function-object
+    text: immutable prototype exotic object; url: sec-immutable-prototype-exotic-objects
+    url: sec-object-internal-methods-and-internal-slots
+      text: internal method
+      text: internal slot
+    text: Number type; url: sec-ecmascript-language-types-number-type
+    for: ordinary object; url: sec-ordinary-object-internal-methods-and-internal-slots
+      text: internal method
+      text: internal slot
+    text: own property; url: sec-own-property
+    text: Property Descriptor; url: sec-property-descriptor-specification-type
+    text: realm; url: realm
 </pre>
 
 <pre class=biblio>
 {
-    "CANIUSE": {
-        "href": "https://caniuse.com",
-        "title": "Can I use... Support tables for HTML5, CSS3, etc"
-    },
-    "ECMA-262-2017": {
-        "href": "https://ecma-international.org/ecma-262/8.0/",
-        "title": "ECMAScript® 2017 Language Specification",
-        "publisher": "Ecma International"
-    },
-    "ECMA-262-GLOBAL": {
-        "href": "https://github.com/tc39/proposal-global",
-        "title": "tc39/proposal-global: ECMAScript Proposal, specs, and reference implementation for `global`",
-        "publisher": "GitHub Inc."
-    },
-    "ISO-16262-2011": {
-        "href": "https://www.iso.org/standard/55755.html",
-        "title": "ISO/IEC 16262:2011 - Information technology -- Programming languages, their environments and system software interfaces -- ECMAScript language specification",
-        "publisher": "ISO/IEC"
-    },
-    "JOHNNY-FIVE": {
-        "href": "http://johnny-five.io/",
-        "title": "Johnny-Five: The JavaScript Robotics & IoT Platform",
-        "publisher": "Bocoup LLC"
-    },
-    "MDN": {
-        "href": "https://developer.mozilla.org/en-US/",
-        "title": "Mozilla Developer Network",
-        "publisher": "Mozilla Inc."
-    },
-    "NODEJS": {
-        "href": "https://nodejs.org/",
-        "title": "Node.js",
-        "publisher": "Node.js Foundation"
-    },
-    "NODEJS-NASA": {
-        "href": "https://foundation.nodejs.org/wp-content/uploads/sites/50/2017/09/Node_CaseStudy_Nasa_FNL.pdf",
-        "title": "Node.js Helps NASA Keep Astronauts Safe and Data Accessible",
-        "publisher": "Node.js Foundation"
-    },
-    "TC39": {
-        "href": "https://www.ecma-international.org/memento/TC39.htm",
-        "title": "TC39 - ECMAScript",
-        "publisher": "Ecma International"
-    },
-    "WAT": {
-        "authors": [
-            "Gary Bernhardt"
-        ],
-        "href": "https://www.destroyallsoftware.com/talks/wat",
-        "title": "Wat",
-        "rawDate": "2012"
-    },
-    "WHATISMYBROWSER": {
-        "href": "https://www.whatsmybrowser.org/",
-        "title": "What browser am I using?"
-    },
-    "XKCD-703": {
-        "authors": [
-            "Randall Munroe"
-        ],
-        "href": "https://www.xkcd.com/703/",
-        "title": "xkcd: Honor Societies"
-    }
+  "CANIUSE": {
+    "href": "https://caniuse.com",
+    "title": "Can I use... Support tables for HTML5, CSS3, etc"
+  },
+  "ECMA-262-2017": {
+    "href": "https://ecma-international.org/ecma-262/8.0/",
+    "title": "ECMAScript® 2017 Language Specification",
+    "publisher": "Ecma International"
+  },
+  "ECMA-262-GLOBAL": {
+    "href": "https://github.com/tc39/proposal-global",
+    "title": "tc39/proposal-global: ECMAScript Proposal, specs, and reference implementation for `global`",
+    "publisher": "GitHub Inc."
+  },
+  "ISO-16262-2011": {
+    "href": "https://www.iso.org/standard/55755.html",
+    "title": "ISO/IEC 16262:2011 - Information technology -- Programming languages, their environments and system software interfaces -- ECMAScript language specification",
+    "publisher": "ISO/IEC"
+  },
+  "JOHNNY-FIVE": {
+    "href": "http://johnny-five.io/",
+    "title": "Johnny-Five: The JavaScript Robotics & IoT Platform",
+    "publisher": "Bocoup LLC"
+  },
+  "MDN": {
+    "href": "https://developer.mozilla.org/en-US/",
+    "title": "Mozilla Developer Network",
+    "publisher": "Mozilla Inc."
+  },
+  "NODEJS": {
+    "href": "https://nodejs.org/",
+    "title": "Node.js",
+    "publisher": "Node.js Foundation"
+  },
+  "NODEJS-NASA": {
+    "href": "https://foundation.nodejs.org/wp-content/uploads/sites/50/2017/09/Node_CaseStudy_Nasa_FNL.pdf",
+    "title": "Node.js Helps NASA Keep Astronauts Safe and Data Accessible",
+    "publisher": "Node.js Foundation"
+  },
+  "TC39": {
+    "href": "https://www.ecma-international.org/memento/TC39.htm",
+    "title": "TC39 - ECMAScript",
+    "publisher": "Ecma International"
+  },
+  "WAT": {
+    "authors": [
+      "Gary Bernhardt"
+    ],
+    "href": "https://www.destroyallsoftware.com/talks/wat",
+    "title": "Wat",
+    "rawDate": "2012"
+  },
+  "WHATISMYBROWSER": {
+    "href": "https://www.whatsmybrowser.org/",
+    "title": "What browser am I using?"
+  },
+  "XKCD-703": {
+    "authors": [
+      "Randall Munroe"
+    ],
+    "href": "https://www.xkcd.com/703/",
+    "title": "xkcd: Honor Societies"
+  }
 }
 </pre>
 
@@ -401,35 +406,36 @@ Because of that, unless you want your web application to run on only browsers fr
 
 Note: The ISO/IEC also publishes the ECMAScript Language Standard as ISO/IEC 16262 [[ISO-16262-2011]]. But as you can tell from the linked page, the ISO/IEC standard is currently stuck on Edition 3 (which ironically is supposed to be fully "current"). So if you want to look at a spec written [=Can I Use/ECMAScript 5|before=] {{Array.prototype.forEach()}} was introduced to the language [[CANIUSE]], you may purchase the standard from ISO for <a href="https://www.google.com/search?q=198+swiss+francs+in+my+currency">198 Swiss Francs</a>. (In other words, don't.)
 
-## Navigating the Spec ## {#navigating-the-spec}
+## Navigating the spec ## {#navigating-the-spec}
 
-The ECMAScript specification talks about a **HUGE** amount of things. Even though its authors try their best to separate it into logical chunks, it's still a huge text. I generally like to divide the spec into four parts:
+The ECMAScript specification talks about a **HUGE** amount of things. Even though its authors try their best to separate it into logical chunks, it's still a huge text.
 
--   Conventions and Basics ("what is a Number? what does it mean when the spec says 'throw a **TypeError** exception'?")
--   The Language (a `for`-`in` loop)
-    - Grammar production ("how does one write a `for`-`in` loop?")
-    - Static semantics ("how are variable names determined in a `var` statement?")
-    - Runtime semantics ("how is a `for`-`in` loop executed?")
--   APIs ("what does `String.prototype.slice()` do?")
+Personally, I like to divide the spec into five parts:
 
-but that's not how the spec organizes it. Instead, it puts the first bullet point in clauses [=§5 Notational Conventions=] through [=§9 Ordinary and Exotic Objects Behaviours=], the next three in a multiplexed form in clauses [=§10 ECMAScript Language: Source Code=] through [=§15 ECMAScript Language: Scripts and Modules=], like
+- Conventions and basics ("what is a Number? what does it mean when the spec says 'throw a **TypeError** exception'?")
+- Grammar productions of the language ("how does one write a `for`-`in` loop?")
+- Static semantics of the language ("how are variable names determined in a `var` statement?")
+- Runtime semantics of the language ("how is a `for`-`in` loop executed?")
+- APIs ("what does <code class=idl>String.prototype.substring()</code> do?")
 
-> -   <a>§13.6 The <code>if</code> Statement</a> **Grammar production**
->     -   §13.6.1-6 **Static semantics**
->     -   §13.6.7 **Runtime sematics**
-> -   [=§13.7 Iteration Statements=] **Grammar production**
->     -   §13.7.1 Shared **static** and **runtime semantics**
->     -   §13.7.2 The `do`-`while` Statement
->         -   §13.7.2.1-5 **Static semantics**
->         -   §13.7.2.6 **Runtime semantics**
->     -   §13.7.3 The `while` Statement
->         -   ...
+but that's not how the spec organizes it. Instead, it puts the first bullet point in [=§5 Notational Conventions=] through [=§9 Ordinary and Exotic Objects Behaviours=], the next three in an interleaved form in [=§10 ECMAScript Language: Source Code=] through [=§15 ECMAScript Language: Scripts and Modules=], like
+
+> - <a>§13.6 The <code>if</code> Statement</a> **Grammar productions**
+>   - §13.6.1-6 **Static semantics**
+>   - §13.6.7 **Runtime sematics**
+> - [=§13.7 Iteration Statements=] **Grammar productions**
+>   - §13.7.1 Shared **static** and **runtime semantics**
+>   - §13.7.2 The `do`-`while` Statement
+>     - §13.7.2.1-5 **Static semantics**
+>     - §13.7.2.6 **Runtime semantics**
+>   - §13.7.3 The `while` Statement
+>     - ...
 
 while the APIs are spread out through clauses [=§18 The Global Object=] through [=§26 Reflection=].
 
 At this point, I'd like to point out that **absolutely no one** reads the spec from top to bottom. Rather, only look at the section corresponding to what you are trying to look for, and *in* that section only look at what you need. Try to determine which one of the five big sections your specific question relates to; and if you are having trouble determining which one it is, ask yourself the question "at which time is *this* (whatever you are trying to confirm) evaluated?" which may help. Don't worry, navigating the spec will only become easier with practice.
 
-# Runtime Semantics # {#runtime-semantics}
+# Runtime semantics # {#runtime-semantics}
 
 Runtime semantics of The Language and APIs are the biggest parts of the spec, and usually the ones people have the most questions about.
 
@@ -448,9 +454,9 @@ A sample set of algorithm steps are:
 1.  Let |a| be **1**.
 1.  Let |b| be |a|+|a|.
 1.  If |b| is **2**, then
-    1.  Hooray! Arithmetics isn't broken.
+  1.  Hooray! Arithmetics isn't broken.
 1.  Else
-    1.  Boo!
+  1.  Boo!
 
 </div>
 
@@ -509,7 +515,7 @@ Another concrete example of [=Records=] can be found in the next section, [[#com
 
 JavaScript Objects may have so-called <dfn lt="internal slot">internal slots</dfn> that the specification uses to keep data in them. Like [=Record/field|Record fields=], these [=internal slots=] also cannot be observed using JavaScript, but some of them may be exposed through implementation-specific tools like Google Chrome's DevTools. Thus, it makes sense also to use the [=double brackets notation|[[Notation]]=] to describe [=internal slots=].
 
-The specifics of [=internal slots=] will be covered in a later section. For now, don't worry too much about what they are used for, but do note the following example.
+The specifics of [=internal slots=] will be covered in [[#javascript-objects]]. For now, don't worry too much about what they are used for, but do note the following example.
 
 <div class=example>
 
@@ -529,9 +535,9 @@ Note: [=Internal slots=] of Objects and [=Record/field|Record fields=] are ident
 
 ### An internal method of a JavaScript Object ### {#internal-method-of-javascript-object}
 
-JavaScript Objects may also have so-called <dfn lt="internal method">internal methods</dfn> that the specification call on to do certain things with that Object, like getting a property of that Object through the \[[Get]] internal method. Like [=internal slots=], these [=internal methods=] are not directly observable through JavaScript. Thus, it makes sense also to use the [=double brackets notation|[[Notation]]=] to describe [=internal methods=].
+JavaScript Objects may also have so-called [=internal methods=]. Like [=internal slots=], these [=internal methods=] are not directly observable through JavaScript. Thus, it makes sense also to use the [=double brackets notation|[[Notation]]=] to describe [=internal methods=].
 
-The specifics of [=internal methods=] will be covered in a later section. For now, don't worry too much about what they are used for, but do note the following example.
+The specifics of [=internal methods=] will be covered in [[#javascript-objects]]. For now, don't worry too much about what they are used for, but do note the following example.
 
 <div class=example>
 
@@ -549,9 +555,9 @@ Note: This third sense of the [=double brackets notation|[[Notation]]=] can be d
 
 Every runtime semantic in the ECMAScript spec either explicitly or implicitly returns a <dfn>Completion Record</dfn> that reports its outcome. This [=Completion Record=] is a [=Record=] that has three possible [=Record/fields=]:
 
-*   a <dfn for="Completion Record">\[[Type]]</dfn> (<dfn enum-value for="Completion Record/[[Type]]">normal</dfn>, <dfn enum-value for="Completion Record/[[Type]]">return</dfn>, <dfn enum-value for="Completion Record/[[Type]]">throw</dfn>, <dfn enum-value for="Completion Record/[[Type]]">break</dfn>, or <dfn enum-value for="Completion Record/[[Type]]">continue</dfn>)
-*   if the [=Completion Record/[[Type]]=] is {{Completion Record/[[Type]]/normal}}, {{Completion Record/[[Type]]/return}}, or {{Completion Record/[[Type]]/throw}}, then it can also have a <dfn for="Completion Record">\[[Value]]</dfn> ("what's returned/thrown")
-*   if the [=Completion Record/[[Type]]=] is {{Completion Record/[[Type]]/break}} or {{Completion Record/[[Type]]/continue}}, then it can optionally carry a [=MDN/label=] known as <dfn for="Completion Record">\[[Target]]</dfn> that script execution breaks from/continues to as a result of this runtime semantic
+* a <dfn for="Completion Record">\[[Type]]</dfn> (<dfn enum-value for="Completion Record/[[Type]]">normal</dfn>, <dfn enum-value for="Completion Record/[[Type]]">return</dfn>, <dfn enum-value for="Completion Record/[[Type]]">throw</dfn>, <dfn enum-value for="Completion Record/[[Type]]">break</dfn>, or <dfn enum-value for="Completion Record/[[Type]]">continue</dfn>)
+* if the [=Completion Record/[[Type]]=] is {{Completion Record/[[Type]]/normal}}, {{Completion Record/[[Type]]/return}}, or {{Completion Record/[[Type]]/throw}}, then it can also have a <dfn for="Completion Record">\[[Value]]</dfn> ("what's returned/thrown")
+* if the [=Completion Record/[[Type]]=] is {{Completion Record/[[Type]]/break}} or {{Completion Record/[[Type]]/continue}}, then it can optionally carry a [=MDN/label=] known as <dfn for="Completion Record">\[[Target]]</dfn> that script execution breaks from/continues to as a result of this runtime semantic
 
 Note: Two brackets are used to denote [=Record/fields=] of [=Records=]. See [[#field-of-record]] for a primer on [=Records=] and the notations associated with them.
 
@@ -675,6 +681,28 @@ Here, the [=!=] just means that we are certain [$ToNumber$] will never return an
 
 <p class=note>Further reading: [=§5.2.3.4 ReturnIfAbrupt Shorthands=].</p>
 
+## JavaScript Objects ## {#javascript-objects}
+
+In ECMAScript, every Object has a certain set of <dfn lt="internal method">internal methods</dfn> that the rest of the specification call on to do certain tasks. Some of these [=internal methods=] that all Objects must have are \[[Get]], \[[Set]], \[[GetPrototypeOf]], and \[[Delete]] (an exhaustive list is available in [=§6.1.7.2 Object Internal Methods and Internal Slots=]). Based on this definition, <dfn lt="function object">function objects</dfn> (or just "functions") are simply Objects that additionally have the \[[Call]] internal method, and possibly the \[[Construct]] internal method too; for this reason they are also known as <dfn lt="callable object">callable objects</dfn>.
+
+The spec then divides all Objects into two camps: [=ordinary objects=] and [=exotic objects=]. Most of the objects you encounter are <dfn lt="ordinary object">ordinary objects</dfn>, which means that their [=internal methods=] are the default ones specified in [=§9.1 Ordinary Object Internal Methods and Internal Slots=] (and if the object is [=callable object|callable=], [=§9.2 ECMAScript Function Objects=] also).
+
+However, ECMAScript spec also defines a few kinds of <dfn lt="exotic object">exotic objects</dfn>, which may override the default implementations of those internal methods. There are certain minimal constraints put on what exotic objects are allowed to do, but in general the overriden internal methods can do a lot of things without going against the spec.
+
+{{ECMAScript/Array}} objects are one of these [=exotic objects=], because of the special semantics involved in the <code class=idl>length</code> property.
+
+Note: Setting the <code class=idl>length</code> property on an array can trigger special behaviors, in a way similar to having setter functions on the prototype object; yet, <code class=idl>length</code> property is perceived to be an own property on the array. This is different from, say, `new Map().size`, which is in fact a getter specified on `Map.prototype`. You can tell this difference by comparing `Object.getOwnPropertyDescriptor([], 'length')` and `Object.getOwnPropertyDescriptor(new Map, "size")`.
+
+The spec also allows implementations (like V8) to define their own exotic objects, and also users to do the same through {{ECMAScript/Proxy}} objects.
+
+----
+
+Another way of thinking about the relations between Objects, function objects, [=internal methods=], and [=internal slots=] are through a classical Object-Oriented Programming lens. Objects are like an interface specifying several basic [=internal methods=] that must be implemented. [=Ordinary objects=] provide certain default implementations of them, which [=exotic objects=] may override. Last and but not least, [=internal slots=] are like instance variables of an Object private to its [=internal methods=].
+
+All of these relations are summarized by the following UML diagram (click for bigger image):
+
+<a href="object-uml.png"><img src="object-uml.png" width="100%" alt="Boxes denoting concepts and connections between them denoting hierarchy"></a>
+
 ## Example: <code class=idl>String.prototype.substring()</code> ## {#example-string-prototype-substring}
 
 Now that we have a pretty good understanding of how the spec is organized and written, let's practice!
@@ -741,7 +769,7 @@ TypeError: can't convert undefined to object
 At the same time, ChakraCore version 1.7.5.0 (the JavaScript engine in Microsoft Edge) take's V8's route and throws
 
 <pre class=highlight highlight="">
-TypeError: String.prototype.substring: 'this' is null or undefined<Paste>
+TypeError: String.prototype.substring: 'this' is null or undefined
 </pre>
 
 </div>
@@ -784,8 +812,8 @@ When <code class=idl>String</code> is called with argument |value|, the followin
 
 1.  If no arguments were passed to this function invocation, let |s| be `""`.
 1.  Else,
-    1.  If NewTarget is **undefined** and [$ECMAScript/Type$](|value|) is Symbol, return [$ECMAScript/SymbolDescriptiveString$](|value|).
-    1.  Let |s| be ? [$ECMAScript/ToString$](|value|).
+  1.  If NewTarget is **undefined** and [$ECMAScript/Type$](|value|) is Symbol, return [$ECMAScript/SymbolDescriptiveString$](|value|).
+  1.  Let |s| be ? [$ECMAScript/ToString$](|value|).
 1.  If NewTarget is **undefined**, return |s|.
 1.  Return ? [$ECMAScript/StringCreate$](|s|, ? [$ECMAScript/GetPrototypeFromConstructor$](NewTarget, `"%StringPrototype%"`)).
 
@@ -937,5 +965,13 @@ So for {{ECMAScript/String()}}, our conclusion is that <strong>it never throws e
 ## Example: `typeof` operator ## {#example-typeof-operator}
 
 So far, we've only analyzed API functions, let's try something different.
+
+Issue(2): To be written.
+
+<h2 class=no-num id=glossary>Glossary</h2>
+
+<h3 class=no-num id=common-abstract-operations>Common abstract operations</h3>
+
+Issue(3): To be written.
 
 </div>

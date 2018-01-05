@@ -1177,6 +1177,8 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version bbd6a9c4064dd454886bb3e0c74f0a19865c3c74" name="generator">
+  <link href="https://timothygu.me/es-howto/" rel="canonical">
+  <meta content="1edd8a123cd5ca5c7a270266b16ae3e53bd3ed71" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1423,9 +1425,14 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">How to Read the ECMAScript Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-01-04">4 January 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-01-05">5 January 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
+     <dt>This version:
+     <dd><a class="u-url" href="https://timothygu.me/es-howto/">https://timothygu.me/es-howto/</a>
+     <dt>Issue Tracking:
+     <dd><a href="https://github.com/TimothyGu/es-howto/issues/">GitHub</a>
+     <dd><a href="#issues-index">Inline In Spec</a>
      <dt>Author:
      <dd>
       <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="https://timothygu.me/">Timothy Gu</a> <a class="u-email email" href="mailto:timothygu99@gmail.com">timothygu99@gmail.com</a>
@@ -1455,10 +1462,10 @@ Parts of this work may be from another specification document.  If so, those par
       <li><a href="#why-should-i-read-the-ecmascript-specification"><span class="secno">1.1</span> <span class="content">Why should I read the ECMAScript specification</span></a>
       <li><a href="#what-belongs-to-the-ecmascript-specification"><span class="secno">1.2</span> <span class="content">What belongs to the ECMAScript specification, and what does not</span></a>
       <li><a href="#where-is-the-ecmascript-specification"><span class="secno">1.3</span> <span class="content">Before going any further, <em>where</em> is the ECMAScript specification?</span></a>
-      <li><a href="#navigating-the-spec"><span class="secno">1.4</span> <span class="content">Navigating the Spec</span></a>
+      <li><a href="#navigating-the-spec"><span class="secno">1.4</span> <span class="content">Navigating the spec</span></a>
      </ol>
     <li>
-     <a href="#runtime-semantics"><span class="secno">2</span> <span class="content">Runtime Semantics</span></a>
+     <a href="#runtime-semantics"><span class="secno">2</span> <span class="content">Runtime semantics</span></a>
      <ol class="toc">
       <li><a href="#algorithm-steps"><span class="secno">2.1</span> <span class="content">Algorithm steps</span></a>
       <li><a href="#abstract-operations"><span class="secno">2.2</span> <span class="content">Abstract operations</span></a>
@@ -1470,9 +1477,15 @@ Parts of this work may be from another specification document.  If so, those par
         <li><a href="#internal-method-of-javascript-object"><span class="secno">2.3.3</span> <span class="content">An internal method of a JavaScript Object</span></a>
        </ol>
       <li><a href="#completion-records-and-shorthands"><span class="secno">2.4</span> <span class="content">Completion Records; <code class="highlight"><span class="o">?</span></code> and <code class="highlight"><span class="o">!</span></code></span></a>
-      <li><a href="#example-string-prototype-substring"><span class="secno">2.5</span> <span class="content">Example: <code class="idl highlight">String<span class="p">.</span>prototype<span class="p">.</span>substring<span class="p">()</span></code></span></a>
-      <li><a href="#example-can-boolean-and-string-ever-throw-exceptions"><span class="secno">2.6</span> <span class="content">Example: Can <code class="idl highlight">Boolean<span class="p">()</span></code> and <code class="idl highlight">String<span class="p">()</span></code> ever throw exceptions?</span></a>
-      <li><a href="#example-typeof-operator"><span class="secno">2.7</span> <span class="content">Example: <code class="highlight"><span class="k">typeof</span></code> operator</span></a>
+      <li><a href="#javascript-objects"><span class="secno">2.5</span> <span class="content">JavaScript Objects</span></a>
+      <li><a href="#example-string-prototype-substring"><span class="secno">2.6</span> <span class="content">Example: <code class="idl highlight">String<span class="p">.</span>prototype<span class="p">.</span>substring<span class="p">()</span></code></span></a>
+      <li><a href="#example-can-boolean-and-string-ever-throw-exceptions"><span class="secno">2.7</span> <span class="content">Example: Can <code class="idl highlight">Boolean<span class="p">()</span></code> and <code class="idl highlight">String<span class="p">()</span></code> ever throw exceptions?</span></a>
+      <li><a href="#example-typeof-operator"><span class="secno">2.8</span> <span class="content">Example: <code class="highlight"><span class="k">typeof</span></code> operator</span></a>
+     </ol>
+    <li>
+     <a href="#glossary"><span class="secno"></span> <span class="content">Glossary</span></a>
+     <ol class="toc">
+      <li><a href="#common-abstract-operations"><span class="secno"></span> <span class="content">Common abstract operations</span></a>
      </ol>
     <li>
      <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
@@ -1485,6 +1498,7 @@ Parts of this work may be from another specification document.  If so, those par
      <ol class="toc">
       <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
      </ol>
+    <li><a href="#issues-index"><span class="secno"></span> <span class="content">Issues Index</span></a>
    </ol>
   </nav>
   <main>
@@ -1559,29 +1573,26 @@ Set <span class="p">{}</span>
     <p>What complicates the matter is that, every year, TC39 picks a point in time to take a snapshot of the spec to become the ECMAScript Language <em>Standard</em> of that year, along with an edition number. For example, the <em>ECMAScript® 2017 Language Specification (ECMA-262, 8th edition)</em> <a data-link-type="biblio" href="#biblio-ecma-262-2017">[ECMA-262-2017]</a> (popularly known as ES8) is simply the spec as seen at tc39.github.io <a data-link-type="biblio" href="#biblio-ecma-262">[ECMA-262]</a> in June 2017, put into formaldehyde, properly shrinkwrapped and PDFified for permanent archives.</p>
     <p>Because of that, unless you want your web application to run on only browsers from June 2017 that are put into formaldehyde, properly shrinkwrapped, and PDFified for permanent archives, you want to always look at the latest spec at tc39.github.io <a data-link-type="biblio" href="#biblio-ecma-262">[ECMA-262]</a>. But if you want to (or have to) support older browsers or Node.js versions, then referencing the older specifications may help.</p>
     <p class="note" role="note"><span>Note:</span> The ISO/IEC also publishes the ECMAScript Language Standard as ISO/IEC 16262 <a data-link-type="biblio" href="#biblio-iso-16262-2011">[ISO-16262-2011]</a>. But as you can tell from the linked page, the ISO/IEC standard is currently stuck on Edition 3 (which ironically is supposed to be fully "current"). So if you want to look at a spec written <a data-link-type="dfn" href="https://caniuse.com/#feat=es5" id="ref-for-feat=es5">before</a> <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array.prototype.foreach" id="ref-for-sec-array.prototype.foreach">Array.prototype.forEach()</a></code> was introduced to the language <a data-link-type="biblio" href="#biblio-caniuse">[CANIUSE]</a>, you may purchase the standard from ISO for <a href="https://www.google.com/search?q=198+swiss+francs+in+my+currency">198 Swiss Francs</a>. (In other words, don’t.)</p>
-    <h3 class="heading settled" data-level="1.4" id="navigating-the-spec"><span class="secno">1.4. </span><span class="content">Navigating the Spec</span><a class="self-link" href="#navigating-the-spec"></a></h3>
-    <p>The ECMAScript specification talks about a <strong>HUGE</strong> amount of things. Even though its authors try their best to separate it into logical chunks, it’s still a huge text. I generally like to divide the spec into four parts:</p>
+    <h3 class="heading settled" data-level="1.4" id="navigating-the-spec"><span class="secno">1.4. </span><span class="content">Navigating the spec</span><a class="self-link" href="#navigating-the-spec"></a></h3>
+    <p>The ECMAScript specification talks about a <strong>HUGE</strong> amount of things. Even though its authors try their best to separate it into logical chunks, it’s still a huge text.</p>
+    <p>Personally, I like to divide the spec into five parts:</p>
     <ul>
      <li data-md="">
-      <p>Conventions and Basics ("what is a Number? what does it mean when the spec says 'throw a <strong>TypeError</strong> exception'?")</p>
+      <p>Conventions and basics ("what is a Number? what does it mean when the spec says 'throw a <strong>TypeError</strong> exception'?")</p>
      <li data-md="">
-      <p>The Language (a <code class="highlight"><span class="k">for</span></code>-<code class="highlight"><span class="k">in</span></code> loop)</p>
-      <ul>
-       <li data-md="">
-        <p>Grammar production ("how does one write a <code class="highlight"><span class="k">for</span></code>-<code class="highlight"><span class="k">in</span></code> loop?")</p>
-       <li data-md="">
-        <p>Static semantics ("how are variable names determined in a <code class="highlight"><span class="kd">var</span></code> statement?")</p>
-       <li data-md="">
-        <p>Runtime semantics ("how is a <code class="highlight"><span class="k">for</span></code>-<code class="highlight"><span class="k">in</span></code> loop executed?")</p>
-      </ul>
+      <p>Grammar productions of the language ("how does one write a <code class="highlight"><span class="k">for</span></code>-<code class="highlight"><span class="k">in</span></code> loop?")</p>
      <li data-md="">
-      <p>APIs ("what does <code class="highlight">String<span class="p">.</span>prototype<span class="p">.</span>slice<span class="p">()</span></code> do?")</p>
+      <p>Static semantics of the language ("how are variable names determined in a <code class="highlight"><span class="kd">var</span></code> statement?")</p>
+     <li data-md="">
+      <p>Runtime semantics of the language ("how is a <code class="highlight"><span class="k">for</span></code>-<code class="highlight"><span class="k">in</span></code> loop executed?")</p>
+     <li data-md="">
+      <p>APIs ("what does <code class="idl highlight">String<span class="p">.</span>prototype<span class="p">.</span>substring<span class="p">()</span></code> do?")</p>
     </ul>
-    <p>but that’s not how the spec organizes it. Instead, it puts the first bullet point in clauses <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-notational-conventions" id="ref-for-sec-notational-conventions">§5 Notational Conventions</a> through <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-ordinary-and-exotic-objects-behaviours" id="ref-for-sec-ordinary-and-exotic-objects-behaviours">§9 Ordinary and Exotic Objects Behaviours</a>, the next three in a multiplexed form in clauses <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-ecmascript-language-source-code" id="ref-for-sec-ecmascript-language-source-code">§10 ECMAScript Language: Source Code</a> through <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-ecmascript-language-scripts-and-modules" id="ref-for-sec-ecmascript-language-scripts-and-modules">§15 ECMAScript Language: Scripts and Modules</a>, like</p>
+    <p>but that’s not how the spec organizes it. Instead, it puts the first bullet point in <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-notational-conventions" id="ref-for-sec-notational-conventions">§5 Notational Conventions</a> through <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-ordinary-and-exotic-objects-behaviours" id="ref-for-sec-ordinary-and-exotic-objects-behaviours">§9 Ordinary and Exotic Objects Behaviours</a>, the next three in an interleaved form in <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-ecmascript-language-source-code" id="ref-for-sec-ecmascript-language-source-code">§10 ECMAScript Language: Source Code</a> through <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-ecmascript-language-scripts-and-modules" id="ref-for-sec-ecmascript-language-scripts-and-modules">§15 ECMAScript Language: Scripts and Modules</a>, like</p>
     <blockquote>
      <ul>
       <li data-md="">
-       <p><a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-if-statement" id="ref-for-sec-if-statement">§13.6 The <code class="highlight"><span class="k">if</span></code> Statement</a> <strong>Grammar production</strong></p>
+       <p><a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-if-statement" id="ref-for-sec-if-statement">§13.6 The <code class="highlight"><span class="k">if</span></code> Statement</a> <strong>Grammar productions</strong></p>
        <ul>
         <li data-md="">
          <p>§13.6.1-6 <strong>Static semantics</strong></p>
@@ -1589,7 +1600,7 @@ Set <span class="p">{}</span>
          <p>§13.6.7 <strong>Runtime sematics</strong></p>
        </ul>
       <li data-md="">
-       <p><a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-iteration-statements" id="ref-for-sec-iteration-statements">§13.7 Iteration Statements</a> <strong>Grammar production</strong></p>
+       <p><a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-iteration-statements" id="ref-for-sec-iteration-statements">§13.7 Iteration Statements</a> <strong>Grammar productions</strong></p>
        <ul>
         <li data-md="">
          <p>§13.7.1 Shared <strong>static</strong> and <strong>runtime semantics</strong></p>
@@ -1612,7 +1623,7 @@ Set <span class="p">{}</span>
     </blockquote>
     <p>while the APIs are spread out through clauses <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-global-object" id="ref-for-sec-global-object">§18 The Global Object</a> through <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-reflection" id="ref-for-sec-reflection">§26 Reflection</a>.</p>
     <p>At this point, I’d like to point out that <strong>absolutely no one</strong> reads the spec from top to bottom. Rather, only look at the section corresponding to what you are trying to look for, and <em>in</em> that section only look at what you need. Try to determine which one of the five big sections your specific question relates to; and if you are having trouble determining which one it is, ask yourself the question "at which time is <em>this</em> (whatever you are trying to confirm) evaluated?" which may help. Don’t worry, navigating the spec will only become easier with practice.</p>
-    <h2 class="heading settled" data-level="2" id="runtime-semantics"><span class="secno">2. </span><span class="content">Runtime Semantics</span><a class="self-link" href="#runtime-semantics"></a></h2>
+    <h2 class="heading settled" data-level="2" id="runtime-semantics"><span class="secno">2. </span><span class="content">Runtime semantics</span><a class="self-link" href="#runtime-semantics"></a></h2>
     <p>Runtime semantics of The Language and APIs are the biggest parts of the spec, and usually the ones people have the most questions about.</p>
     <p>On the whole, reading these sections in the spec is pretty straightforward. However, the spec employs a lot of shorthands that are pretty icky for people just starting out (at least for me). I’m going to try explaining some of these conventions, and then apply them to a usual workflow of figuring out how several things work.</p>
     <h3 class="heading settled" data-level="2.1" id="algorithm-steps"><span class="secno">2.1. </span><span class="content">Algorithm steps</span><a class="self-link" href="#algorithm-steps"></a></h3>
@@ -1679,7 +1690,7 @@ Set <span class="p">{}</span>
     <p class="note" role="note">Further reading: <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-list-and-record-specification-type" id="ref-for-sec-list-and-record-specification-type">§6.2.1 The List and Record Specification Types</a></p>
     <h4 class="heading settled" data-level="2.3.2" id="internal-slot-of-javascript-object"><span class="secno">2.3.2. </span><span class="content">An internal slot of a JavaScript Object</span><a class="self-link" href="#internal-slot-of-javascript-object"></a></h4>
     <p>JavaScript Objects may have so-called <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="internal slot" data-noexport="" id="internal-slot">internal slots</dfn> that the specification uses to keep data in them. Like <a data-link-type="dfn" href="#record-field" id="ref-for-record-field②">Record fields</a>, these <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot">internal slots</a> also cannot be observed using JavaScript, but some of them may be exposed through implementation-specific tools like Google Chrome’s DevTools. Thus, it makes sense also to use the <a data-link-type="dfn" href="#double-brackets-notation" id="ref-for-double-brackets-notation①">[[Notation]]</a> to describe <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot①">internal slots</a>.</p>
-    <p>The specifics of <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot②">internal slots</a> will be covered in a later section. For now, don’t worry too much about what they are used for, but do note the following example.</p>
+    <p>The specifics of <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot②">internal slots</a> will be covered in <a href="#javascript-objects">§2.5 JavaScript Objects</a>. For now, don’t worry too much about what they are used for, but do note the following example.</p>
     <div class="example" id="example-65e61801">
      <a class="self-link" href="#example-65e61801"></a> 
      <p>Most JavaScript Objects have an internal slot [[Prototype]] that contains the Object they inherit from. The value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot③">internal slot</a> is usually the value <code class="idl"><a data-link-type="idl" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf#">Object.getPrototypeOf()</a></code> returns. In the <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-ordinarygetprototypeof" id="ref-for-sec-ordinarygetprototypeof">OrdinaryGetPrototypeOf</a> abstract operation, the value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot④">internal slot</a> is accessed:</p>
@@ -1693,8 +1704,8 @@ Set <span class="p">{}</span>
     </div>
     <p class="note" role="note"><span>Note:</span> <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑤">Internal slots</a> of Objects and <a data-link-type="dfn" href="#record-field" id="ref-for-record-field③">Record fields</a> are identical in appearance, but they can be disambiguated by looking at the precedent of this notation (the part that came before the dot), whether it is an Object or a <a data-link-type="dfn" href="#record" id="ref-for-record⑤">Record</a>. This is usually fairly obvious from the surrounding context.</p>
     <h4 class="heading settled" data-level="2.3.3" id="internal-method-of-javascript-object"><span class="secno">2.3.3. </span><span class="content">An internal method of a JavaScript Object</span><a class="self-link" href="#internal-method-of-javascript-object"></a></h4>
-    <p>JavaScript Objects may also have so-called <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="internal method" data-noexport="" id="internal-method">internal methods</dfn> that the specification call on to do certain things with that Object, like getting a property of that Object through the [[Get]] internal method. Like <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑥">internal slots</a>, these <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method">internal methods</a> are not directly observable through JavaScript. Thus, it makes sense also to use the <a data-link-type="dfn" href="#double-brackets-notation" id="ref-for-double-brackets-notation②">[[Notation]]</a> to describe <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method①">internal methods</a>.</p>
-    <p>The specifics of <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method②">internal methods</a> will be covered in a later section. For now, don’t worry too much about what they are used for, but do note the following example.</p>
+    <p>JavaScript Objects may also have so-called <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method">internal methods</a>. Like <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑥">internal slots</a>, these <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method①">internal methods</a> are not directly observable through JavaScript. Thus, it makes sense also to use the <a data-link-type="dfn" href="#double-brackets-notation" id="ref-for-double-brackets-notation②">[[Notation]]</a> to describe <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method②">internal methods</a>.</p>
+    <p>The specifics of <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method③">internal methods</a> will be covered in <a href="#javascript-objects">§2.5 JavaScript Objects</a>. For now, don’t worry too much about what they are used for, but do note the following example.</p>
     <div class="example" id="example-d3c0ad9d">
      <a class="self-link" href="#example-d3c0ad9d"></a> 
      <p>All JavaScript functions have an internal method [[Call]] that runs that function. The <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-call" id="ref-for-sec-call">Call</a> abstract operation has the following step:</p>
@@ -1809,7 +1820,18 @@ Set <span class="p">{}</span>
      <p>Here, the <a data-link-type="dfn" href="#exclamation-mark" id="ref-for-exclamation-mark③">!</a> just means that we are certain <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-tonumber" id="ref-for-sec-tonumber①">ToNumber</a> will never return an exception, <em>not</em> that the comparison is inverted!</p>
     </div>
     <p class="note" role="note">Further reading: <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands">§5.2.3.4 ReturnIfAbrupt Shorthands</a>.</p>
-    <h3 class="heading settled" data-level="2.5" id="example-string-prototype-substring"><span class="secno">2.5. </span><span class="content">Example: <code class="idl highlight">String<span class="p">.</span>prototype<span class="p">.</span>substring<span class="p">()</span></code></span><a class="self-link" href="#example-string-prototype-substring"></a></h3>
+    <h3 class="heading settled" data-level="2.5" id="javascript-objects"><span class="secno">2.5. </span><span class="content">JavaScript Objects</span><a class="self-link" href="#javascript-objects"></a></h3>
+    <p>In ECMAScript, every Object has a certain set of <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="internal method" data-noexport="" id="internal-method">internal methods</dfn> that the rest of the specification call on to do certain tasks. Some of these <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method④">internal methods</a> that all Objects must have are [[Get]], [[Set]], [[GetPrototypeOf]], and [[Delete]] (an exhaustive list is available in <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-object-internal-methods-and-internal-slots" id="ref-for-sec-object-internal-methods-and-internal-slots">§6.1.7.2 Object Internal Methods and Internal Slots</a>). Based on this definition, <dfn data-dfn-type="dfn" data-lt="function object" data-noexport="" id="function-object">function objects<a class="self-link" href="#function-object"></a></dfn> (or just "functions") are simply Objects that additionally have the [[Call]] internal method, and possibly the [[Construct]] internal method too; for this reason they are also known as <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="callable object" data-noexport="" id="callable-object">callable objects</dfn>.</p>
+    <p>The spec then divides all Objects into two camps: <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object">ordinary objects</a> and <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object">exotic objects</a>. Most of the objects you encounter are <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="ordinary object" data-noexport="" id="ordinary-object">ordinary objects</dfn>, which means that their <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑤">internal methods</a> are the default ones specified in <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-ordinary-object-internal-methods-and-internal-slots" id="ref-for-sec-ordinary-object-internal-methods-and-internal-slots">§9.1 Ordinary Object Internal Methods and Internal Slots</a> (and if the object is <a data-link-type="dfn" href="#callable-object" id="ref-for-callable-object">callable</a>, <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-ecmascript-function-objects" id="ref-for-sec-ecmascript-function-objects">§9.2 ECMAScript Function Objects</a> also).</p>
+    <p>However, ECMAScript spec also defines a few kinds of <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="exotic object" data-noexport="" id="exotic-object">exotic objects</dfn>, which may override the default implementations of those internal methods. There are certain minimal constraints put on what exotic objects are allowed to do, but in general the overriden internal methods can do a lot of things without going against the spec.</p>
+    <p><code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects①">Array</a></code> objects are one of these <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object①">exotic objects</a>, because of the special semantics involved in the <code class="idl highlight">length</code> property.</p>
+    <p class="note" role="note"><span>Note:</span> Setting the <code class="idl highlight">length</code> property on an array can trigger special behaviors, in a way similar to having setter functions on the prototype object; yet, <code class="idl highlight">length</code> property is perceived to be an own property on the array. This is different from, say, <code class="highlight"><span class="k">new</span> Map<span class="p">().</span>size</code>, which is in fact a getter specified on <code class="highlight">Map<span class="p">.</span>prototype</code>. You can tell this difference by comparing <code class="highlight">Object<span class="p">.</span>getOwnPropertyDescriptor<span class="p">([],</span> <span class="s1">'length'</span><span class="p">)</span></code> and <code class="highlight">Object<span class="p">.</span>getOwnPropertyDescriptor<span class="p">(</span><span class="k">new</span> Map<span class="p">,</span> <span class="s2">"size"</span><span class="p">)</span></code>.</p>
+    <p>The spec also allows implementations (like V8) to define their own exotic objects, and also users to do the same through <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-proxy-objects" id="ref-for-sec-proxy-objects①">Proxy</a></code> objects.</p>
+    <hr>
+    <p>Another way of thinking about the relations between Objects, function objects, <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑥">internal methods</a>, and <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑦">internal slots</a> are through a classical Object-Oriented Programming lens. Objects are like an interface specifying several basic <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑦">internal methods</a> that must be implemented. <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object①">Ordinary objects</a> provide certain default implementations of them, which <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object②">exotic objects</a> may override. Last and but not least, <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑧">internal slots</a> are like instance variables of an Object private to its <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑧">internal methods</a>.</p>
+    <p>All of these relations are summarized by the following UML diagram (click for bigger image):</p>
+    <p><a href="object-uml.png"><img alt="Boxes denoting concepts and connections between them denoting hierarchy" src="object-uml.png" width="100%"></a></p>
+    <h3 class="heading settled" data-level="2.6" id="example-string-prototype-substring"><span class="secno">2.6. </span><span class="content">Example: <code class="idl highlight">String<span class="p">.</span>prototype<span class="p">.</span>substring<span class="p">()</span></code></span><a class="self-link" href="#example-string-prototype-substring"></a></h3>
     <p>Now that we have a pretty good understanding of how the spec is organized and written, let’s practice!</p>
     <p>Suppose I now have the following question:</p>
     <blockquote>
@@ -1862,10 +1884,10 @@ Set <span class="p">{}</span>
 <pre class="highlight">TypeError: can’t convert undefined to object
 </pre>
      <p>At the same time, ChakraCore version 1.7.5.0 (the JavaScript engine in Microsoft Edge) take’s V8’s route and throws</p>
-<pre class="highlight">TypeError: String.prototype.substring: 'this' is null or undefined<paste>
-</paste></pre>
+<pre class="highlight">TypeError: String.prototype.substring: 'this' is null or undefined
+</pre>
     </div>
-    <h3 class="heading settled" data-level="2.6" id="example-can-boolean-and-string-ever-throw-exceptions"><span class="secno">2.6. </span><span class="content">Example: Can <code class="idl highlight">Boolean<span class="p">()</span></code> and <code class="idl highlight">String<span class="p">()</span></code> ever throw exceptions?</span><a class="self-link" href="#example-can-boolean-and-string-ever-throw-exceptions"></a></h3>
+    <h3 class="heading settled" data-level="2.7" id="example-can-boolean-and-string-ever-throw-exceptions"><span class="secno">2.7. </span><span class="content">Example: Can <code class="idl highlight">Boolean<span class="p">()</span></code> and <code class="idl highlight">String<span class="p">()</span></code> ever throw exceptions?</span><a class="self-link" href="#example-can-boolean-and-string-ever-throw-exceptions"></a></h3>
     <p>When writing mission-critical code, one must put exception handling at the forefront in programming. As such, the question of "can <em>some built-in function</em> ever throw an exception?" may be oft-pondered.</p>
     <p>In this example, we shall try to answer this question for two language built-in functions, <code class="idl highlight">Boolean<span class="p">()</span></code> and <code class="idl highlight">String<span class="p">()</span></code>. We will only look at direct calls to those functions, not the cases of <code class="highlight"><span class="k">new</span> Boolean<span class="p">()</span></code> and <code class="highlight"><span class="k">new</span> String<span class="p">()</span></code> which form boxed objects -- easily one of the [most undesirable features in JavaScript][ydkjs-object-wrappers] and a very much discouraged practice in pretty much all JS style guides out there.</p>
     <p>After navigating to the section for <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-boolean-constructor-boolean-value" id="ref-for-sec-boolean-constructor-boolean-value①">Boolean()</a></code> in the spec, we see that the algorithm seems to be fairly short:</p>
@@ -2024,8 +2046,12 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
      </details>
     </div>
     <p>So for <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-string-constructor-string-value" id="ref-for-sec-string-constructor-string-value③">String()</a></code>, our conclusion is that <strong>it never throws exceptions for primitive values, but <em>may</em> throw errors for Objects.</strong></p>
-    <h3 class="heading settled" data-level="2.7" id="example-typeof-operator"><span class="secno">2.7. </span><span class="content">Example: <code class="highlight"><span class="k">typeof</span></code> operator</span><a class="self-link" href="#example-typeof-operator"></a></h3>
+    <h3 class="heading settled" data-level="2.8" id="example-typeof-operator"><span class="secno">2.8. </span><span class="content">Example: <code class="highlight"><span class="k">typeof</span></code> operator</span><a class="self-link" href="#example-typeof-operator"></a></h3>
     <p>So far, we’ve only analyzed API functions, let’s try something different.</p>
+    <p class="issue" id="issue-c1ad3571"><a class="self-link" href="#issue-c1ad3571"></a> To be written. <a href="https://github.com/TimothyGu/es-howto/issues/2">&lt;https://github.com/TimothyGu/es-howto/issues/2></a></p>
+    <h2 class="no-num heading settled" id="glossary"><span class="content">Glossary</span><a class="self-link" href="#glossary"></a></h2>
+    <h3 class="no-num heading settled" id="common-abstract-operations"><span class="content">Common abstract operations</span><a class="self-link" href="#common-abstract-operations"></a></h3>
+    <p class="issue" id="issue-c1ad3571①"><a class="self-link" href="#issue-c1ad3571①"></a> To be written. <a href="https://github.com/TimothyGu/es-howto/issues/3">&lt;https://github.com/TimothyGu/es-howto/issues/3></a></p>
    </div>
   </main>
 <script>
@@ -2165,15 +2191,19 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
    <li><a href="#abrupt-completion">abrupt completion</a><span>, in §2.4</span>
    <li><a href="#abstract-operation">abstract operation</a><span>, in §2.2</span>
    <li><a href="#dom-completion-record-type-break">break</a><span>, in §2.4</span>
+   <li><a href="#callable-object">callable object</a><span>, in §2.5</span>
    <li><a href="#completion-record">Completion Record</a><span>, in §2.4</span>
    <li><a href="#dom-completion-record-type-continue">continue</a><span>, in §2.4</span>
    <li><a href="#double-brackets-notation">double brackets notation</a><span>, in §2.3</span>
+   <li><a href="#exotic-object">exotic object</a><span>, in §2.5</span>
    <li><a href="#record-field">field</a><span>, in §2.3.1</span>
-   <li><a href="#internal-method">internal method</a><span>, in §2.3.3</span>
+   <li><a href="#function-object">function object</a><span>, in §2.5</span>
+   <li><a href="#internal-method">internal method</a><span>, in §2.5</span>
    <li><a href="#internal-slot">internal slot</a><span>, in §2.3.2</span>
-   <li><a href="#abstract-opdef-newtarget">NewTarget</a><span>, in §2.6</span>
+   <li><a href="#abstract-opdef-newtarget">NewTarget</a><span>, in §2.7</span>
    <li><a href="#dom-completion-record-type-normal">normal</a><span>, in §2.4</span>
    <li><a href="#normal-completion">normal completion</a><span>, in §2.4</span>
+   <li><a href="#ordinary-object">ordinary object</a><span>, in §2.5</span>
    <li><a href="#record">Record</a><span>, in §2.3.1</span>
    <li><a href="#dom-completion-record-type-return">return</a><span>, in §2.4</span>
    <li><a href="#completion-record-target">[[Target]]</a><span>, in §2.4</span>
@@ -2293,6 +2323,11 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
    <dt id="biblio-xkcd-703">[XKCD-703]
    <dd>Randall Munroe. <a href="https://www.xkcd.com/703/">xkcd: Honor Societies</a>. URL: <a href="https://www.xkcd.com/703/">https://www.xkcd.com/703/</a>
   </dl>
+  <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
+  <div style="counter-reset:issue">
+   <div class="issue"> To be written. <a href="https://github.com/TimothyGu/es-howto/issues/2">&lt;https://github.com/TimothyGu/es-howto/issues/2></a><a href="#issue-c1ad3571"> ↵ </a></div>
+   <div class="issue"> To be written. <a href="https://github.com/TimothyGu/es-howto/issues/3">&lt;https://github.com/TimothyGu/es-howto/issues/3></a><a href="#issue-c1ad3571①"> ↵ </a></div>
+  </div>
   <aside class="dfn-panel" data-for="double-brackets-notation">
    <b><a href="#double-brackets-notation">#double-brackets-notation</a></b><b>Referenced in:</b>
    <ul>
@@ -2322,12 +2357,7 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
    <ul>
     <li><a href="#ref-for-internal-slot">2.3.2. An internal slot of a JavaScript Object</a> <a href="#ref-for-internal-slot①">(2)</a> <a href="#ref-for-internal-slot②">(3)</a> <a href="#ref-for-internal-slot③">(4)</a> <a href="#ref-for-internal-slot④">(5)</a> <a href="#ref-for-internal-slot⑤">(6)</a>
     <li><a href="#ref-for-internal-slot⑥">2.3.3. An internal method of a JavaScript Object</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="internal-method">
-   <b><a href="#internal-method">#internal-method</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-internal-method">2.3.3. An internal method of a JavaScript Object</a> <a href="#ref-for-internal-method①">(2)</a> <a href="#ref-for-internal-method②">(3)</a>
+    <li><a href="#ref-for-internal-slot⑦">2.5. JavaScript Objects</a> <a href="#ref-for-internal-slot⑧">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="completion-record">
@@ -2394,22 +2424,47 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
    <b><a href="#question-mark">#question-mark</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-question-mark">2.4. Completion Records; ? and !</a> <a href="#ref-for-question-mark①">(2)</a> <a href="#ref-for-question-mark②">(3)</a> <a href="#ref-for-question-mark③">(4)</a>
-    <li><a href="#ref-for-question-mark④">2.5. Example: String.prototype.substring()</a> <a href="#ref-for-question-mark⑤">(2)</a>
-    <li><a href="#ref-for-question-mark⑥">2.6. Example: Can Boolean() and String() ever throw exceptions?</a> <a href="#ref-for-question-mark⑦">(2)</a> <a href="#ref-for-question-mark⑧">(3)</a> <a href="#ref-for-question-mark⑨">(4)</a>
+    <li><a href="#ref-for-question-mark④">2.6. Example: String.prototype.substring()</a> <a href="#ref-for-question-mark⑤">(2)</a>
+    <li><a href="#ref-for-question-mark⑥">2.7. Example: Can Boolean() and String() ever throw exceptions?</a> <a href="#ref-for-question-mark⑦">(2)</a> <a href="#ref-for-question-mark⑧">(3)</a> <a href="#ref-for-question-mark⑨">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="exclamation-mark">
    <b><a href="#exclamation-mark">#exclamation-mark</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-exclamation-mark">2.4. Completion Records; ? and !</a> <a href="#ref-for-exclamation-mark①">(2)</a> <a href="#ref-for-exclamation-mark②">(3)</a> <a href="#ref-for-exclamation-mark③">(4)</a>
-    <li><a href="#ref-for-exclamation-mark④">2.5. Example: String.prototype.substring()</a>
-    <li><a href="#ref-for-exclamation-mark⑤">2.6. Example: Can Boolean() and String() ever throw exceptions?</a> <a href="#ref-for-exclamation-mark⑥">(2)</a>
+    <li><a href="#ref-for-exclamation-mark④">2.6. Example: String.prototype.substring()</a>
+    <li><a href="#ref-for-exclamation-mark⑤">2.7. Example: Can Boolean() and String() ever throw exceptions?</a> <a href="#ref-for-exclamation-mark⑥">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="internal-method">
+   <b><a href="#internal-method">#internal-method</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-internal-method">2.3.3. An internal method of a JavaScript Object</a> <a href="#ref-for-internal-method①">(2)</a> <a href="#ref-for-internal-method②">(3)</a> <a href="#ref-for-internal-method③">(4)</a>
+    <li><a href="#ref-for-internal-method④">2.5. JavaScript Objects</a> <a href="#ref-for-internal-method⑤">(2)</a> <a href="#ref-for-internal-method⑥">(3)</a> <a href="#ref-for-internal-method⑦">(4)</a> <a href="#ref-for-internal-method⑧">(5)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="callable-object">
+   <b><a href="#callable-object">#callable-object</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-callable-object">2.5. JavaScript Objects</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="ordinary-object">
+   <b><a href="#ordinary-object">#ordinary-object</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-ordinary-object">2.5. JavaScript Objects</a> <a href="#ref-for-ordinary-object①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="exotic-object">
+   <b><a href="#exotic-object">#exotic-object</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-exotic-object">2.5. JavaScript Objects</a> <a href="#ref-for-exotic-object①">(2)</a> <a href="#ref-for-exotic-object②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abstract-opdef-newtarget">
    <b><a href="#abstract-opdef-newtarget">#abstract-opdef-newtarget</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-abstract-opdef-newtarget">2.6. Example: Can Boolean() and String() ever throw exceptions?</a> <a href="#ref-for-abstract-opdef-newtarget①">(2)</a> <a href="#ref-for-abstract-opdef-newtarget②">(3)</a>
+    <li><a href="#ref-for-abstract-opdef-newtarget">2.7. Example: Can Boolean() and String() ever throw exceptions?</a> <a href="#ref-for-abstract-opdef-newtarget①">(2)</a> <a href="#ref-for-abstract-opdef-newtarget②">(3)</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
