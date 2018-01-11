@@ -699,9 +699,9 @@ The spec also allows implementations (like V8) to define their own exotic object
 
 Another way of thinking about the relations between Objects, function objects, [=internal methods=], and [=internal slots=] are through a classical Object-Oriented Programming lens. Objects are like an interface specifying several basic [=internal methods=] that must be implemented. [=Ordinary objects=] provide certain default implementations of them, which [=exotic objects=] may override. Last and but not least, [=internal slots=] are like instance variables of an Object private to its [=internal methods=].
 
-All of these relations are summarized by the following UML diagram (click for bigger image):
+All of these relations are summarized by the following UML diagram (click to enlarge):
 
-<a href="object-uml.png"><img src="object-uml.png" width="100%" alt="Boxes denoting concepts and connections between them denoting hierarchy"></a>
+<a href="object-uml.svg"><img src="object-uml.svg" style="max-width: 100%" alt="Boxes denoting concepts and connections between them denoting hierarchy"></a>
 
 ## Example: <code class=idl>String.prototype.substring()</code> ## {#example-string-prototype-substring}
 

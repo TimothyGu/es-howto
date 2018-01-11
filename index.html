@@ -1178,7 +1178,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version bbd6a9c4064dd454886bb3e0c74f0a19865c3c74" name="generator">
   <link href="https://timothygu.me/es-howto/" rel="canonical">
-  <meta content="1edd8a123cd5ca5c7a270266b16ae3e53bd3ed71" name="document-revision">
+  <meta content="3ef7576d53e08e75bad79f5d1298f8aa23038420" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1425,7 +1425,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">How to Read the ECMAScript Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-01-05">5 January 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-01-11">11 January 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1829,8 +1829,8 @@ Set <span class="p">{}</span>
     <p>The spec also allows implementations (like V8) to define their own exotic objects, and also users to do the same through <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-proxy-objects" id="ref-for-sec-proxy-objects①">Proxy</a></code> objects.</p>
     <hr>
     <p>Another way of thinking about the relations between Objects, function objects, <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑥">internal methods</a>, and <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑦">internal slots</a> are through a classical Object-Oriented Programming lens. Objects are like an interface specifying several basic <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑦">internal methods</a> that must be implemented. <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object①">Ordinary objects</a> provide certain default implementations of them, which <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object②">exotic objects</a> may override. Last and but not least, <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑧">internal slots</a> are like instance variables of an Object private to its <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑧">internal methods</a>.</p>
-    <p>All of these relations are summarized by the following UML diagram (click for bigger image):</p>
-    <p><a href="object-uml.png"><img alt="Boxes denoting concepts and connections between them denoting hierarchy" src="object-uml.png" width="100%"></a></p>
+    <p>All of these relations are summarized by the following UML diagram (click to enlarge):</p>
+    <p><a href="object-uml.svg"><img alt="Boxes denoting concepts and connections between them denoting hierarchy" src="object-uml.svg" style="max-width: 100%"></a></p>
     <h3 class="heading settled" data-level="2.6" id="example-string-prototype-substring"><span class="secno">2.6. </span><span class="content">Example: <code class="idl highlight">String<span class="p">.</span>prototype<span class="p">.</span>substring<span class="p">()</span></code></span><a class="self-link" href="#example-string-prototype-substring"></a></h3>
     <p>Now that we have a pretty good understanding of how the spec is organized and written, let’s practice!</p>
     <p>Suppose I now have the following question:</p>
