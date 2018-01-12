@@ -355,7 +355,7 @@ Instead, what I'm going to do is list some things that are commonly seen in Java
   </tr>
   <tr>
     <td><code>import a from 'a';</code>
-    <td>🤔<sup>[1]</sup>
+    <td>❓<sup>[1]</sup>
   </tr>
   <tr>
     <td>{{Object}}, {{Array}}, {{Function}}, {{Number}}, {{Math}}, {{RegExp}}, {{Proxy}}, {{Map}}, {{Promise}}, {{ArrayBuffer}}, {{Uint8Array}}, ...
