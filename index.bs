@@ -4,10 +4,7 @@ Status: LD
 URL: https://timothygu.me/es-howto/
 Shortname: es-howto
 Editor: Timothy Gu, timothygu99@gmail.com, https://timothygu.me/
-Abstract: How to read the ECMAScript specification.
-Warning: Custom
-Custom Warning Title: Work in Progress
-Custom Warning Text: This document is still under heavy iteration. Parts may appear to be unedited, incomplete, or outright wrong. If it sounds either offsensive to you or just patently wrong, please <a href="https://twitter.com/Timothy__Gu">DM</a> me, but beware that it's not a finished product.
+Abstract: The ECMAScript Language specification is a huge text that can be confusing and intimidating at first. This document aims to make it easier to get started with reading the best JavaScript language reference available.
 Indent: 2
 Editor Term: Author, Authors
 Default Ref Status: current
@@ -305,7 +302,7 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
 
 So you've decided that reading a bit of ECMAScript spec each day is good for your health. Maybe it was a New Year's resolution, or maybe it was just your doctor's prescription. Whatever it is, welcome aboard!
 
-Note: In this document, I will only use the term "ECMAScript" to refer to the specification itself, and "JavaScript" anywhere else. However, both terms refer to the same thing. (There are some historical distinctions of ECMAScript vs. JavaScript, but discussing that is outside the scope of this document, and you can <a href="https://www.google.com/search?q=ecmascript+vs.+javascript">Google that distinction</a> very easily.)
+Note: In this document, I will only use the term "ECMAScript" to refer to the specification itself, and "JavaScript" anywhere else. However, both terms refer to the same thing. (There are some historical distinctions between ECMAScript and JavaScript, but discussing that is outside the scope of this document, and you can <a href="https://www.google.com/search?q=ecmascript+vs.+javascript">Google that distinction</a> very easily.)
 
 ## Why should I read the ECMAScript specification ## {#why-should-i-read-the-ecmascript-specification}
 

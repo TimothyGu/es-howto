@@ -1178,7 +1178,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version bbd6a9c4064dd454886bb3e0c74f0a19865c3c74" name="generator">
   <link href="https://timothygu.me/es-howto/" rel="canonical">
-  <meta content="9a325e0b75448256b268c0f873f04be90d179363" name="document-revision">
+  <meta content="2aef9c6ef6cfe183a3cd8a0b5466c010cb98a4aa" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1438,19 +1438,14 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
       <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="https://timothygu.me/">Timothy Gu</a> <a class="u-email email" href="mailto:timothygu99@gmail.com">timothygu99@gmail.com</a>
     </dl>
    </div>
-   <div data-fill-with="warning">
-    <details class="annoying-warning" open="">
-     <summary>Work in Progress</summary>
-     <p>This document is still under heavy iteration. Parts may appear to be unedited, incomplete, or outright wrong. If it sounds either offsensive to you or just patently wrong, please <a href="https://twitter.com/Timothy__Gu">DM</a> me, but beware that it’s not a finished product.</p>
-    </details>
-   </div>
+   <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license"><img alt="CC BY-SA 4.0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"></a> This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">Creative Commons Attribution-ShareAlike 4.0 International License</a>, which is available at https://creativecommons.org/licenses/by-sa/4.0/.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
    <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
-   <p>How to read the ECMAScript specification.</p>
+   <p>The ECMAScript Language specification is a huge text that can be confusing and intimidating at first. This document aims to make it easier to get started with reading the best JavaScript language reference available.</p>
   </div>
   <div data-fill-with="at-risk"></div>
   <nav data-fill-with="table-of-contents" id="toc">
@@ -1505,7 +1500,7 @@ Parts of this work may be from another specification document.  If so, those par
    <div class="non-normative">
     <h2 class="heading settled" data-level="1" id="prelude"><span class="secno">1. </span><span class="content">Prelude</span><a class="self-link" href="#prelude"></a></h2>
     <p>So you’ve decided that reading a bit of ECMAScript spec each day is good for your health. Maybe it was a New Year’s resolution, or maybe it was just your doctor’s prescription. Whatever it is, welcome aboard!</p>
-    <p class="note" role="note"><span>Note:</span> In this document, I will only use the term "ECMAScript" to refer to the specification itself, and "JavaScript" anywhere else. However, both terms refer to the same thing. (There are some historical distinctions of ECMAScript vs. JavaScript, but discussing that is outside the scope of this document, and you can <a href="https://www.google.com/search?q=ecmascript+vs.+javascript">Google that distinction</a> very easily.)</p>
+    <p class="note" role="note"><span>Note:</span> In this document, I will only use the term "ECMAScript" to refer to the specification itself, and "JavaScript" anywhere else. However, both terms refer to the same thing. (There are some historical distinctions between ECMAScript and JavaScript, but discussing that is outside the scope of this document, and you can <a href="https://www.google.com/search?q=ecmascript+vs.+javascript">Google that distinction</a> very easily.)</p>
     <h3 class="heading settled" data-level="1.1" id="why-should-i-read-the-ecmascript-specification"><span class="secno">1.1. </span><span class="content">Why should I read the ECMAScript specification</span><a class="self-link" href="#why-should-i-read-the-ecmascript-specification"></a></h3>
     <p>The ECMAScript specification is the authoritative source of the behavior of all JavaScript implementations, whether it be in your browser <a data-link-type="biblio" href="#biblio-whatismybrowser">[WHATISMYBROWSER]</a>, on your server through Node.js <a data-link-type="biblio" href="#biblio-nodejs">[NODEJS]</a>, in spacesuits <a data-link-type="biblio" href="#biblio-nodejs-nasa">[NODEJS-NASA]</a>, or on your IoT device <a data-link-type="biblio" href="#biblio-johnny-five">[JOHNNY-FIVE]</a>. All developers of JavaScript engines depend on the spec to make sure their shiny new feature works as intended, in the same way other JavaScript engines do.</p>
     <p>But I claim that the utility of the spec extends beyond the mythical creatures known as "developers of JavaScript engines." In fact, I say that <strong>it is useful to you, the average JavaScript coder, and you just haven’t realized it.</strong></p>
