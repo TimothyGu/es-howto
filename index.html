@@ -1178,7 +1178,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version bbd6a9c4064dd454886bb3e0c74f0a19865c3c74" name="generator">
   <link href="https://timothygu.me/es-howto/" rel="canonical">
-  <meta content="3ef7576d53e08e75bad79f5d1298f8aa23038420" name="document-revision">
+  <meta content="9a325e0b75448256b268c0f873f04be90d179363" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1472,9 +1472,9 @@ Parts of this work may be from another specification document.  If so, those par
       <li>
        <a href="#what-is-this"><span class="secno">2.3</span> <span class="content">What is [[This]]</span></a>
        <ol class="toc">
-        <li><a href="#field-of-record"><span class="secno">2.3.1</span> <span class="content">A field of a Record</span></a>
-        <li><a href="#internal-slot-of-javascript-object"><span class="secno">2.3.2</span> <span class="content">An internal slot of a JavaScript Object</span></a>
-        <li><a href="#internal-method-of-javascript-object"><span class="secno">2.3.3</span> <span class="content">An internal method of a JavaScript Object</span></a>
+        <li><a href="#double-brackets-field-of-record"><span class="secno">2.3.1</span> <span class="content">A field of a Record</span></a>
+        <li><a href="#double-brackets-internal-slot-of-javascript-object"><span class="secno">2.3.2</span> <span class="content">An internal slot of a JavaScript Object</span></a>
+        <li><a href="#double-brackets-internal-method-of-javascript-object"><span class="secno">2.3.3</span> <span class="content">An internal method of a JavaScript Object</span></a>
        </ol>
       <li><a href="#completion-records-and-shorthands"><span class="secno">2.4</span> <span class="content">Completion Records; <code class="highlight"><span class="o">?</span></code> and <code class="highlight"><span class="o">!</span></code></span></a>
       <li><a href="#javascript-objects"><span class="secno">2.5</span> <span class="content">JavaScript Objects</span></a>
@@ -1669,7 +1669,7 @@ Set <span class="p">{}</span>
     <h3 class="heading settled" data-level="2.3" id="what-is-this"><span class="secno">2.3. </span><span class="content">What is [[This]]</span><a class="self-link" href="#what-is-this"></a></h3>
     <p>From time to time, you may see the <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="double brackets notation" data-noexport="" id="double-brackets-notation">[[Notation]]</dfn> being used like "Let <var>proto</var> be <var>obj</var>.[[Prototype]]." This notation can technically mean several different things depending on the context in which it appears, but you would go a long way with the understanding that this notation refers to some internal property that is not observable through JavaScript code.</p>
     <p>Precisely, it can mean three different things, which I will illustrate with examples from the specification. Feel free to skip them for now, however.</p>
-    <h4 class="heading settled" data-level="2.3.1" id="field-of-record"><span class="secno">2.3.1. </span><span class="content">A field of a Record</span><a class="self-link" href="#field-of-record"></a></h4>
+    <h4 class="heading settled" data-level="2.3.1" id="double-brackets-field-of-record"><span class="secno">2.3.1. </span><span class="content">A field of a Record</span><a class="self-link" href="#double-brackets-field-of-record"></a></h4>
     <p>The ECMAScript spec uses the term <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="record">Record</dfn> to refer to a key-value map with a fixed set of keys -- a bit like a structure in C-like languages. Each key-value pair of a <a data-link-type="dfn" href="#record" id="ref-for-record">Record</a> is called a <dfn class="dfn-paneled" data-dfn-for="Record" data-dfn-type="dfn" data-noexport="" id="record-field">field</dfn>. Because <a data-link-type="dfn" href="#record" id="ref-for-record①">Records</a> can only appear in specifications and not in actual JavaScript code, it makes sense to use the <a data-link-type="dfn" href="#double-brackets-notation" id="ref-for-double-brackets-notation">[[Notation]]</a> to refer to <a data-link-type="dfn" href="#record-field" id="ref-for-record-field">fields</a> of a <a data-link-type="dfn" href="#record" id="ref-for-record②">Record</a>.</p>
     <div class="example" id="example-5de9ef43">
      <a class="self-link" href="#example-5de9ef43"></a> 
@@ -1688,12 +1688,12 @@ Set <span class="p">{}</span>
     </div>
     <p>Another concrete example of <a data-link-type="dfn" href="#record" id="ref-for-record④">Records</a> can be found in the next section, <a href="#completion-records-and-shorthands">§2.4 Completion Records; ? and !</a>.</p>
     <p class="note" role="note">Further reading: <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-list-and-record-specification-type" id="ref-for-sec-list-and-record-specification-type">§6.2.1 The List and Record Specification Types</a></p>
-    <h4 class="heading settled" data-level="2.3.2" id="internal-slot-of-javascript-object"><span class="secno">2.3.2. </span><span class="content">An internal slot of a JavaScript Object</span><a class="self-link" href="#internal-slot-of-javascript-object"></a></h4>
-    <p>JavaScript Objects may have so-called <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="internal slot" data-noexport="" id="internal-slot">internal slots</dfn> that the specification uses to keep data in them. Like <a data-link-type="dfn" href="#record-field" id="ref-for-record-field②">Record fields</a>, these <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot">internal slots</a> also cannot be observed using JavaScript, but some of them may be exposed through implementation-specific tools like Google Chrome’s DevTools. Thus, it makes sense also to use the <a data-link-type="dfn" href="#double-brackets-notation" id="ref-for-double-brackets-notation①">[[Notation]]</a> to describe <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot①">internal slots</a>.</p>
-    <p>The specifics of <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot②">internal slots</a> will be covered in <a href="#javascript-objects">§2.5 JavaScript Objects</a>. For now, don’t worry too much about what they are used for, but do note the following example.</p>
+    <h4 class="heading settled" data-level="2.3.2" id="double-brackets-internal-slot-of-javascript-object"><span class="secno">2.3.2. </span><span class="content">An internal slot of a JavaScript Object</span><a class="self-link" href="#double-brackets-internal-slot-of-javascript-object"></a></h4>
+    <p>JavaScript Objects may have so-called <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot">internal slots</a> that the specification uses to keep data in them. Like <a data-link-type="dfn" href="#record-field" id="ref-for-record-field②">Record fields</a>, these <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot①">internal slots</a> also cannot be observed using JavaScript, but some of them may be exposed through implementation-specific tools like Google Chrome’s DevTools. Thus, it makes sense also to use the <a data-link-type="dfn" href="#double-brackets-notation" id="ref-for-double-brackets-notation①">[[Notation]]</a> to describe <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot②">internal slots</a>.</p>
+    <p>The specifics of <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot③">internal slots</a> will be covered in <a href="#javascript-objects">§2.5 JavaScript Objects</a>. For now, don’t worry too much about what they are used for, but do note the following example.</p>
     <div class="example" id="example-65e61801">
      <a class="self-link" href="#example-65e61801"></a> 
-     <p>Most JavaScript Objects have an internal slot [[Prototype]] that contains the Object they inherit from. The value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot③">internal slot</a> is usually the value <code class="idl"><a data-link-type="idl" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf#">Object.getPrototypeOf()</a></code> returns. In the <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-ordinarygetprototypeof" id="ref-for-sec-ordinarygetprototypeof">OrdinaryGetPrototypeOf</a> abstract operation, the value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot④">internal slot</a> is accessed:</p>
+     <p>Most JavaScript Objects have an internal slot [[Prototype]] that contains the Object they inherit from. The value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot④">internal slot</a> is usually the value <code class="idl"><a data-link-type="idl" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf#">Object.getPrototypeOf()</a></code> returns. In the <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-ordinarygetprototypeof" id="ref-for-sec-ordinarygetprototypeof">OrdinaryGetPrototypeOf</a> abstract operation, the value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑤">internal slot</a> is accessed:</p>
      <div class="algorithm" data-algorithm="to call the abstract operation OrdinaryGetPrototypeOf">
       <p>When the abstract operation OrdinaryGetPrototypeOf is called with Object <var>O</var>, the following steps are taken:</p>
       <ol>
@@ -1702,9 +1702,9 @@ Set <span class="p">{}</span>
       </ol>
      </div>
     </div>
-    <p class="note" role="note"><span>Note:</span> <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑤">Internal slots</a> of Objects and <a data-link-type="dfn" href="#record-field" id="ref-for-record-field③">Record fields</a> are identical in appearance, but they can be disambiguated by looking at the precedent of this notation (the part that came before the dot), whether it is an Object or a <a data-link-type="dfn" href="#record" id="ref-for-record⑤">Record</a>. This is usually fairly obvious from the surrounding context.</p>
-    <h4 class="heading settled" data-level="2.3.3" id="internal-method-of-javascript-object"><span class="secno">2.3.3. </span><span class="content">An internal method of a JavaScript Object</span><a class="self-link" href="#internal-method-of-javascript-object"></a></h4>
-    <p>JavaScript Objects may also have so-called <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method">internal methods</a>. Like <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑥">internal slots</a>, these <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method①">internal methods</a> are not directly observable through JavaScript. Thus, it makes sense also to use the <a data-link-type="dfn" href="#double-brackets-notation" id="ref-for-double-brackets-notation②">[[Notation]]</a> to describe <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method②">internal methods</a>.</p>
+    <p class="note" role="note"><span>Note:</span> <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑥">Internal slots</a> of Objects and <a data-link-type="dfn" href="#record-field" id="ref-for-record-field③">Record fields</a> are identical in appearance, but they can be disambiguated by looking at the precedent of this notation (the part that came before the dot), whether it is an Object or a <a data-link-type="dfn" href="#record" id="ref-for-record⑤">Record</a>. This is usually fairly obvious from the surrounding context.</p>
+    <h4 class="heading settled" data-level="2.3.3" id="double-brackets-internal-method-of-javascript-object"><span class="secno">2.3.3. </span><span class="content">An internal method of a JavaScript Object</span><a class="self-link" href="#double-brackets-internal-method-of-javascript-object"></a></h4>
+    <p>JavaScript Objects may also have so-called <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method">internal methods</a>. Like <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑦">internal slots</a>, these <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method①">internal methods</a> are not directly observable through JavaScript. Thus, it makes sense also to use the <a data-link-type="dfn" href="#double-brackets-notation" id="ref-for-double-brackets-notation②">[[Notation]]</a> to describe <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method②">internal methods</a>.</p>
     <p>The specifics of <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method③">internal methods</a> will be covered in <a href="#javascript-objects">§2.5 JavaScript Objects</a>. For now, don’t worry too much about what they are used for, but do note the following example.</p>
     <div class="example" id="example-d3c0ad9d">
      <a class="self-link" href="#example-d3c0ad9d"></a> 
@@ -1728,7 +1728,7 @@ Set <span class="p">{}</span>
      <li data-md="">
       <p>if the <a data-link-type="dfn" href="#completion-record-type" id="ref-for-completion-record-type①">[[Type]]</a> is <code class="idl"><a data-link-type="idl" href="#dom-completion-record-type-break" id="ref-for-dom-completion-record-type-break">break</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-completion-record-type-continue" id="ref-for-dom-completion-record-type-continue">continue</a></code>, then it can optionally carry a <a data-link-type="dfn" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label#">label</a> known as <dfn data-dfn-for="Completion Record" data-dfn-type="dfn" data-noexport="" id="completion-record-target">[[Target]]<a class="self-link" href="#completion-record-target"></a></dfn> that script execution breaks from/continues to as a result of this runtime semantic</p>
     </ul>
-    <p class="note" role="note"><span>Note:</span> Two brackets are used to denote <a data-link-type="dfn" href="#record-field" id="ref-for-record-field⑤">fields</a> of <a data-link-type="dfn" href="#record" id="ref-for-record⑦">Records</a>. See <a href="#field-of-record">§2.3.1 A field of a Record</a> for a primer on <a data-link-type="dfn" href="#record" id="ref-for-record⑧">Records</a> and the notations associated with them.</p>
+    <p class="note" role="note"><span>Note:</span> Two brackets are used to denote <a data-link-type="dfn" href="#record-field" id="ref-for-record-field⑤">fields</a> of <a data-link-type="dfn" href="#record" id="ref-for-record⑦">Records</a>. See <a href="#double-brackets-field-of-record">§2.3.1 A field of a Record</a> for a primer on <a data-link-type="dfn" href="#record" id="ref-for-record⑧">Records</a> and the notations associated with them.</p>
     <p>A <a data-link-type="dfn" href="#completion-record" id="ref-for-completion-record①">Completion Record</a> whose <a data-link-type="dfn" href="#completion-record-type" id="ref-for-completion-record-type②">[[Type]]</a> is <code class="idl"><a data-link-type="idl" href="#dom-completion-record-type-normal" id="ref-for-dom-completion-record-type-normal①">normal</a></code> is called a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="normal-completion">normal completion</dfn>. Every <a data-link-type="dfn" href="#completion-record" id="ref-for-completion-record②">Completion Record</a> other than a <a data-link-type="dfn" href="#normal-completion" id="ref-for-normal-completion">normal completion</a> is also known as an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="abrupt-completion">abrupt completion</dfn>.</p>
     <p>Most of the time, you are only going to deal with <a data-link-type="dfn" href="#abrupt-completion" id="ref-for-abrupt-completion">abrupt completions</a> whose <a data-link-type="dfn" href="#completion-record-type" id="ref-for-completion-record-type③">[[Type]]</a> is <code class="idl"><a data-link-type="idl" href="#dom-completion-record-type-throw" id="ref-for-dom-completion-record-type-throw①">throw</a></code>. The other three abrupt completion types are only useful in seeing how a specific syntactic element is evaluated. In fact, you will never see any of those other types in the definition of a built-in function, since <code class="highlight"><span class="k">break</span></code>/<code class="highlight"><span class="k">continue</span></code>/<code class="highlight"><span class="k">return</span></code> don’t work across function boundaries.</p>
     <p class="note" role="note">Further reading: <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-completion-record-specification-type" id="ref-for-sec-completion-record-specification-type">§6.2.3 The Completion Record Specification Type</a></p>
@@ -1808,7 +1808,7 @@ Set <span class="p">{}</span>
      </div>
     </div>
     <div class="advisement no-marker">
-     <div class="marker">CAUTION:</div>
+     <div class="marker">CAUTION</div>
      <p>The <a data-link-type="dfn" href="#exclamation-mark" id="ref-for-exclamation-mark②">!</a> can admittedly become pretty confusing if it is part of a comparison:</p>
      <blockquote>
       <ol start="5">
@@ -1821,14 +1821,59 @@ Set <span class="p">{}</span>
     </div>
     <p class="note" role="note">Further reading: <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands">§5.2.3.4 ReturnIfAbrupt Shorthands</a>.</p>
     <h3 class="heading settled" data-level="2.5" id="javascript-objects"><span class="secno">2.5. </span><span class="content">JavaScript Objects</span><a class="self-link" href="#javascript-objects"></a></h3>
-    <p>In ECMAScript, every Object has a certain set of <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="internal method" data-noexport="" id="internal-method">internal methods</dfn> that the rest of the specification call on to do certain tasks. Some of these <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method④">internal methods</a> that all Objects must have are [[Get]], [[Set]], [[GetPrototypeOf]], and [[Delete]] (an exhaustive list is available in <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-object-internal-methods-and-internal-slots" id="ref-for-sec-object-internal-methods-and-internal-slots">§6.1.7.2 Object Internal Methods and Internal Slots</a>). Based on this definition, <dfn data-dfn-type="dfn" data-lt="function object" data-noexport="" id="function-object">function objects<a class="self-link" href="#function-object"></a></dfn> (or just "functions") are simply Objects that additionally have the [[Call]] internal method, and possibly the [[Construct]] internal method too; for this reason they are also known as <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="callable object" data-noexport="" id="callable-object">callable objects</dfn>.</p>
-    <p>The spec then divides all Objects into two camps: <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object">ordinary objects</a> and <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object">exotic objects</a>. Most of the objects you encounter are <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="ordinary object" data-noexport="" id="ordinary-object">ordinary objects</dfn>, which means that their <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑤">internal methods</a> are the default ones specified in <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-ordinary-object-internal-methods-and-internal-slots" id="ref-for-sec-ordinary-object-internal-methods-and-internal-slots">§9.1 Ordinary Object Internal Methods and Internal Slots</a> (and if the object is <a data-link-type="dfn" href="#callable-object" id="ref-for-callable-object">callable</a>, <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-ecmascript-function-objects" id="ref-for-sec-ecmascript-function-objects">§9.2 ECMAScript Function Objects</a> also).</p>
-    <p>However, ECMAScript spec also defines a few kinds of <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="exotic object" data-noexport="" id="exotic-object">exotic objects</dfn>, which may override the default implementations of those internal methods. There are certain minimal constraints put on what exotic objects are allowed to do, but in general the overriden internal methods can do a lot of things without going against the spec.</p>
-    <p><code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects①">Array</a></code> objects are one of these <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object①">exotic objects</a>, because of the special semantics involved in the <code class="idl highlight">length</code> property.</p>
-    <p class="note" role="note"><span>Note:</span> Setting the <code class="idl highlight">length</code> property on an array can trigger special behaviors, in a way similar to having setter functions on the prototype object; yet, <code class="idl highlight">length</code> property is perceived to be an own property on the array. This is different from, say, <code class="highlight"><span class="k">new</span> Map<span class="p">().</span>size</code>, which is in fact a getter specified on <code class="highlight">Map<span class="p">.</span>prototype</code>. You can tell this difference by comparing <code class="highlight">Object<span class="p">.</span>getOwnPropertyDescriptor<span class="p">([],</span> <span class="s1">'length'</span><span class="p">)</span></code> and <code class="highlight">Object<span class="p">.</span>getOwnPropertyDescriptor<span class="p">(</span><span class="k">new</span> Map<span class="p">,</span> <span class="s2">"size"</span><span class="p">)</span></code>.</p>
-    <p>The spec also allows implementations (like V8) to define their own exotic objects, and also users to do the same through <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-proxy-objects" id="ref-for-sec-proxy-objects①">Proxy</a></code> objects.</p>
+    <p>In ECMAScript, every Object has a set of <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="internal method" data-noexport="" id="internal-method">internal methods</dfn> that the rest of the specification call on to do certain tasks. A few of these <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method④">internal methods</a> that all Objects have are:</p>
+    <ul>
+     <li data-md="">
+      <p>[[Get]], which gets a property on an Object (e.g. <code class="highlight">obj<span class="p">.</span>prop</code>)</p>
+     <li data-md="">
+      <p>[[Set]], which sets a property on an Object (e.g. <code class="highlight">obj<span class="p">.</span>prop <span class="o">=</span> <span class="mi">42</span><span class="p">;</span></code>)</p>
+     <li data-md="">
+      <p>[[GetPrototypeOf]], which gets the Object’s prototype (i.e., <code class="highlight">Object<span class="p">.</span>getPrototypeOf<span class="p">(</span>obj<span class="p">)</span></code>)</p>
+     <li data-md="">
+      <p>[[GetOwnProperty]], which gets the Property Descriptor of an own property of an Object (i.e., <code class="highlight">Object<span class="p">.</span>getOwnPropertyDescriptor<span class="p">(</span>obj<span class="p">,</span> <span class="s2">"prop"</span><span class="p">)</span></code>)</p>
+     <li data-md="">
+      <p>[[Delete]], which deletes a property on an Object (e.g. <code class="highlight"><span class="k">delete</span> obj<span class="p">.</span>prop</code>)</p>
+    </ul>
+    <p>(an exhaustive list is available in <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-object-internal-methods-and-internal-slots" id="ref-for-sec-object-internal-methods-and-internal-slots">§6.1.7.2 Object Internal Methods and Internal Slots</a>).</p>
+    <p>Based on this definition, <dfn data-dfn-type="dfn" data-lt="function object" data-noexport="" id="function-object">function objects<a class="self-link" href="#function-object"></a></dfn> (or just "functions") are simply Objects that additionally have the [[Call]] internal method, and possibly the [[Construct]] internal method too; for this reason they are also known as <dfn data-dfn-type="dfn" data-lt="callable object" data-noexport="" id="callable-object">callable objects<a class="self-link" href="#callable-object"></a></dfn>.</p>
+    <p>The spec then divides all Objects into two camps: <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object">ordinary objects</a> and <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object">exotic objects</a>. Most of the objects you encounter are <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="ordinary object" data-noexport="" id="ordinary-object">ordinary objects</dfn>, which means that all of their <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑤">internal methods</a> are the default ones specified in <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-ordinary-object-internal-methods-and-internal-slots" id="ref-for-sec-ordinary-object-internal-methods-and-internal-slots">§9.1 Ordinary Object Internal Methods and Internal Slots</a>.</p>
+    <p>However, ECMAScript spec also defines a few kinds of <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="exotic object" data-noexport="" id="exotic-object">exotic objects</dfn>, which may override the default implementations of those internal methods. There are certain minimal constraints put on what exotic objects are allowed to do, but in general the overriden internal methods can do a lot of acrobatics without going against the spec.</p>
+    <div class="example" id="example-f3108e50">
+     <a class="self-link" href="#example-f3108e50"></a> 
+     <p><code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects①">Array</a></code> objects are one kind of these <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object①">exotic objects</a>. Some special semantics around the <code class="idl highlight">length</code> property of <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects②">Array</a></code> objects cannot be achieved using the instruments available to <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object①">ordinary objects</a>.</p>
+     <p>One of them is the fact that setting the <code class="idl highlight">length</code> property of an <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects③">Array</a></code> object can remove properties from the object, but the <code class="idl highlight">length</code> property seems to be just an ordinary data property. In contrast, <code class="highlight"><span class="k">new</span> Map<span class="p">().</span>size</code> is only a getter function specified on <code class="highlight">Map<span class="p">.</span>prototype</code>, and does not have the magical properties <code class="highlight"><span class="p">[].</span>length</code> does.</p>
+<pre class="highlight"><span class="o">></span> <span class="kr">const</span> arr <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="o">></span> console<span class="p">.</span>log<span class="p">(</span>arr<span class="p">);</span>
+<span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span>
+<span class="o">></span> arr<span class="p">.</span>length <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="o">></span> console<span class="p">.</span>log<span class="p">(</span>arr<span class="p">);</span>
+<span class="p">[</span> <span class="mi">0</span> <span class="p">]</span>
+<span class="o">></span> console<span class="p">.</span>log<span class="p">(</span>Object<span class="p">.</span>getOwnPropertyDescriptor<span class="p">([],</span> <span class="s2">"length"</span><span class="p">));</span>
+<span class="p">{</span> value<span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  writable<span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  enumerable<span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  configurable<span class="o">:</span> <span class="kc">false</span> <span class="p">}</span>
+</pre>
+<pre class="highlight"><span class="o">></span> console<span class="p">.</span>log<span class="p">(</span>Object<span class="p">.</span>getOwnPropertyDescriptor<span class="p">(</span><span class="k">new</span> Map<span class="p">(),</span> <span class="s2">"size"</span><span class="p">));</span>
+<span class="kc">undefined</span>
+<span class="o">></span> console<span class="p">.</span>log<span class="p">(</span>Object<span class="p">.</span>getOwnPropertyDescriptor<span class="p">(</span>Map<span class="p">.</span>prototype<span class="p">,</span> <span class="s2">"size"</span><span class="p">));</span>
+<span class="p">{</span> get<span class="o">:</span> <span class="p">[</span>Function<span class="o">:</span> get size<span class="p">],</span>
+  set<span class="o">:</span> <span class="kc">undefined</span><span class="p">,</span>
+  enumerable<span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  configurable<span class="o">:</span> <span class="kc">true</span> <span class="p">}</span>
+</pre>
+     <p>This behavior is achieved by overriding the [[DefineOwnProperty]] internal method. See <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-array-exotic-objects" id="ref-for-sec-array-exotic-objects">§9.4.2 Array Exotic Objects</a> for details.</p>
+    </div>
+    <p>The ECMAScript spec also allows other specs to define their own exotic objects. It is through this mechanism the limitations browsers put on <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#Cross-origin_script_API_access">cross-origin API access</a> are specified (see <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/window-object.html#windowproxy" id="ref-for-windowproxy">WindowProxy</a></code>) <a data-link-type="biblio" href="#biblio-html">[HTML]</a>. It is also possible for JavaScript users to create their own exotic objects through the <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-proxy-objects" id="ref-for-sec-proxy-objects①">Proxy</a></code> API.</p>
     <hr>
-    <p>Another way of thinking about the relations between Objects, function objects, <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑥">internal methods</a>, and <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑦">internal slots</a> are through a classical Object-Oriented Programming lens. Objects are like an interface specifying several basic <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑦">internal methods</a> that must be implemented. <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object①">Ordinary objects</a> provide certain default implementations of them, which <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object②">exotic objects</a> may override. Last and but not least, <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑧">internal slots</a> are like instance variables of an Object private to its <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑧">internal methods</a>.</p>
+    <p>JavaScript Objects may also have <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="internal slot" data-noexport="" id="internal-slot">internal slots</dfn> defined to contain certain types of values. I tend to think of <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑧">internal slots</a> as Symbol-named properties that are hidden even to <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-object.getownpropertysymbols" id="ref-for-sec-object.getownpropertysymbols">Object.getOwnPropertySymbols()</a></code>. Both <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object②">ordinary objects</a> and <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object②">exotic objects</a> are allowed to have <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑨">internal slots</a>.</p>
+    <div class="note" role="note">
+     <p>In <a href="#double-brackets-internal-slot-of-javascript-object">§2.3.2 An internal slot of a JavaScript Object</a>, I mentioned an <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot①⓪">internal slot</a> called [[Prototype]] that most Objects have. (In fact, all <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object③">ordinary objects</a> and even some <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object③">exotic objects</a> like <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects④">Array</a></code> objects have it.) But we also know that there is an <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑥">internal method</a> called [[GetPrototypeOf]] that I briefly described above. What is the difference?</p>
+     <p>The keyword here is <em>most</em>: while <em>most</em> objects have the [[Prototype]] internal slot, <em>all</em> objects implement the [[GetPrototypeOf]] internal method. Notably, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-proxy-objects" id="ref-for-sec-proxy-objects②">Proxy</a></code> objects do not have their own [[Prototype]], and its <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-proxy-object-internal-methods-and-internal-slots-getprototypeof" id="ref-for-sec-proxy-object-internal-methods-and-internal-slots-getprototypeof">[[GetPrototypeOf]]</a> internal method instead defer to either the registered handler or the prototype of its target, stored in the [[ProxyTarget]] internal slot of the <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-proxy-objects" id="ref-for-sec-proxy-objects③">Proxy</a></code> object.</p>
+     <p>For this reason, when dealing with Objects, it is almost always a good idea to refer to the appropriate <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑦">internal method</a> rather than directly looking at the value of an <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot①①">internal slot</a>.</p>
+    </div>
+    <hr>
+    <p>Another way of thinking about the relations between Objects, <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑧">internal methods</a>, and <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot①②">internal slots</a> are through a classical object-oriented lens. "Object" is like an interface specifying several <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑨">internal methods</a> that must be implemented. <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object④">Ordinary objects</a> provide default implementations, which <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object④">exotic objects</a> may override either partially or fully. On the other hand, <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot①③">internal slots</a> are like instance variables of an Object -- the implementation details of that Object.</p>
     <p>All of these relations are summarized by the following UML diagram (click to enlarge):</p>
     <p><a href="object-uml.svg"><img alt="Boxes denoting concepts and connections between them denoting hierarchy" src="object-uml.svg" style="max-width: 100%"></a></p>
     <h3 class="heading settled" data-level="2.6" id="example-string-prototype-substring"><span class="secno">2.6. </span><span class="content">Example: <code class="idl highlight">String<span class="p">.</span>prototype<span class="p">.</span>substring<span class="p">()</span></code></span><a class="self-link" href="#example-string-prototype-substring"></a></h3>
@@ -1874,8 +1919,7 @@ Set <span class="p">{}</span>
     </blockquote>
     <p>No matter though -- in the row corresponding to Undefined (the type of the <strong>this</strong> value we passed to <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-string.prototype.substring" id="ref-for-sec-string.prototype.substring②">substring()</a></code>) the spec says that <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible" id="ref-for-sec-requireobjectcoercible④">RequireObjectCoercible</a> should throw an exception. And because the <a data-link-type="dfn" href="#question-mark" id="ref-for-question-mark⑤">?</a> notation is used in the definition of the function, we know that the thrown exception must bubble up to the caller of the function. Bingo!</p>
     <p>And there we have our answer: <strong>the given code fragment throws a TypeError exception.</strong></p>
-    <div class="note no-marker" role="note">
-     <div class="marker">NOTE: </div>
+    <div class="note" role="note">
      <p>The spec only specifies the type of the Error thrown, not what message it contains. This means that implementations can have different error messages, maybe even localized ones.</p>
      <p>On Google’s V8 6.4 (included in Google Chrome 64), for example, the message is</p>
 <pre class="highlight">TypeError: String.prototype.substring called on null or undefined
@@ -2199,7 +2243,7 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
    <li><a href="#record-field">field</a><span>, in §2.3.1</span>
    <li><a href="#function-object">function object</a><span>, in §2.5</span>
    <li><a href="#internal-method">internal method</a><span>, in §2.5</span>
-   <li><a href="#internal-slot">internal slot</a><span>, in §2.3.2</span>
+   <li><a href="#internal-slot">internal slot</a><span>, in §2.5</span>
    <li><a href="#abstract-opdef-newtarget">NewTarget</a><span>, in §2.7</span>
    <li><a href="#dom-completion-record-type-normal">normal</a><span>, in §2.4</span>
    <li><a href="#normal-completion">normal completion</a><span>, in §2.4</span>
@@ -2241,6 +2285,7 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
      <li><a href="https://tc39.github.io/ecma262/#sec-number-objects">Number</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-numbertostring">NumberToString</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-object-objects">Object</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-object.getownpropertysymbols">Object.getOwnPropertySymbols()</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-ordinarycreatefromconstructor">OrdinaryCreateFromConstructor</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-ordinaryget">OrdinaryGet</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-ordinarygetprototypeof">OrdinaryGetPrototypeOf</a>
@@ -2260,12 +2305,14 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
      <li><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-typedarray-objects">Uint8Array</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-proxy-object-internal-methods-and-internal-slots-getprototypeof">[[GetPrototypeOf]]</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-property-descriptor-specification-type">property descriptor</a>
     </ul>
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
      <li><a href="https://html.spec.whatwg.org/multipage/dom.html#htmlelement">HTMLElement</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/window-object.html#windowproxy">WindowProxy</a>
      <li><a href="https://html.spec.whatwg.org/multipage/workers.html#worker">Worker</a>
      <li><a href="https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-alert">alert(message)</a>
      <li><a href="https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-confirm">confirm(message)</a>
@@ -2352,14 +2399,6 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
     <li><a href="#ref-for-record-field④">2.4. Completion Records; ? and !</a> <a href="#ref-for-record-field⑤">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="internal-slot">
-   <b><a href="#internal-slot">#internal-slot</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-internal-slot">2.3.2. An internal slot of a JavaScript Object</a> <a href="#ref-for-internal-slot①">(2)</a> <a href="#ref-for-internal-slot②">(3)</a> <a href="#ref-for-internal-slot③">(4)</a> <a href="#ref-for-internal-slot④">(5)</a> <a href="#ref-for-internal-slot⑤">(6)</a>
-    <li><a href="#ref-for-internal-slot⑥">2.3.3. An internal method of a JavaScript Object</a>
-    <li><a href="#ref-for-internal-slot⑦">2.5. JavaScript Objects</a> <a href="#ref-for-internal-slot⑧">(2)</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="completion-record">
    <b><a href="#completion-record">#completion-record</a></b><b>Referenced in:</b>
    <ul>
@@ -2440,25 +2479,27 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
    <b><a href="#internal-method">#internal-method</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-internal-method">2.3.3. An internal method of a JavaScript Object</a> <a href="#ref-for-internal-method①">(2)</a> <a href="#ref-for-internal-method②">(3)</a> <a href="#ref-for-internal-method③">(4)</a>
-    <li><a href="#ref-for-internal-method④">2.5. JavaScript Objects</a> <a href="#ref-for-internal-method⑤">(2)</a> <a href="#ref-for-internal-method⑥">(3)</a> <a href="#ref-for-internal-method⑦">(4)</a> <a href="#ref-for-internal-method⑧">(5)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="callable-object">
-   <b><a href="#callable-object">#callable-object</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-callable-object">2.5. JavaScript Objects</a>
+    <li><a href="#ref-for-internal-method④">2.5. JavaScript Objects</a> <a href="#ref-for-internal-method⑤">(2)</a> <a href="#ref-for-internal-method⑥">(3)</a> <a href="#ref-for-internal-method⑦">(4)</a> <a href="#ref-for-internal-method⑧">(5)</a> <a href="#ref-for-internal-method⑨">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="ordinary-object">
    <b><a href="#ordinary-object">#ordinary-object</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-ordinary-object">2.5. JavaScript Objects</a> <a href="#ref-for-ordinary-object①">(2)</a>
+    <li><a href="#ref-for-ordinary-object">2.5. JavaScript Objects</a> <a href="#ref-for-ordinary-object①">(2)</a> <a href="#ref-for-ordinary-object②">(3)</a> <a href="#ref-for-ordinary-object③">(4)</a> <a href="#ref-for-ordinary-object④">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="exotic-object">
    <b><a href="#exotic-object">#exotic-object</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-exotic-object">2.5. JavaScript Objects</a> <a href="#ref-for-exotic-object①">(2)</a> <a href="#ref-for-exotic-object②">(3)</a>
+    <li><a href="#ref-for-exotic-object">2.5. JavaScript Objects</a> <a href="#ref-for-exotic-object①">(2)</a> <a href="#ref-for-exotic-object②">(3)</a> <a href="#ref-for-exotic-object③">(4)</a> <a href="#ref-for-exotic-object④">(5)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="internal-slot">
+   <b><a href="#internal-slot">#internal-slot</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-internal-slot">2.3.2. An internal slot of a JavaScript Object</a> <a href="#ref-for-internal-slot①">(2)</a> <a href="#ref-for-internal-slot②">(3)</a> <a href="#ref-for-internal-slot③">(4)</a> <a href="#ref-for-internal-slot④">(5)</a> <a href="#ref-for-internal-slot⑤">(6)</a> <a href="#ref-for-internal-slot⑥">(7)</a>
+    <li><a href="#ref-for-internal-slot⑦">2.3.3. An internal method of a JavaScript Object</a>
+    <li><a href="#ref-for-internal-slot⑧">2.5. JavaScript Objects</a> <a href="#ref-for-internal-slot⑨">(2)</a> <a href="#ref-for-internal-slot①⓪">(3)</a> <a href="#ref-for-internal-slot①①">(4)</a> <a href="#ref-for-internal-slot①②">(5)</a> <a href="#ref-for-internal-slot①③">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abstract-opdef-newtarget">

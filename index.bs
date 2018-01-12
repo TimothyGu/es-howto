@@ -79,6 +79,7 @@ urlPrefix: https://tc39.github.io/ecma262/; for: ECMA-262; type: dfn
   text: §9.1.8 [[Get]] ( P, Receiver ); url: sec-ordinary-object-internal-methods-and-internal-slots-get-p-receiver
   text: §9.2 ECMAScript Function Objects; url: sec-ecmascript-function-objects
   text: §9.3 Built-in Function Objects; url: sec-built-in-function-objects
+  text: §9.4.2 Array Exotic Objects; url: sec-array-exotic-objects
   text: §10 ECMAScript Language: Source Code; url: sec-ecmascript-language-source-code
   text: §13.6 The if Statement; url: sec-if-statement
   text: §13.7 Iteration Statements; url: sec-iteration-statements
@@ -119,6 +120,7 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
     text: Array.prototype.forEach(); url: sec-array.prototype.foreach
     text: Boolean(); url: sec-boolean-constructor-boolean-value
     text: JSON.stringify(); url: sec-json.stringify
+    text: Object.getOwnPropertySymbols(); url: sec-object.getownpropertysymbols
     text: String(); url: sec-string-constructor-string-value
     text: String.prototype.substring(); url: sec-string.prototype.substring
     text: %ArrayProto_entries%; url: sec-array.prototype.entries
@@ -194,6 +196,8 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
     text: floor; url: eqn-floor
     text: max; url: eqn-max
     text: min; url: eqn-min
+    for: ECMAScript/Proxy
+      text: [[GetPrototypeOf]]; url: sec-proxy-object-internal-methods-and-internal-slots-getprototypeof
   type: dfn
     text: NumericLiteral; url: sec-literals-numeric-literals
     text: modulo; url: eqn-modulo
@@ -487,7 +491,7 @@ From time to time, you may see the <dfn lt="double brackets notation">\[[Notatio
 
 Precisely, it can mean three different things, which I will illustrate with examples from the specification. Feel free to skip them for now, however.
 
-### A field of a Record ### {#field-of-record}
+### A field of a Record ### {#double-brackets-field-of-record}
 
 The ECMAScript spec uses the term <dfn>Record</dfn> to refer to a key-value map with a fixed set of keys -- a bit like a structure in C-like languages. Each key-value pair of a [=Record=] is called a <dfn for=Record>field</dfn>. Because [=Records=] can only appear in specifications and not in actual JavaScript code, it makes sense to use the [=double brackets notation|[[Notation]]=] to refer to [=fields=] of a [=Record=].
 
@@ -511,9 +515,9 @@ Another concrete example of [=Records=] can be found in the next section, [[#com
 
 <p class=note>Further reading: [=§6.2.1 The List and Record Specification Types=]</p>
 
-### An internal slot of a JavaScript Object ### {#internal-slot-of-javascript-object}
+### An internal slot of a JavaScript Object ### {#double-brackets-internal-slot-of-javascript-object}
 
-JavaScript Objects may have so-called <dfn lt="internal slot">internal slots</dfn> that the specification uses to keep data in them. Like [=Record/field|Record fields=], these [=internal slots=] also cannot be observed using JavaScript, but some of them may be exposed through implementation-specific tools like Google Chrome's DevTools. Thus, it makes sense also to use the [=double brackets notation|[[Notation]]=] to describe [=internal slots=].
+JavaScript Objects may have so-called [=internal slots=] that the specification uses to keep data in them. Like [=Record/field|Record fields=], these [=internal slots=] also cannot be observed using JavaScript, but some of them may be exposed through implementation-specific tools like Google Chrome's DevTools. Thus, it makes sense also to use the [=double brackets notation|[[Notation]]=] to describe [=internal slots=].
 
 The specifics of [=internal slots=] will be covered in [[#javascript-objects]]. For now, don't worry too much about what they are used for, but do note the following example.
 
@@ -533,7 +537,7 @@ When the abstract operation OrdinaryGetPrototypeOf is called with Object |O|, th
 
 Note: [=Internal slots=] of Objects and [=Record/field|Record fields=] are identical in appearance, but they can be disambiguated by looking at the precedent of this notation (the part that came before the dot), whether it is an Object or a [=Record=]. This is usually fairly obvious from the surrounding context.
 
-### An internal method of a JavaScript Object ### {#internal-method-of-javascript-object}
+### An internal method of a JavaScript Object ### {#double-brackets-internal-method-of-javascript-object}
 
 JavaScript Objects may also have so-called [=internal methods=]. Like [=internal slots=], these [=internal methods=] are not directly observable through JavaScript. Thus, it makes sense also to use the [=double brackets notation|[[Notation]]=] to describe [=internal methods=].
 
@@ -559,7 +563,7 @@ Every runtime semantic in the ECMAScript spec either explicitly or implicitly re
 * if the [=Completion Record/[[Type]]=] is {{Completion Record/[[Type]]/normal}}, {{Completion Record/[[Type]]/return}}, or {{Completion Record/[[Type]]/throw}}, then it can also have a <dfn for="Completion Record">\[[Value]]</dfn> ("what's returned/thrown")
 * if the [=Completion Record/[[Type]]=] is {{Completion Record/[[Type]]/break}} or {{Completion Record/[[Type]]/continue}}, then it can optionally carry a [=MDN/label=] known as <dfn for="Completion Record">\[[Target]]</dfn> that script execution breaks from/continues to as a result of this runtime semantic
 
-Note: Two brackets are used to denote [=Record/fields=] of [=Records=]. See [[#field-of-record]] for a primer on [=Records=] and the notations associated with them.
+Note: Two brackets are used to denote [=Record/fields=] of [=Records=]. See [[#double-brackets-field-of-record]] for a primer on [=Records=] and the notations associated with them.
 
 A [=Completion Record=] whose [=Completion Record/[[Type]]=] is {{Completion Record/[[Type]]/normal}} is called a <dfn>normal completion</dfn>. Every [=Completion Record=] other than a [=normal completion=] is also known as an <dfn>abrupt completion</dfn>.
 
@@ -667,7 +671,7 @@ A few steps that call an abstract operation that cannot ever throw <strong><em>w
 
 </div>
 
-<div class=advisement heading=CAUTION:>
+<div class=advisement heading=CAUTION>
 
 The [=!=] can admittedly become pretty confusing if it is part of a comparison:
 
@@ -683,21 +687,75 @@ Here, the [=!=] just means that we are certain [$ToNumber$] will never return an
 
 ## JavaScript Objects ## {#javascript-objects}
 
-In ECMAScript, every Object has a certain set of <dfn lt="internal method">internal methods</dfn> that the rest of the specification call on to do certain tasks. Some of these [=internal methods=] that all Objects must have are \[[Get]], \[[Set]], \[[GetPrototypeOf]], and \[[Delete]] (an exhaustive list is available in [=§6.1.7.2 Object Internal Methods and Internal Slots=]). Based on this definition, <dfn lt="function object">function objects</dfn> (or just "functions") are simply Objects that additionally have the \[[Call]] internal method, and possibly the \[[Construct]] internal method too; for this reason they are also known as <dfn lt="callable object">callable objects</dfn>.
+In ECMAScript, every Object has a set of <dfn lt="internal method">internal methods</dfn> that the rest of the specification call on to do certain tasks. A few of these [=internal methods=] that all Objects have are:
 
-The spec then divides all Objects into two camps: [=ordinary objects=] and [=exotic objects=]. Most of the objects you encounter are <dfn lt="ordinary object">ordinary objects</dfn>, which means that their [=internal methods=] are the default ones specified in [=§9.1 Ordinary Object Internal Methods and Internal Slots=] (and if the object is [=callable object|callable=], [=§9.2 ECMAScript Function Objects=] also).
+- \[[Get]], which gets a property on an Object (e.g. `obj.prop`)
+- \[[Set]], which sets a property on an Object (e.g. `obj.prop = 42;`)
+- \[[GetPrototypeOf]], which gets the Object's prototype (i.e., `Object.getPrototypeOf(obj)`)
+- \[[GetOwnProperty]], which gets the Property Descriptor of an own property of an Object (i.e., `Object.getOwnPropertyDescriptor(obj, "prop")`)
+- \[[Delete]], which deletes a property on an Object (e.g. `delete obj.prop`)
 
-However, ECMAScript spec also defines a few kinds of <dfn lt="exotic object">exotic objects</dfn>, which may override the default implementations of those internal methods. There are certain minimal constraints put on what exotic objects are allowed to do, but in general the overriden internal methods can do a lot of things without going against the spec.
+(an exhaustive list is available in [=§6.1.7.2 Object Internal Methods and Internal Slots=]).
 
-{{ECMAScript/Array}} objects are one of these [=exotic objects=], because of the special semantics involved in the <code class=idl>length</code> property.
+Based on this definition, <dfn lt="function object">function objects</dfn> (or just "functions") are simply Objects that additionally have the \[[Call]] internal method, and possibly the \[[Construct]] internal method too; for this reason they are also known as <dfn lt="callable object">callable objects</dfn>.
 
-Note: Setting the <code class=idl>length</code> property on an array can trigger special behaviors, in a way similar to having setter functions on the prototype object; yet, <code class=idl>length</code> property is perceived to be an own property on the array. This is different from, say, `new Map().size`, which is in fact a getter specified on `Map.prototype`. You can tell this difference by comparing `Object.getOwnPropertyDescriptor([], 'length')` and `Object.getOwnPropertyDescriptor(new Map, "size")`.
+The spec then divides all Objects into two camps: [=ordinary objects=] and [=exotic objects=]. Most of the objects you encounter are <dfn lt="ordinary object">ordinary objects</dfn>, which means that all of their [=internal methods=] are the default ones specified in [=§9.1 Ordinary Object Internal Methods and Internal Slots=].
 
-The spec also allows implementations (like V8) to define their own exotic objects, and also users to do the same through {{ECMAScript/Proxy}} objects.
+However, ECMAScript spec also defines a few kinds of <dfn lt="exotic object">exotic objects</dfn>, which may override the default implementations of those internal methods. There are certain minimal constraints put on what exotic objects are allowed to do, but in general the overriden internal methods can do a lot of acrobatics without going against the spec.
+
+<div class=example>
+
+{{ECMAScript/Array}} objects are one kind of these [=exotic objects=]. Some special semantics around the <code class=idl>length</code> property of {{ECMAScript/Array}} objects cannot be achieved using the instruments available to [=ordinary objects=].
+
+One of them is the fact that setting the <code class=idl>length</code> property of an {{ECMAScript/Array}} object can remove properties from the object, but the <code class=idl>length</code> property seems to be just an ordinary data property. In contrast, `new Map().size` is only a getter function specified on `Map.prototype`, and does not have the magical properties `[].length` does.
+
+<pre>
+> const arr = [0, 1, 2, 3];
+> console.log(arr);
+[ 0, 1, 2, 3 ]
+> arr.length = 1;
+> console.log(arr);
+[ 0 ]
+> console.log(Object.getOwnPropertyDescriptor([], "length"));
+{ value: 1,
+  writable: true,
+  enumerable: false,
+  configurable: false }
+</pre>
+
+<pre>
+> console.log(Object.getOwnPropertyDescriptor(new Map(), "size"));
+undefined
+> console.log(Object.getOwnPropertyDescriptor(Map.prototype, "size"));
+{ get: [Function: get size],
+  set: undefined,
+  enumerable: false,
+  configurable: true }
+</pre>
+
+This behavior is achieved by overriding the \[[DefineOwnProperty]] internal method. See [=§9.4.2 Array Exotic Objects=] for details.
+
+</div>
+
+The ECMAScript spec also allows other specs to define their own exotic objects. It is through this mechanism the limitations browsers put on <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#Cross-origin_script_API_access">cross-origin API access</a> are specified (see {{WindowProxy}}) [[HTML]]. It is also possible for JavaScript users to create their own exotic objects through the {{ECMAScript/Proxy}} API.
 
 ----
 
-Another way of thinking about the relations between Objects, function objects, [=internal methods=], and [=internal slots=] are through a classical Object-Oriented Programming lens. Objects are like an interface specifying several basic [=internal methods=] that must be implemented. [=Ordinary objects=] provide certain default implementations of them, which [=exotic objects=] may override. Last and but not least, [=internal slots=] are like instance variables of an Object private to its [=internal methods=].
+JavaScript Objects may also have <dfn lt="internal slot">internal slots</dfn> defined to contain certain types of values. I tend to think of [=internal slots=] as Symbol-named properties that are hidden even to {{Object.getOwnPropertySymbols()}}. Both [=ordinary objects=] and [=exotic objects=] are allowed to have [=internal slots=].
+
+<div class=note>
+
+In [[#double-brackets-internal-slot-of-javascript-object]], I mentioned an [=internal slot=] called \[[Prototype]] that most Objects have. (In fact, all [=ordinary objects=] and even some [=exotic objects=] like {{ECMAScript/Array}} objects have it.) But we also know that there is an [=internal method=] called \[[GetPrototypeOf]] that I briefly described above. What is the difference?
+
+The keyword here is *most*: while *most* objects have the \[[Prototype]] internal slot, *all* objects implement the \[[GetPrototypeOf]] internal method. Notably, {{ECMAScript/Proxy}} objects do not have their own \[[Prototype]], and its [$ECMAScript/Proxy/[[GetPrototypeOf]]$] internal method instead defer to either the registered handler or the prototype of its target, stored in the \[[ProxyTarget]] internal slot of the {{ECMAScript/Proxy}} object.
+
+For this reason, when dealing with Objects, it is almost always a good idea to refer to the appropriate [=internal method=] rather than directly looking at the value of an [=internal slot=].
+
+</div>
+
+----
+
+Another way of thinking about the relations between Objects, [=internal methods=], and [=internal slots=] are through a classical object-oriented lens. "Object" is like an interface specifying several [=internal methods=] that must be implemented. [=Ordinary objects=] provide default implementations, which [=exotic objects=] may override either partially or fully. On the other hand, [=internal slots=] are like instance variables of an Object -- the implementation details of that Object.
 
 All of these relations are summarized by the following UML diagram (click to enlarge):
 
@@ -750,7 +808,7 @@ No matter though -- in the row corresponding to Undefined (the type of the **thi
 
 And there we have our answer: **the given code fragment throws a TypeError exception.**
 
-<div class=note heading=>
+<div class=note>
 
 The spec only specifies the type of the Error thrown, not what message it contains. This means that implementations can have different error messages, maybe even localized ones.
 
