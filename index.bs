@@ -395,7 +395,7 @@ Instead, what I'm going to do is list some things that are commonly seen in Java
 
 When you <a href="https://www.google.com/search?q=ecmascript+specification">Google "ECMAScript specification"</a> you see *so many results,* all claiming to be the legitimate specification. Which one should you read??
 
-**Tl;dr, most likely than not, the specification published at tc39.github.io/ecma262/ is the one you want** [[ECMA-262]].
+**Tl;dr, more likely than not, the specification published at tc39.github.io/ecma262/ is the one you want** [[ECMA-262]].
 
 Long version:
 
@@ -478,7 +478,7 @@ When <code class=idl>Boolean</code> is called with argument |value|, the followi
 
 </div>
 
-That "ToBoolean" function is called an <dfn>abstract operation</dfn>: it's abstract because it is not actually exposed as a function to JavaScript code. It is simply an notation spec writers invented to allow them to not write the same things over and over again.
+That "ToBoolean" function is called an <dfn>abstract operation</dfn>: it's abstract because it is not actually exposed as a function to JavaScript code. It is simply a notation spec writers invented to allow them to not write the same things over and over again.
 
 <p class=note>Further reading: [=§5.2.1 Abstract Operations=]</p>
 
@@ -494,7 +494,7 @@ The ECMAScript spec uses the term <dfn>Record</dfn> to refer to a key-value map 
 
 <div class=example>
 
-Notably, [=Property Descriptors=] are also modeled as [=Records=] with [=fields=] \[[Value]], \[[Writable]], \[[Get]], \[[Set]], \[[Enumerable]], and \[[Configurable]]. The [$ECMAScript/IsDataDescriptor$] abstract operation uses this notation to extensively:
+Notably, [=Property Descriptors=] are also modeled as [=Records=] with [=fields=] \[[Value]], \[[Writable]], \[[Get]], \[[Set]], \[[Enumerable]], and \[[Configurable]]. The [$ECMAScript/IsDataDescriptor$] abstract operation uses this notation extensively:
 
 <div algorithm="to call the abstract operation IsDataDescriptor">
 
@@ -520,7 +520,7 @@ The specifics of [=internal slots=] will be covered in [[#javascript-objects]]. 
 
 <div class=example>
 
-Most JavaScript Objects have an internal slot \[[Prototype]] that contains the Object they inherit from. The value of this [=internal slot=] is usually the value {{MDN/Object.getPrototypeOf()}} returns. In the [$ECMAScript/OrdinaryGetPrototypeOf$] abstract operation, the value of this [=internal slot=] is accessed:
+Most JavaScript Objects have an internal slot \[[Prototype]] that refers to the Object they inherit from. The value of this [=internal slot=] is usually the value that {{MDN/Object.getPrototypeOf()}} returns. In the [$ECMAScript/OrdinaryGetPrototypeOf$] abstract operation, the value of this [=internal slot=] is accessed:
 
 <div algorithm="to call the abstract operation OrdinaryGetPrototypeOf">
 
@@ -650,17 +650,17 @@ A few steps that call an abstract operation that may throw <strong><em>with a [=
 
 ----
 
-Sometimes, it can convey more information to the reader about the spec's intent if we know that AbstractOp will never return an abrupt completion. In those cases, an <dfn lt="!" id="exclamation-mark">exclamation mark (!)</dfn> is used:
+Sometimes, it can convey more information to the reader about the spec's intent if we know that a particular call to AbstractOp will never return an abrupt completion. In those cases, an <dfn lt="!" id="exclamation-mark">exclamation mark (!)</dfn> is used:
 
 <div class=example>
 
-<div algorithm="to call an abstract operation that cannot never throw with a ReturnIfAbrupt shorthand">
+<div algorithm="to call an abstract operation that cannot ever throw with a ReturnIfAbrupt shorthand">
 
 A few steps that call an abstract operation that cannot ever throw <strong><em>with an [=!|exclamation mark (!)=]</em></strong>:
 
 1.  Let |result| be ! AbstractOp().
 
-    Note: While [=?=] forwards any errors we may have gotten, [=!=] asserts that we *never* get any errors, and it would be a bug in the specification if we do. Like the case with [=?=], we don't deal with [=Completion Records=] at all. |result| is ready to use immediately after.
+    Note: While [=?=] forwards any errors we may have gotten, [=!=] asserts that we *never* get any abrupt completions from this call, and it would be a bug in the specification if we did. Like the case with [=?=], we don't deal with [=Completion Records=] at all. |result| is ready to use immediately after.
 
 1.  |result| is the result we need. We can now do more things with it.
 
@@ -676,7 +676,7 @@ The [=!=] can admittedly become pretty confusing if it is part of a comparison:
 >
 > <cite>— Excerpted from [=§7.2.14 Abstract Equality Comparison=].</cite>
 
-Here, the [=!=] just means that we are certain [$ToNumber$] will never return an exception, *not* that the comparison is inverted!
+Here, the [=!=] just means that we are certain that this call to [$ToNumber$] will never return an exception, *not* that the comparison is inverted!
 
 </div>
 
@@ -821,7 +821,7 @@ while Mozilla Firefox 57.0 gives a somewhat less helpful
 TypeError: can't convert undefined to object
 </pre>
 
-At the same time, ChakraCore version 1.7.5.0 (the JavaScript engine in Microsoft Edge) take's V8's route and throws
+At the same time, ChakraCore version 1.7.5.0 (the JavaScript engine in Microsoft Edge) takes V8's route and throws
 
 <pre class=highlight highlight="">
 TypeError: String.prototype.substring: 'this' is null or undefined
