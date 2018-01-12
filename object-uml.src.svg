@@ -2168,7 +2168,7 @@
                y="45.873791"
                x="23.543127"
                id="tspan2134-7"
-               sodipodi:role="line">[[PromiseResult]]: any|void</tspan></text>
+               sodipodi:role="line">[[PromiseResult]]: any|empty</tspan></text>
           <rect
              style="opacity:1;fill:#ffff00;fill-opacity:1;stroke:none;stroke-width:0.43949342;stroke-miterlimit:4;stroke-dasharray:none"
              id="rect2138-0"
