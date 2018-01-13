@@ -1178,7 +1178,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version bbd6a9c4064dd454886bb3e0c74f0a19865c3c74" name="generator">
   <link href="https://timothygu.me/es-howto/" rel="canonical">
-  <meta content="cbbf88586f500f4ebd6ddb3f1ad27f51f5f597f6" name="document-revision">
+  <meta content="f6c633dc0aecee14f838c7f64504f83caf13701d" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1562,7 +1562,7 @@ Set <span class="p">{}</span>
     </div>
     <h3 class="heading settled" data-level="1.3" id="where-is-the-ecmascript-specification"><span class="secno">1.3. </span><span class="content">Before going any further, <em>where</em> is the ECMAScript specification?</span><a class="self-link" href="#where-is-the-ecmascript-specification"></a></h3>
     <p>When you <a href="https://www.google.com/search?q=ecmascript+specification">Google "ECMAScript specification"</a> you see <em>so many results,</em> all claiming to be the legitimate specification. Which one should you read??</p>
-    <p><strong>Tl;dr, most likely than not, the specification published at tc39.github.io/ecma262/ is the one you want</strong> <a data-link-type="biblio" href="#biblio-ecma-262">[ECMA-262]</a>.</p>
+    <p><strong>Tl;dr, more likely than not, the specification published at tc39.github.io/ecma262/ is the one you want</strong> <a data-link-type="biblio" href="#biblio-ecma-262">[ECMA-262]</a>.</p>
     <p>Long version:</p>
     <p>The ECMAScript language specification is developed by a group of people from diverse backgrounds, known as the Ecma International Technical Committee 39 (or as they are more familiarly known, TC39 <a data-link-type="biblio" href="#biblio-tc39">[TC39]</a>). TC39 maintains the latest specification for the ECMAScript language at tc39.github.io <a data-link-type="biblio" href="#biblio-ecma-262">[ECMA-262]</a>.</p>
     <p>What complicates the matter is that, every year, TC39 picks a point in time to take a snapshot of the spec to become the ECMAScript Language <em>Standard</em> of that year, along with an edition number. For example, the <em>ECMAScript® 2017 Language Specification (ECMA-262, 8th edition)</em> <a data-link-type="biblio" href="#biblio-ecma-262-2017">[ECMA-262-2017]</a> (popularly known as ES8) is simply the spec as seen at tc39.github.io <a data-link-type="biblio" href="#biblio-ecma-262">[ECMA-262]</a> in June 2017, put into formaldehyde, properly shrinkwrapped and PDFified for permanent archives.</p>
@@ -1659,16 +1659,16 @@ Set <span class="p">{}</span>
        <p>...</p>
      </ol>
     </div>
-    <p>That "ToBoolean" function is called an <dfn data-dfn-type="dfn" data-noexport="" id="abstract-operation">abstract operation<a class="self-link" href="#abstract-operation"></a></dfn>: it’s abstract because it is not actually exposed as a function to JavaScript code. It is simply an notation spec writers invented to allow them to not write the same things over and over again.</p>
+    <p>That "ToBoolean" function is called an <dfn data-dfn-type="dfn" data-noexport="" id="abstract-operation">abstract operation<a class="self-link" href="#abstract-operation"></a></dfn>: it’s abstract because it is not actually exposed as a function to JavaScript code. It is simply a notation spec writers invented to allow them to not write the same things over and over again.</p>
     <p class="note" role="note">Further reading: <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-algorithm-conventions-abstract-operations" id="ref-for-sec-algorithm-conventions-abstract-operations">§5.2.1 Abstract Operations</a></p>
     <h3 class="heading settled" data-level="2.3" id="what-is-this"><span class="secno">2.3. </span><span class="content">What is [[This]]</span><a class="self-link" href="#what-is-this"></a></h3>
     <p>From time to time, you may see the <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="double brackets notation" data-noexport="" id="double-brackets-notation">[[Notation]]</dfn> being used like "Let <var>proto</var> be <var>obj</var>.[[Prototype]]." This notation can technically mean several different things depending on the context in which it appears, but you would go a long way with the understanding that this notation refers to some internal property that is not observable through JavaScript code.</p>
     <p>Precisely, it can mean three different things, which I will illustrate with examples from the specification. Feel free to skip them for now, however.</p>
     <h4 class="heading settled" data-level="2.3.1" id="double-brackets-field-of-record"><span class="secno">2.3.1. </span><span class="content">A field of a Record</span><a class="self-link" href="#double-brackets-field-of-record"></a></h4>
     <p>The ECMAScript spec uses the term <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="record">Record</dfn> to refer to a key-value map with a fixed set of keys -- a bit like a structure in C-like languages. Each key-value pair of a <a data-link-type="dfn" href="#record" id="ref-for-record">Record</a> is called a <dfn class="dfn-paneled" data-dfn-for="Record" data-dfn-type="dfn" data-noexport="" id="record-field">field</dfn>. Because <a data-link-type="dfn" href="#record" id="ref-for-record①">Records</a> can only appear in specifications and not in actual JavaScript code, it makes sense to use the <a data-link-type="dfn" href="#double-brackets-notation" id="ref-for-double-brackets-notation">[[Notation]]</a> to refer to <a data-link-type="dfn" href="#record-field" id="ref-for-record-field">fields</a> of a <a data-link-type="dfn" href="#record" id="ref-for-record②">Record</a>.</p>
-    <div class="example" id="example-5de9ef43">
-     <a class="self-link" href="#example-5de9ef43"></a> 
-     <p>Notably, <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-property-descriptor-specification-type" id="ref-for-sec-property-descriptor-specification-type">Property Descriptors</a> are also modeled as <a data-link-type="dfn" href="#record" id="ref-for-record③">Records</a> with <a data-link-type="dfn" href="#record-field" id="ref-for-record-field①">fields</a> [[Value]], [[Writable]], [[Get]], [[Set]], [[Enumerable]], and [[Configurable]]. The <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-isdatadescriptor" id="ref-for-sec-isdatadescriptor">IsDataDescriptor</a> abstract operation uses this notation to extensively:</p>
+    <div class="example" id="example-3e7021a5">
+     <a class="self-link" href="#example-3e7021a5"></a> 
+     <p>Notably, <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-property-descriptor-specification-type" id="ref-for-sec-property-descriptor-specification-type">Property Descriptors</a> are also modeled as <a data-link-type="dfn" href="#record" id="ref-for-record③">Records</a> with <a data-link-type="dfn" href="#record-field" id="ref-for-record-field①">fields</a> [[Value]], [[Writable]], [[Get]], [[Set]], [[Enumerable]], and [[Configurable]]. The <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-isdatadescriptor" id="ref-for-sec-isdatadescriptor">IsDataDescriptor</a> abstract operation uses this notation extensively:</p>
      <div class="algorithm" data-algorithm="to call the abstract operation IsDataDescriptor">
       <p>When the abstract operation IsDataDescriptor is called with <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-property-descriptor-specification-type" id="ref-for-sec-property-descriptor-specification-type①">Property Descriptor</a> <var>Desc</var>, the following steps are taken:</p>
       <ol>
@@ -1686,9 +1686,9 @@ Set <span class="p">{}</span>
     <h4 class="heading settled" data-level="2.3.2" id="double-brackets-internal-slot-of-javascript-object"><span class="secno">2.3.2. </span><span class="content">An internal slot of a JavaScript Object</span><a class="self-link" href="#double-brackets-internal-slot-of-javascript-object"></a></h4>
     <p>JavaScript Objects may have so-called <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot">internal slots</a> that the specification uses to keep data in them. Like <a data-link-type="dfn" href="#record-field" id="ref-for-record-field②">Record fields</a>, these <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot①">internal slots</a> also cannot be observed using JavaScript, but some of them may be exposed through implementation-specific tools like Google Chrome’s DevTools. Thus, it makes sense also to use the <a data-link-type="dfn" href="#double-brackets-notation" id="ref-for-double-brackets-notation①">[[Notation]]</a> to describe <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot②">internal slots</a>.</p>
     <p>The specifics of <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot③">internal slots</a> will be covered in <a href="#javascript-objects">§2.5 JavaScript Objects</a>. For now, don’t worry too much about what they are used for, but do note the following example.</p>
-    <div class="example" id="example-65e61801">
-     <a class="self-link" href="#example-65e61801"></a> 
-     <p>Most JavaScript Objects have an internal slot [[Prototype]] that contains the Object they inherit from. The value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot④">internal slot</a> is usually the value <code class="idl"><a data-link-type="idl" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf#">Object.getPrototypeOf()</a></code> returns. In the <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-ordinarygetprototypeof" id="ref-for-sec-ordinarygetprototypeof">OrdinaryGetPrototypeOf</a> abstract operation, the value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑤">internal slot</a> is accessed:</p>
+    <div class="example" id="example-b490f676">
+     <a class="self-link" href="#example-b490f676"></a> 
+     <p>Most JavaScript Objects have an internal slot [[Prototype]] that refers to the Object they inherit from. The value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot④">internal slot</a> is usually the value that <code class="idl"><a data-link-type="idl" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf#">Object.getPrototypeOf()</a></code> returns. In the <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-ordinarygetprototypeof" id="ref-for-sec-ordinarygetprototypeof">OrdinaryGetPrototypeOf</a> abstract operation, the value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑤">internal slot</a> is accessed:</p>
      <div class="algorithm" data-algorithm="to call the abstract operation OrdinaryGetPrototypeOf">
       <p>When the abstract operation OrdinaryGetPrototypeOf is called with Object <var>O</var>, the following steps are taken:</p>
       <ol>
@@ -1788,15 +1788,15 @@ Set <span class="p">{}</span>
      </div>
     </div>
     <hr>
-    <p>Sometimes, it can convey more information to the reader about the spec’s intent if we know that AbstractOp will never return an abrupt completion. In those cases, an <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="!" data-noexport="" id="exclamation-mark">exclamation mark (!)</dfn> is used:</p>
-    <div class="example" id="example-b21cdb68">
-     <a class="self-link" href="#example-b21cdb68"></a> 
-     <div class="algorithm" data-algorithm="to call an abstract operation that cannot never throw with a ReturnIfAbrupt shorthand">
+    <p>Sometimes, it can convey more information to the reader about the spec’s intent if we know that a particular call to AbstractOp will never return an abrupt completion. In those cases, an <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="!" data-noexport="" id="exclamation-mark">exclamation mark (!)</dfn> is used:</p>
+    <div class="example" id="example-e2fc7398">
+     <a class="self-link" href="#example-e2fc7398"></a> 
+     <div class="algorithm" data-algorithm="to call an abstract operation that cannot ever throw with a ReturnIfAbrupt shorthand">
       <p>A few steps that call an abstract operation that cannot ever throw <strong><em>with an <a data-link-type="dfn" href="#exclamation-mark" id="ref-for-exclamation-mark">exclamation mark (!)</a></em></strong>:</p>
       <ol>
        <li data-md="">
         <p>Let <var>result</var> be ! AbstractOp().</p>
-        <p class="note" role="note"><span>Note:</span> While <a data-link-type="dfn" href="#question-mark" id="ref-for-question-mark②">?</a> forwards any errors we may have gotten, <a data-link-type="dfn" href="#exclamation-mark" id="ref-for-exclamation-mark①">!</a> asserts that we <em>never</em> get any errors, and it would be a bug in the specification if we do. Like the case with <a data-link-type="dfn" href="#question-mark" id="ref-for-question-mark③">?</a>, we don’t deal with <a data-link-type="dfn" href="#completion-record" id="ref-for-completion-record⑧">Completion Records</a> at all. <var>result</var> is ready to use immediately after.</p>
+        <p class="note" role="note"><span>Note:</span> While <a data-link-type="dfn" href="#question-mark" id="ref-for-question-mark②">?</a> forwards any errors we may have gotten, <a data-link-type="dfn" href="#exclamation-mark" id="ref-for-exclamation-mark①">!</a> asserts that we <em>never</em> get any abrupt completions from this call, and it would be a bug in the specification if we did. Like the case with <a data-link-type="dfn" href="#question-mark" id="ref-for-question-mark③">?</a>, we don’t deal with <a data-link-type="dfn" href="#completion-record" id="ref-for-completion-record⑧">Completion Records</a> at all. <var>result</var> is ready to use immediately after.</p>
        <li data-md="">
         <p><var>result</var> is the result we need. We can now do more things with it.</p>
       </ol>
@@ -1812,7 +1812,7 @@ Set <span class="p">{}</span>
       </ol>
       <p><cite>— Excerpted from <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-abstract-equality-comparison" id="ref-for-sec-abstract-equality-comparison">§7.2.14 Abstract Equality Comparison</a>.</cite></p>
      </blockquote>
-     <p>Here, the <a data-link-type="dfn" href="#exclamation-mark" id="ref-for-exclamation-mark③">!</a> just means that we are certain <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-tonumber" id="ref-for-sec-tonumber①">ToNumber</a> will never return an exception, <em>not</em> that the comparison is inverted!</p>
+     <p>Here, the <a data-link-type="dfn" href="#exclamation-mark" id="ref-for-exclamation-mark③">!</a> just means that we are certain that this call to <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-tonumber" id="ref-for-sec-tonumber①">ToNumber</a> will never return an exception, <em>not</em> that the comparison is inverted!</p>
     </div>
     <p class="note" role="note">Further reading: <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands">§5.2.3.4 ReturnIfAbrupt Shorthands</a>.</p>
     <h3 class="heading settled" data-level="2.5" id="javascript-objects"><span class="secno">2.5. </span><span class="content">JavaScript Objects</span><a class="self-link" href="#javascript-objects"></a></h3>
@@ -1922,13 +1922,13 @@ Set <span class="p">{}</span>
      <p>while Mozilla Firefox 57.0 gives a somewhat less helpful</p>
 <pre class="highlight">TypeError: can’t convert undefined to object
 </pre>
-     <p>At the same time, ChakraCore version 1.7.5.0 (the JavaScript engine in Microsoft Edge) take’s V8’s route and throws</p>
+     <p>At the same time, ChakraCore version 1.7.5.0 (the JavaScript engine in Microsoft Edge) takes V8’s route and throws</p>
 <pre class="highlight">TypeError: String.prototype.substring: 'this' is null or undefined
 </pre>
     </div>
     <h3 class="heading settled" data-level="2.7" id="example-can-boolean-and-string-ever-throw-exceptions"><span class="secno">2.7. </span><span class="content">Example: Can <code class="idl highlight">Boolean<span class="p">()</span></code> and <code class="idl highlight">String<span class="p">()</span></code> ever throw exceptions?</span><a class="self-link" href="#example-can-boolean-and-string-ever-throw-exceptions"></a></h3>
     <p>When writing mission-critical code, one must put exception handling at the forefront in programming. As such, the question of "can <em>some built-in function</em> ever throw an exception?" may be oft-pondered.</p>
-    <p>In this example, we shall try to answer this question for two language built-in functions, <code class="idl highlight">Boolean<span class="p">()</span></code> and <code class="idl highlight">String<span class="p">()</span></code>. We will only look at direct calls to those functions, not the cases of <code class="highlight"><span class="k">new</span> Boolean<span class="p">()</span></code> and <code class="highlight"><span class="k">new</span> String<span class="p">()</span></code> which form boxed objects -- easily one of the [most undesirable features in JavaScript][ydkjs-object-wrappers] and a very much discouraged practice in pretty much all JS style guides out there.</p>
+    <p>In this example, we shall try to answer this question for two language built-in functions, <code class="idl highlight">Boolean<span class="p">()</span></code> and <code class="idl highlight">String<span class="p">()</span></code>. We will only look at direct calls to those functions, not the cases of <code class="highlight"><span class="k">new</span> Boolean<span class="p">()</span></code> and <code class="highlight"><span class="k">new</span> String<span class="p">()</span></code> which form boxed objects -- easily one of the <a href="https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch3.md#object-wrapper-gotchas">most undesirable features in JavaScript</a> and a very much discouraged practice in pretty much all JS style guides out there.</p>
     <p>After navigating to the section for <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-boolean-constructor-boolean-value" id="ref-for-sec-boolean-constructor-boolean-value①">Boolean()</a></code> in the spec, we see that the algorithm seems to be fairly short:</p>
     <div class="algorithm" data-algorithm="to execute Boolean()">
      <p>When <code class="idl highlight">Boolean</code> is called with argument <var>value</var>, the following steps are taken:</p>
