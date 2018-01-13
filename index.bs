@@ -833,7 +833,7 @@ TypeError: String.prototype.substring: 'this' is null or undefined
 
 When writing mission-critical code, one must put exception handling at the forefront in programming. As such, the question of "can *some built-in function* ever throw an exception?" may be oft-pondered.
 
-In this example, we shall try to answer this question for two language built-in functions, <code class=idl>Boolean()</code> and <code class=idl>String()</code>. We will only look at direct calls to those functions, not the cases of `new Boolean()` and `new String()` which form boxed objects -- easily one of the [most undesirable features in JavaScript][ydkjs-object-wrappers] and a very much discouraged practice in pretty much all JS style guides out there.
+In this example, we shall try to answer this question for two language built-in functions, <code class=idl>Boolean()</code> and <code class=idl>String()</code>. We will only look at direct calls to those functions, not the cases of `new Boolean()` and `new String()` which form boxed objects -- easily one of the <a href="https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch3.md#object-wrapper-gotchas">most undesirable features in JavaScript</a> and a very much discouraged practice in pretty much all JS style guides out there.
 
 After navigating to the section for {{ECMAScript/Boolean()}} in the spec, we see that the algorithm seems to be fairly short:
 
