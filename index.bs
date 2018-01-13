@@ -231,6 +231,9 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
 <pre class=biblio>
 {
   "CANIUSE": {
+    "authors": [
+      "Alexis Deveria"
+    ],
     "href": "https://caniuse.com",
     "title": "Can I use... Support tables for HTML5, CSS3, etc"
   },
@@ -246,7 +249,7 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
   },
   "ISO-16262-2011": {
     "href": "https://www.iso.org/standard/55755.html",
-    "title": "ISO/IEC 16262:2011 - Information technology -- Programming languages, their environments and system software interfaces -- ECMAScript language specification",
+    "title": "ISO/IEC 16262:2011 - Information technology – Programming languages, their environments and system software interfaces – ECMAScript language specification",
     "publisher": "ISO/IEC"
   },
   "JOHNNY-FIVE": {
@@ -292,6 +295,13 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
     ],
     "href": "https://www.xkcd.com/703/",
     "title": "xkcd: Honor Societies"
+  },
+  "YDKJS": {
+    "authors": [
+      "Kyle Simpson"
+    ],
+    "href": "https://github.com/getify/You-Dont-Know-JS",
+    "title": "You Don't Know JS (book series)"
   }
 }
 </pre>
@@ -490,7 +500,7 @@ Precisely, it can mean three different things, which I will illustrate with exam
 
 ### A field of a Record ### {#double-brackets-field-of-record}
 
-The ECMAScript spec uses the term <dfn>Record</dfn> to refer to a key-value map with a fixed set of keys -- a bit like a structure in C-like languages. Each key-value pair of a [=Record=] is called a <dfn for=Record>field</dfn>. Because [=Records=] can only appear in specifications and not in actual JavaScript code, it makes sense to use the [=double brackets notation|[[Notation]]=] to refer to [=fields=] of a [=Record=].
+The ECMAScript spec uses the term <dfn>Record</dfn> to refer to a key-value map with a fixed set of keys – a bit like a structure in C-like languages. Each key-value pair of a [=Record=] is called a <dfn for=Record>field</dfn>. Because [=Records=] can only appear in specifications and not in actual JavaScript code, it makes sense to use the [=double brackets notation|[[Notation]]=] to refer to [=fields=] of a [=Record=].
 
 <div class=example>
 
@@ -752,7 +762,7 @@ For this reason, when dealing with Objects, it is almost always a good idea to r
 
 ----
 
-Another way of thinking about the relations between Objects, [=internal methods=], and [=internal slots=] are through a classical object-oriented lens. "Object" is like an interface specifying several [=internal methods=] that must be implemented. [=Ordinary objects=] provide default implementations, which [=exotic objects=] may override either partially or fully. On the other hand, [=internal slots=] are like instance variables of an Object -- the implementation details of that Object.
+Another way of thinking about the relations between Objects, [=internal methods=], and [=internal slots=] are through a classical object-oriented lens. "Object" is like an interface specifying several [=internal methods=] that must be implemented. [=Ordinary objects=] provide default implementations, which [=exotic objects=] may override either partially or fully. On the other hand, [=internal slots=] are like instance variables of an Object – the implementation details of that Object.
 
 All of these relations are summarized by the following UML diagram (click to enlarge):
 
@@ -801,7 +811,7 @@ The [$ECMAScript/RequireObjectCoercible$] abstract operation is a little odd. Un
 >  </tr>
 > </table>
 
-No matter though -- in the row corresponding to Undefined (the type of the **this** value we passed to {{ECMAScript/String.prototype.substring()|substring()}}) the spec says that [$RequireObjectCoercible$] should throw an exception. And because the [=?=] notation is used in the definition of the function, we know that the thrown exception must bubble up to the caller of the function. Bingo!
+No matter though – in the row corresponding to Undefined (the type of the **this** value we passed to {{ECMAScript/String.prototype.substring()|substring()}}) the spec says that [$RequireObjectCoercible$] should throw an exception. And because the [=?=] notation is used in the definition of the function, we know that the thrown exception must bubble up to the caller of the function. Bingo!
 
 And there we have our answer: **the given code fragment throws a TypeError exception.**
 
@@ -833,7 +843,7 @@ TypeError: String.prototype.substring: 'this' is null or undefined
 
 When writing mission-critical code, one must put exception handling at the forefront in programming. As such, the question of "can *some built-in function* ever throw an exception?" may be oft-pondered.
 
-In this example, we shall try to answer this question for two language built-in functions, <code class=idl>Boolean()</code> and <code class=idl>String()</code>. We will only look at direct calls to those functions, not the cases of `new Boolean()` and `new String()` which form boxed objects -- easily one of the <a href="https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch3.md#object-wrapper-gotchas">most undesirable features in JavaScript</a> and a very much discouraged practice in pretty much all JS style guides out there.
+In this example, we shall try to answer this question for two language built-in functions, <code class=idl>Boolean()</code> and <code class=idl>String()</code>. We will only look at direct calls to those functions, not the cases of `new Boolean()` and `new String()` which form boxed objects – easily one of the <a href="https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch3.md#object-wrapper-gotchas">most undesirable features in JavaScript</a> and a very much discouraged practice in pretty much all JS style guides out there [[YDKJS]].
 
 After navigating to the section for {{ECMAScript/Boolean()}} in the spec, we see that the algorithm seems to be fairly short:
 
