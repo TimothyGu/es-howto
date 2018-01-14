@@ -1178,7 +1178,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version bbd6a9c4064dd454886bb3e0c74f0a19865c3c74" name="generator">
   <link href="https://timothygu.me/es-howto/" rel="canonical">
-  <meta content="9690d795242d49017ed386a697e3f56479534e11" name="document-revision">
+  <meta content="b8c3791d9b18f133f878e150f20354caf7a93eac" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1425,7 +1425,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">How to Read the ECMAScript Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-01-12">12 January 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-01-14">14 January 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1567,7 +1567,7 @@ Set <span class="p">{}</span>
     <p>The ECMAScript language specification is developed by a group of people from diverse backgrounds, known as the Ecma International Technical Committee 39 (or as they are more familiarly known, TC39 <a data-link-type="biblio" href="#biblio-tc39">[TC39]</a>). TC39 maintains the latest specification for the ECMAScript language at tc39.github.io <a data-link-type="biblio" href="#biblio-ecma-262">[ECMA-262]</a>.</p>
     <p>What complicates the matter is that, every year, TC39 picks a point in time to take a snapshot of the spec to become the ECMAScript Language <em>Standard</em> of that year, along with an edition number. For example, the <em>ECMAScript® 2017 Language Specification (ECMA-262, 8th edition)</em> <a data-link-type="biblio" href="#biblio-ecma-262-2017">[ECMA-262-2017]</a> (popularly known as ES8) is simply the spec as seen at tc39.github.io <a data-link-type="biblio" href="#biblio-ecma-262">[ECMA-262]</a> in June 2017, put into formaldehyde, properly shrinkwrapped and PDFified for permanent archives.</p>
     <p>Because of that, unless you want your web application to run on only browsers from June 2017 that are put into formaldehyde, properly shrinkwrapped, and PDFified for permanent archives, you want to always look at the latest spec at tc39.github.io <a data-link-type="biblio" href="#biblio-ecma-262">[ECMA-262]</a>. But if you want to (or have to) support older browsers or Node.js versions, then referencing the older specifications may help.</p>
-    <p class="note" role="note"><span>Note:</span> The ISO/IEC also publishes the ECMAScript Language Standard as ISO/IEC 16262 <a data-link-type="biblio" href="#biblio-iso-16262-2011">[ISO-16262-2011]</a>. But as you can tell from the linked page, the ISO/IEC standard is currently stuck on Edition 3 (which ironically is supposed to be fully "current"). So if you want to look at a spec written <a data-link-type="dfn" href="https://caniuse.com/#feat=es5" id="ref-for-feat=es5">before</a> <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array.prototype.foreach" id="ref-for-sec-array.prototype.foreach">Array.prototype.forEach()</a></code> was introduced to the language <a data-link-type="biblio" href="#biblio-caniuse">[CANIUSE]</a>, you may purchase the standard from ISO for <a href="https://www.google.com/search?q=198+swiss+francs+in+my+currency">198 Swiss Francs</a>. (In other words, don’t.)</p>
+    <p class="note" role="note"><span>Note:</span> The ISO/IEC also republishes the ECMAScript Language Standard as ISO/IEC 16262 <a data-link-type="biblio" href="#biblio-iso-16262-2011">[ISO-16262-2011]</a>. Don’t worry about it though, since the text of the standard is exactly the same as the standards Ecma International publishes – the only difference being that you have to pay <a href="https://www.google.com/search?q=198+swiss+francs+in+my+currency">198 Swiss Francs</a>.</p>
     <h3 class="heading settled" data-level="1.4" id="navigating-the-spec"><span class="secno">1.4. </span><span class="content">Navigating the spec</span><a class="self-link" href="#navigating-the-spec"></a></h3>
     <p>The ECMAScript specification talks about a <strong>HUGE</strong> amount of things. Even though its authors try their best to separate it into logical chunks, it’s still a huge text.</p>
     <p>Personally, I like to divide the spec into five parts:</p>
@@ -1859,7 +1859,7 @@ Set <span class="p">{}</span>
 </pre>
      <p>This behavior is achieved by overriding the [[DefineOwnProperty]] internal method. See <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-array-exotic-objects" id="ref-for-sec-array-exotic-objects">§9.4.2 Array Exotic Objects</a> for details.</p>
     </div>
-    <p>The ECMAScript spec also allows other specs to define their own exotic objects. It is through this mechanism the limitations browsers put on <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#Cross-origin_script_API_access">cross-origin API access</a> are specified (see <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/window-object.html#windowproxy" id="ref-for-windowproxy">WindowProxy</a></code>) <a data-link-type="biblio" href="#biblio-html">[HTML]</a>. It is also possible for JavaScript users to create their own exotic objects through the <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-proxy-objects" id="ref-for-sec-proxy-objects①">Proxy</a></code> API.</p>
+    <p>The ECMAScript spec also allows other specs to define their own exotic objects. It is through this mechanism the limitations browsers put on <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#Cross-origin_script_API_access">cross-origin API access</a> are specified (see <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/window-object.html#windowproxy" id="ref-for-windowproxy">WindowProxy</a></code>) <a data-link-type="biblio" href="#biblio-html">[HTML]</a>. It is also possible for JavaScript programmers to create their own exotic objects through the <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-proxy-objects" id="ref-for-sec-proxy-objects①">Proxy</a></code> API.</p>
     <hr>
     <p>JavaScript Objects may also have <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="internal slot" data-noexport="" id="internal-slot">internal slots</dfn> defined to contain certain types of values. I tend to think of <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑧">internal slots</a> as Symbol-named properties that are hidden even to <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-object.getownpropertysymbols" id="ref-for-sec-object.getownpropertysymbols">Object.getOwnPropertySymbols()</a></code>. Both <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object②">ordinary objects</a> and <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object②">exotic objects</a> are allowed to have <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑨">internal slots</a>.</p>
     <div class="note" role="note">
@@ -2266,7 +2266,6 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
     <a data-link-type="biblio">[ECMA-262]</a> defines the following terms:
     <ul>
      <li><a href="https://tc39.github.io/ecma262/#sec-array-objects">Array</a>
-     <li><a href="https://tc39.github.io/ecma262/#sec-array.prototype.foreach">Array.prototype.forEach()</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-arraybuffer-objects">ArrayBuffer</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-boolean-constructor-boolean-value">Boolean()</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-call">Call</a>
@@ -2334,8 +2333,6 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
-   <dt id="biblio-caniuse">[CANIUSE]
-   <dd>Alexis Deveria. <a href="https://caniuse.com">Can I use... Support tables for HTML5, CSS3, etc</a>. URL: <a href="https://caniuse.com">https://caniuse.com</a>
    <dt id="biblio-console">[CONSOLE]
    <dd>Dominic Farolino; Terin Stock; Robert Kowalski. <a href="https://console.spec.whatwg.org/">Console Standard</a>. Living Standard. URL: <a href="https://console.spec.whatwg.org/">https://console.spec.whatwg.org/</a>
    <dt id="biblio-dom">[DOM]

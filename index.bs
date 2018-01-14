@@ -23,9 +23,6 @@ spec: ecma-262; type: interface; for: ECMAScript; text: Uint8Array
 </pre>
 
 <pre class="anchors">
-urlPrefix: https://caniuse.com/; for: Can I Use; type: dfn
-  text: ECMAScript 5; url: #feat=es5
-
 urlPrefix: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/; for: MDN
   type: method
     text: Object.getPrototypeOf(); url: Global_Objects/Object/getPrototypeOf#
@@ -114,7 +111,6 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
     text: SyntaxError; url: sec-native-error-types-used-in-this-standard-syntaxerror
     text: TypeError; url: sec-native-error-types-used-in-this-standard-typeerror
   type: method
-    text: Array.prototype.forEach(); url: sec-array.prototype.foreach
     text: Boolean(); url: sec-boolean-constructor-boolean-value
     text: JSON.stringify(); url: sec-json.stringify
     text: Object.getOwnPropertySymbols(); url: sec-object.getownpropertysymbols
@@ -230,13 +226,6 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
 
 <pre class=biblio>
 {
-  "CANIUSE": {
-    "authors": [
-      "Alexis Deveria"
-    ],
-    "href": "https://caniuse.com",
-    "title": "Can I use... Support tables for HTML5, CSS3, etc"
-  },
   "ECMA-262-2017": {
     "href": "https://ecma-international.org/ecma-262/8.0/",
     "title": "ECMAScript® 2017 Language Specification",
@@ -415,7 +404,7 @@ What complicates the matter is that, every year, TC39 picks a point in time to t
 
 Because of that, unless you want your web application to run on only browsers from June 2017 that are put into formaldehyde, properly shrinkwrapped, and PDFified for permanent archives, you want to always look at the latest spec at tc39.github.io [[ECMA-262]]. But if you want to (or have to) support older browsers or Node.js versions, then referencing the older specifications may help.
 
-Note: The ISO/IEC also publishes the ECMAScript Language Standard as ISO/IEC 16262 [[ISO-16262-2011]]. But as you can tell from the linked page, the ISO/IEC standard is currently stuck on Edition 3 (which ironically is supposed to be fully "current"). So if you want to look at a spec written [=Can I Use/ECMAScript 5|before=] {{Array.prototype.forEach()}} was introduced to the language [[CANIUSE]], you may purchase the standard from ISO for <a href="https://www.google.com/search?q=198+swiss+francs+in+my+currency">198 Swiss Francs</a>. (In other words, don't.)
+Note: The ISO/IEC also republishes the ECMAScript Language Standard as ISO/IEC 16262 [[ISO-16262-2011]]. Don't worry about it though, since the text of the standard is exactly the same as the standards Ecma International publishes – the only difference being that you have to pay <a href="https://www.google.com/search?q=198+swiss+francs+in+my+currency">198 Swiss Francs</a>.
 
 ## Navigating the spec ## {#navigating-the-spec}
 
@@ -744,7 +733,7 @@ This behavior is achieved by overriding the \[[DefineOwnProperty]] internal meth
 
 </div>
 
-The ECMAScript spec also allows other specs to define their own exotic objects. It is through this mechanism the limitations browsers put on <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#Cross-origin_script_API_access">cross-origin API access</a> are specified (see {{WindowProxy}}) [[HTML]]. It is also possible for JavaScript users to create their own exotic objects through the {{ECMAScript/Proxy}} API.
+The ECMAScript spec also allows other specs to define their own exotic objects. It is through this mechanism the limitations browsers put on <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#Cross-origin_script_API_access">cross-origin API access</a> are specified (see {{WindowProxy}}) [[HTML]]. It is also possible for JavaScript programmers to create their own exotic objects through the {{ECMAScript/Proxy}} API.
 
 ----
 
