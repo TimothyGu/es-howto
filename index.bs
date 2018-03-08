@@ -81,6 +81,7 @@ urlPrefix: https://tc39.github.io/ecma262/; for: ECMA-262; type: dfn
   text: §18 The Global Object; url: sec-global-object
   text: §21.1.3.21 String.prototype.substring ( start, end ); url: sec-string.prototype.substring
   text: §26 Reflection; url: sec-reflection
+  text: §B.3.7 The [[IsHTMLDDA]] Internal Slot; url: sec-IsHTMLDDA-internal-slot
 
 urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
   type: interface
@@ -93,6 +94,7 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
     text: Number; url: sec-number-objects
     text: Object; url: sec-object-objects
     text: Promise; url: sec-promise-objects
+    text: Reflect; url: sec-reflect-object
     text: RegExp; url: sec-regexp-regular-expression-objects
     text: Proxy; url: sec-proxy-objects
     text: Set; url: sec-set-objects
@@ -106,14 +108,19 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
     text: %ObjectPrototype%; url: sec-properties-of-the-object-prototype-object
     text: %Promise%; url: sec-promise-constructor
     text: %SetPrototype%; url: sec-properties-of-the-set-prototype-object
+    text: %StringPrototype%; url: sec-properties-of-the-string-prototype-object
   type: exception
     text: Error; url: sec-error-objects
     text: SyntaxError; url: sec-native-error-types-used-in-this-standard-syntaxerror
     text: TypeError; url: sec-native-error-types-used-in-this-standard-typeerror
   type: method
+    text: Array.isArray(); url: sec-array.isarray
     text: Boolean(); url: sec-boolean-constructor-boolean-value
     text: JSON.stringify(); url: sec-json.stringify
+    text: Math.trunc(); url: sec-math.trunc
+    text: Object(); url: sec-object-value
     text: Object.getOwnPropertySymbols(); url: sec-object.getownpropertysymbols
+    text: Object.prototype.hasOwnProperty(); url: sec-object.prototype.hasownproperty
     text: String(); url: sec-string-constructor-string-value
     text: String.prototype.substring(); url: sec-string.prototype.substring
     text: %ArrayProto_entries%; url: sec-array.prototype.entries
@@ -143,13 +150,18 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
     text: CreateMapIterator; url: sec-createmapiterator
     text: CreateSetIterator; url: sec-createsetiterator
     text: DefinePropertyOrThrow; url: sec-definepropertyorthrow
+    text: DeletePropertyOrThrow; url: sec-deletepropertyorthrow
     text: DetachArrayBuffer; url: sec-detacharraybuffer
     text: Get; url: sec-get-o-p
     text: GetIterator; url: sec-getiterator
     text: GetMethod; url: sec-getmethod
     text: GetPrototypeFromConstructor; url: sec-getprototypefromconstructor
     text: GetV; url: sec-getv
+    text: HasOwnProperty; url: sec-hasownproperty
+    text: HasProperty; url: sec-hasproperty
+    text: Invoke; url: sec-invoke
     text: IsAccessorDescriptor; url: sec-isaccessordescriptor
+    text: IsArray; url: sec-isarray
     text: IsCallable; url: sec-iscallable
     text: IsConstructor; url: sec-isconstructor
     text: IsDataDescriptor; url: sec-isdatadescriptor
@@ -177,11 +189,16 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
     text: StringCreate; url: sec-stringcreate
     text: SymbolDescriptiveString; url: sec-symboldescriptivestring
     text: ToBoolean; url: sec-toboolean
+    text: ToInt8; url: sec-toint8
+    text: ToInt16; url: sec-toint16
     text: ToInt32; url: sec-toint32
+    text: ToInteger; url: sec-tointeger
     text: ToNumber; url: sec-tonumber
     text: ToObject; url: sec-toobject
     text: ToPrimitive; url: sec-toprimitive
     text: ToString; url: sec-tostring
+    text: ToUint8; url: sec-touint8
+    text: ToUint8Clamp; url: sec-touint8clamp
     text: ToUint16; url: sec-touint16
     text: ToUint32; url: sec-touint32
     text: Type; url: sec-ecmascript-data-types-and-values
@@ -205,7 +222,8 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
     text: Completion Record; url: sec-completion-record-specification-type
     text: constructor; url: constructor
     text: conventions; url: sec-algorithm-conventions
-    text: current Realm; url: current-realm
+    text: current Realm Record; url: current-realm
+    text: current realm; url: current-realm
     text: element; url: sec-ecmascript-language-types-string-type
     text: enumerable; url: sec-property-attributes
     text: equally close values; url: sec-ecmascript-language-types-number-type
@@ -215,6 +233,7 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
     url: sec-object-internal-methods-and-internal-slots
       text: internal method
       text: internal slot
+    text: modulo; url: eqn-modulo
     text: Number type; url: sec-ecmascript-language-types-number-type
     for: ordinary object; url: sec-ordinary-object-internal-methods-and-internal-slots
       text: internal method
@@ -222,6 +241,7 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
     text: own property; url: sec-own-property
     text: Property Descriptor; url: sec-property-descriptor-specification-type
     text: realm; url: realm
+    text: type; url: sec-ecmascript-data-types-and-values
 </pre>
 
 <pre class=biblio>
@@ -1026,6 +1046,75 @@ Issue(2): To be written.
 
 <h3 class=no-num id=common-abstract-operations>Common abstract operations</h3>
 
-Issue(3): To be written.
+: <dfn abstract-op>ArrayCreate</dfn>(|length|[, |proto|]) ([$ECMAScript/ArrayCreate|spec$])
+:: Create an array object of length |length|, with |proto| as the value of the \[[Prototype]] [=internal slot=]. If |proto| is not specified, <a interface>%ArrayPrototype%</a> in the [=current realm=] is used. Equivalent to <code>new Array(|length|)</code> if the {{Array}} constructor and all of its properties have not been monkeypatched, and |proto| is not specified or <a interface>%ArrayPrototype%</a> in the [=current realm=].
+
+: <dfn abstract-op>Call</dfn>(|F|, |V|[, |argumentsList|]) ([$ECMAScript/Call|spec$])
+: <dfn abstract-op>Construct</dfn>(|F|[, |argumentsList|[, |newTarget|]]) ([$ECMAScript/Construct|spec$])
+: <dfn abstract-op>Get</dfn>(|O|, |P|) ([$ECMAScript/Get|spec$])
+: <dfn abstract-op>HasProperty</dfn>(|O|, |P|) ([$ECMAScript/HasProperty|spec$])
+:: Call the corresponding [=internal method=] on |F| or |O| with the rest of the arguments forwarded. Equivalent to the corresponding method on the {{Reflect}} object.
+
+: <dfn abstract-op>DefinePropertyOrThrow</dfn>(|O|, |P|, |desc|) ([$ECMAScript/DefinePropertyOrThrow|spec$])
+: <dfn abstract-op>DeletePropertyOrThrow</dfn>(|O|, |P|) ([$ECMAScript/DeletePropertyOrThrow|spec$])
+:: Call the corresponding [=internal method=] (\[[DefineOwnProperty]] and \[[Delete]], respectively) on |O| with the rest of the arguments forwarded, and throw an exception if the operation failed and the [=internal method=] returned **false**.
+
+: <dfn abstract-op>GetV</dfn>(|V|, |P|) ([$ECMAScript/GetV|spec$])
+:: Returns [$Get$](|V|, |P|), with |V| converted to an Object with [$ToObject$] first if necessary. Equivalent to <code>|V|[|P|]</code>.
+
+: <dfn abstract-op>HasOwnProperty</dfn>(|O|, |P|) ([$ECMAScript/HasOwnProperty|spec$])
+:: Returns whether |O| has an own property named |P|, by calling |O|.\[[GetOwnProperty]](|P|). Equivalent to <code><a method>Object.prototype.hasOwnProperty</a>.call(|O|, |P|)</code>.
+
+: <dfn abstract-op>Invoke</dfn>(|V|, |P|[, |argumentsList|]) ([$ECMAScript/Invoke|spec$])
+:: Call the method named |P| on |V| using |argumentsList|. Equivalent to <code>|V|[|P|](...|argumentsList|)</code>. <span class=note>Unlike in [$Call$], |P| here is a property key.</span>
+
+: <dfn abstract-op>IsArray</dfn>(|argument|) ([$ECMAScript/IsArray|spec$])
+:: Returns whether |argument| is an {{Array}} [=exotic object=], or if |argument| is a {{Proxy}} [=exotic object=], whether |argument|'s innermost \[[ProxyTarget]] [=internal slot=] is an {{Array}} [=exotic object=]. Equivalent to <code><a method>Array.isArray</a>(|argument|)</code>.
+
+: <dfn abstract-op>IsCallable</dfn>(|argument|) ([$ECMAScript/IsCallable|spec$])
+:: Returns whether |argument| is a [=callable object=], otherwise known as a [=function object=]. Equivalent to <code>typeof |argument| === 'function'</code> (with the exception of {{Document/all|document.all}}, which is an exotic object with several special behaviors; see [=§B.3.7 The [[IsHTMLDDA]] Internal Slot=]).
+
+: <dfn abstract-op>IsConstructor</dfn>(|argument|) ([$ECMAScript/IsConstructor|spec$])
+:: Returns whether |argument| is a [=function object=] with a \[[Construct]] [=internal method=].
+
+: <dfn abstract-op>ReturnIfAbrupt</dfn>(|argument|) ([$ECMAScript/ReturnIfAbrupt|spec$])
+:: Check if |argument| is an [=abrupt completion=] (like a thrown exception), and if so return that [=abrupt completion=] (and allows the exception to bubble up). Otherwise if |argument| is a [=normal completion=], unwrap that [=Completion Record=] and set |argument| to |argument|.[=Completion Record/[[Value]]=]</a>.
+:: See also: [[#completion-records-and-shorthands]].
+
+: <dfn abstract-op>StringCreate</dfn>(|value|, |prototype|) ([$ECMAScript/StringCreate|spec$])
+:: Returns a boxed {{String}} Object corresponding to the String |value|, with the \[[Prototype]] internal slot of the resulting object being |prototype|. Equivalent to <code>new <a method>String</a>(value)</code> if |prototype| is the <a interface>%StringPrototype%</a> of the [=current realm=].
+
+: <dfn abstract-op>ToBoolean</dfn>(|argument|) ([$ECMAScript/ToBoolean|spec$])
+:: Returns |argument| coerced to a Boolean. Equivalent to <code>!!|argument|</code>.
+
+: <dfn abstract-op>ToInteger</dfn>(|argument|) ([$ECMAScript/ToInteger|spec$])
+:: Returns [$ToNumber$](|argument|), then truncated (i.e., rounded to 0) to become an integer. Equivalent to <code><a method>Math.trunc</a>(|argument|)</code>.
+
+: <dfn abstract-op>ToInt8</dfn>(|argument|) ([$ECMAScript/ToInt8|spec$])
+: <dfn abstract-op>ToUint8</dfn>(|argument|) ([$ECMAScript/ToUint8|spec$])
+: <dfn abstract-op>ToInt16</dfn>(|argument|) ([$ECMAScript/ToInt16|spec$])
+: <dfn abstract-op>ToUint16</dfn>(|argument|) ([$ECMAScript/ToUint16|spec$])
+: <dfn abstract-op>ToInt32</dfn>(|argument|) ([$ECMAScript/ToInt32|spec$])
+: <dfn abstract-op>ToUint32</dfn>(|argument|) ([$ECMAScript/ToUint32|spec$])
+:: Returns |argument| converted to an integer of the specified bits and signedness using truncation.
+
+: <dfn abstract-op>ToUint8Clamp</dfn>(|argument|) ([$ECMAScript/ToUint8Clamp|spec$])
+:: Returns |argument| converted to an integer of the range [0, 255] using rounding and clamping.
+
+: <dfn abstract-op>ToNumber</dfn>(|argument|) ([$ECMAScript/ToNumber|spec$])
+:: Returns |argument| coerced to a Number. Equivalent to <code>+|argument|</code>.
+
+: <dfn abstract-op>ToObject</dfn>(|argument|) ([$ECMAScript/ToObject|spec$])
+:: Returns |argument| coerced to an Object, using boxed primitive objects if necessary. Equivalent to <code><a method>Object</a>(|argument|)</code> other than the cases where |argument| is **undefined** or **null**.
+
+: <dfn abstract-op>ToPrimitive</dfn>(|input|[, |PreferredType|]) ([$ECMAScript/ToPrimitive|spec$])
+:: Returns |argument| coerced to a primitive (i.e., non-Object) value, optionally using the type hint given through |PreferredType|. Exact semantics of this abstract operation vary depending on the |PreferredType|.
+
+: <dfn abstract-op>ToString</dfn>(|argument|) ([$ECMAScript/ToString|spec$])
+:: Returns |argument| coerced to a String. Equivalent to <code>&#96;${|argument|}&#96;</code>.
+:: <div class=advisement>Care must be taken to realize that neither <code>String(|argument|)</code> nor <code>|argument| + ''</code> is fully equivalent to [$ToString$]. {{String()}} converts Symbol values to their String descriptions, while [$ToString$] throws an exception on Symbol. The addition operator calls some other functions like <code>|argument|[Symbol.toPrimitive]</code> when attempting to convert the value to a String.</div>
+
+: <dfn abstract-op>Type</dfn>(|argument|) ([$ECMAScript/Type|spec$])
+:: Returns the [=type=] of |argument|.
 
 </div>

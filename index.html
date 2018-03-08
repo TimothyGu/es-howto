@@ -1176,9 +1176,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version bbd6a9c4064dd454886bb3e0c74f0a19865c3c74" name="generator">
+  <meta content="Bikeshed version 5afc3ab5248efd53ff0fd6d61ad878a3dc5a357a" name="generator">
   <link href="https://timothygu.me/es-howto/" rel="canonical">
-  <meta content="b8c3791d9b18f133f878e150f20354caf7a93eac" name="document-revision">
+  <meta content="e5c674303f3f35bf6694ee6fe0379f663571b905" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1425,7 +1425,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">How to Read the ECMAScript Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-01-14">14 January 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-03-08">8 March 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1757,17 +1757,17 @@ Set <span class="p">{}</span>
 </pre>
     </div>
     <p>But to reduce these heavily boilerplated steps, editors of the ECMAScript spec added a few shorthands. Since ES2016, the same spec text can instead be written in the following two equivalent ways:</p>
-    <div class="example" id="example-6ae33c42">
-     <a class="self-link" href="#example-6ae33c42"></a> 
+    <div class="example" id="example-afa947f9">
+     <a class="self-link" href="#example-afa947f9"></a> 
      <div class="algorithm" data-algorithm="to call an abstract operation that may throw with ReturnIfAbrupt">
-      <p>A few steps that call an abstract operation that may throw <strong><em>with <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-returnifabrupt" id="ref-for-sec-returnifabrupt">ReturnIfAbrupt</a></em></strong>:</p>
+      <p>A few steps that call an abstract operation that may throw <strong><em>with <a data-link-type="abstract-op" href="#abstract-opdef-returnifabrupt" id="ref-for-abstract-opdef-returnifabrupt">ReturnIfAbrupt</a></em></strong>:</p>
       <ol>
        <li data-md="">
         <p>Let <var>result</var> be AbstractOp().</p>
         <p class="note" role="note"><span>Note:</span> Here, just like the step 1 in the previous example, <var>result</var> is a <a data-link-type="dfn" href="#completion-record" id="ref-for-completion-record⑥">Completion Record</a>.</p>
        <li data-md="">
-        <p><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-returnifabrupt" id="ref-for-sec-returnifabrupt①">ReturnIfAbrupt</a>(<var>result</var>).</p>
-        <p class="note" role="note"><span>Note:</span> <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-returnifabrupt" id="ref-for-sec-returnifabrupt②">ReturnIfAbrupt</a> deals with any possible <a data-link-type="dfn" href="#abrupt-completion" id="ref-for-abrupt-completion②">abrupt completions</a> by forwarding it, and unwraps the <var>result</var> to its <a data-link-type="dfn" href="#completion-record-value" id="ref-for-completion-record-value">[[Value]]</a> automatically.</p>
+        <p><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-returnifabrupt" id="ref-for-sec-returnifabrupt">ReturnIfAbrupt</a>(<var>result</var>).</p>
+        <p class="note" role="note"><span>Note:</span> <a data-link-type="abstract-op" href="#abstract-opdef-returnifabrupt" id="ref-for-abstract-opdef-returnifabrupt①">ReturnIfAbrupt</a> deals with any possible <a data-link-type="dfn" href="#abrupt-completion" id="ref-for-abrupt-completion②">abrupt completions</a> by forwarding it, and unwraps the <var>result</var> to its <a data-link-type="dfn" href="#completion-record-value" id="ref-for-completion-record-value">[[Value]]</a> automatically.</p>
        <li data-md="">
         <p><var>result</var> is the result we need. We can now do more things with it.</p>
       </ol>
@@ -1812,7 +1812,7 @@ Set <span class="p">{}</span>
       </ol>
       <p><cite>— Excerpted from <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-abstract-equality-comparison" id="ref-for-sec-abstract-equality-comparison">§7.2.14 Abstract Equality Comparison</a>.</cite></p>
      </blockquote>
-     <p>Here, the <a data-link-type="dfn" href="#exclamation-mark" id="ref-for-exclamation-mark③">!</a> just means that we are certain that this call to <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-tonumber" id="ref-for-sec-tonumber①">ToNumber</a> will never return an exception, <em>not</em> that the comparison is inverted!</p>
+     <p>Here, the <a data-link-type="dfn" href="#exclamation-mark" id="ref-for-exclamation-mark③">!</a> just means that we are certain that this call to <a data-link-type="abstract-op" href="#abstract-opdef-tonumber" id="ref-for-abstract-opdef-tonumber">ToNumber</a> will never return an exception, <em>not</em> that the comparison is inverted!</p>
     </div>
     <p class="note" role="note">Further reading: <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands">§5.2.3.4 ReturnIfAbrupt Shorthands</a>.</p>
     <h3 class="heading settled" data-level="2.5" id="javascript-objects"><span class="secno">2.5. </span><span class="content">JavaScript Objects</span><a class="self-link" href="#javascript-objects"></a></h3>
@@ -1830,11 +1830,11 @@ Set <span class="p">{}</span>
       <p>[[Delete]], which deletes a property on an Object (e.g. <code class="highlight"><span class="k">delete</span> obj<span class="p">.</span>prop</code>)</p>
     </ul>
     <p>(an exhaustive list is available in <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-object-internal-methods-and-internal-slots" id="ref-for-sec-object-internal-methods-and-internal-slots">§6.1.7.2 Object Internal Methods and Internal Slots</a>).</p>
-    <p>Based on this definition, <dfn data-dfn-type="dfn" data-lt="function object" data-noexport="" id="function-object">function objects<a class="self-link" href="#function-object"></a></dfn> (or just "functions") are simply Objects that additionally have the [[Call]] internal method, and possibly the [[Construct]] internal method too; for this reason they are also known as <dfn data-dfn-type="dfn" data-lt="callable object" data-noexport="" id="callable-object">callable objects<a class="self-link" href="#callable-object"></a></dfn>.</p>
+    <p>Based on this definition, <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="function object" data-noexport="" id="function-object">function objects</dfn> (or just "functions") are simply Objects that additionally have the [[Call]] internal method, and possibly the [[Construct]] internal method too; for this reason they are also known as <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="callable object" data-noexport="" id="callable-object">callable objects</dfn>.</p>
     <p>The spec then divides all Objects into two camps: <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object">ordinary objects</a> and <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object">exotic objects</a>. Most of the objects you encounter are <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="ordinary object" data-noexport="" id="ordinary-object">ordinary objects</dfn>, which means that all of their <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑤">internal methods</a> are the default ones specified in <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-ordinary-object-internal-methods-and-internal-slots" id="ref-for-sec-ordinary-object-internal-methods-and-internal-slots">§9.1 Ordinary Object Internal Methods and Internal Slots</a>.</p>
     <p>However, ECMAScript spec also defines a few kinds of <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="exotic object" data-noexport="" id="exotic-object">exotic objects</dfn>, which may override the default implementations of those internal methods. There are certain minimal constraints put on what exotic objects are allowed to do, but in general the overriden internal methods can do a lot of acrobatics without going against the spec.</p>
-    <div class="example" id="example-f3108e50">
-     <a class="self-link" href="#example-f3108e50"></a> 
+    <div class="example" id="example-ac043f82">
+     <a class="self-link" href="#example-ac043f82"></a> 
      <p><code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects①">Array</a></code> objects are one kind of these <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object①">exotic objects</a>. Some special semantics around the <code class="idl highlight">length</code> property of <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects②">Array</a></code> objects cannot be achieved using the instruments available to <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object①">ordinary objects</a>.</p>
      <p>One of them is the fact that setting the <code class="idl highlight">length</code> property of an <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects③">Array</a></code> object can remove properties from the object, but the <code class="idl highlight">length</code> property seems to be just an ordinary data property. In contrast, <code class="highlight"><span class="k">new</span> Map<span class="p">().</span>size</code> is only a getter function specified on <code class="highlight">Map<span class="p">.</span>prototype</code>, and does not have the magical properties <code class="highlight"><span class="p">[].</span>length</code> does.</p>
 <pre class="highlight"><span class="o">></span> <span class="kr">const</span> arr <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
@@ -1970,8 +1970,8 @@ Set <span class="p">{}</span>
        <p>Return ? <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-stringcreate" id="ref-for-sec-stringcreate">StringCreate</a>(<var>s</var>, ? <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-getprototypefromconstructor" id="ref-for-sec-getprototypefromconstructor">GetPrototypeFromConstructor</a>(NewTarget, <code class="highlight"><span class="s2">"%StringPrototype%"</span></code>)).</p>
      </ol>
     </div>
-    <p>From our experience with doing the same kind of analysis with the <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-boolean-constructor-boolean-value" id="ref-for-sec-boolean-constructor-boolean-value②">Boolean()</a></code> function, we know that <a data-link-type="abstract-op" href="#abstract-opdef-newtarget" id="ref-for-abstract-opdef-newtarget②">NewTarget</a> will always be <strong>undefined</strong> for our case, and therefore the last step can be skipped from our consideration. We also know that <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values" id="ref-for-sec-ecmascript-data-types-and-values①">Type</a> and <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-symboldescriptivestring" id="ref-for-sec-symboldescriptivestring①">SymbolDescriptiveString</a> are safe as well, since abrupt completions are not handled for either of them. Yet, there is still a tell-tale <a data-link-type="dfn" href="#question-mark" id="ref-for-question-mark⑧">?</a> preceding the call to the <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-tostring" id="ref-for-sec-tostring①">ToString</a> abstract operation. Let’s take a closer look.</p>
-    <p>Like <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible" id="ref-for-sec-requireobjectcoercible⑤">RequireObjectCoercible</a> we looked at earlier, <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-tostring" id="ref-for-sec-tostring②">ToString</a>(<var>argument</var>) is also defined with a table:</p>
+    <p>From our experience with doing the same kind of analysis with the <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-boolean-constructor-boolean-value" id="ref-for-sec-boolean-constructor-boolean-value②">Boolean()</a></code> function, we know that <a data-link-type="abstract-op" href="#abstract-opdef-newtarget" id="ref-for-abstract-opdef-newtarget②">NewTarget</a> will always be <strong>undefined</strong> for our case, and therefore the last step can be skipped from our consideration. We also know that <a data-link-type="abstract-op" href="#abstract-opdef-type" id="ref-for-abstract-opdef-type">Type</a> and <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-symboldescriptivestring" id="ref-for-sec-symboldescriptivestring①">SymbolDescriptiveString</a> are safe as well, since abrupt completions are not handled for either of them. Yet, there is still a tell-tale <a data-link-type="dfn" href="#question-mark" id="ref-for-question-mark⑧">?</a> preceding the call to the <a data-link-type="abstract-op" href="#abstract-opdef-tostring" id="ref-for-abstract-opdef-tostring">ToString</a> abstract operation. Let’s take a closer look.</p>
+    <p>Like <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible" id="ref-for-sec-requireobjectcoercible⑤">RequireObjectCoercible</a> we looked at earlier, <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-tostring" id="ref-for-sec-tostring①">ToString</a>(<var>argument</var>) is also defined with a table:</p>
     <blockquote>
      <table class="data">
       <tbody>
@@ -2006,21 +2006,21 @@ Set <span class="p">{}</span>
           <li data-md="">
            <p>Let <var>primValue</var> be ? <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toprimitive" id="ref-for-sec-toprimitive">ToPrimitive</a>(<var>argument</var>, hint String).</p>
           <li data-md="">
-           <p>Return ? <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-tostring" id="ref-for-sec-tostring③">ToString</a>(<var>primValue</var>).</p>
+           <p>Return ? <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-tostring" id="ref-for-sec-tostring②">ToString</a>(<var>primValue</var>).</p>
          </ol>
      </table>
     </blockquote>
-    <p>At the point where <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-tostring" id="ref-for-sec-tostring④">ToString</a> is called in <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-string-constructor-string-value" id="ref-for-sec-string-constructor-string-value①">String()</a></code>, <var>value</var> can be any value other than a Symbol (which is filtered out in the step immediately before). Yet, there still remain two <a data-link-type="dfn" href="#question-mark" id="ref-for-question-mark⑨">?</a> in the row for Object. We can follow the link to <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toprimitive" id="ref-for-sec-toprimitive①">ToPrimitive</a> and beyond, and see that there are in fact a lot of opportunities for an error to be thrown if <var>value</var> is an Object:</p>
-    <div class="example" id="example-90d3296a">
-     <a class="self-link" href="#example-90d3296a"></a> 
+    <p>At the point where <a data-link-type="abstract-op" href="#abstract-opdef-tostring" id="ref-for-abstract-opdef-tostring①">ToString</a> is called in <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-string-constructor-string-value" id="ref-for-sec-string-constructor-string-value①">String()</a></code>, <var>value</var> can be any value other than a Symbol (which is filtered out in the step immediately before). Yet, there still remain two <a data-link-type="dfn" href="#question-mark" id="ref-for-question-mark⑨">?</a> in the row for Object. We can follow the link to <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toprimitive" id="ref-for-sec-toprimitive①">ToPrimitive</a> and beyond, and see that there are in fact a lot of opportunities for an error to be thrown if <var>value</var> is an Object:</p>
+    <div class="example" id="example-37c5b9a6">
+     <a class="self-link" href="#example-37c5b9a6"></a> 
      <details>
       <summary>Several examples where <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-string-constructor-string-value" id="ref-for-sec-string-constructor-string-value②">String()</a></code> throws</summary>
 <pre class="highlight"><span class="c1">// Spec stack trace:</span>
 <span class="c1">//   </span><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-ordinaryget" id="ref-for-sec-ordinaryget"><span class="c1">OrdinaryGet</span></a><span class="c1"> step 8.</span>
 <span class="c1">//   </span><a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-ordinary-object-internal-methods-and-internal-slots-get-p-receiver" id="ref-for-sec-ordinary-object-internal-methods-and-internal-slots-get-p-receiver"><span class="c1">Ordinary Object’s [[Get]]()</span></a><span class="c1"> step 1.</span>
-<span class="c1">//   </span><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-getv" id="ref-for-sec-getv"><span class="c1">GetV</span></a><span class="c1"> step 3.</span>
+<span class="c1">//   </span><a data-link-type="abstract-op" href="#abstract-opdef-getv" id="ref-for-abstract-opdef-getv"><span class="c1">GetV</span></a><span class="c1"> step 3.</span>
 <span class="c1">//   </span><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-getmethod" id="ref-for-sec-getmethod"><span class="c1">GetMethod</span></a><span class="c1"> step 2.</span>
-<span class="c1">//   </span><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toprimitive" id="ref-for-sec-toprimitive②"><span class="c1">ToPrimitive</span></a><span class="c1"> step 2.d.</span>
+<span class="c1">//   </span><a data-link-type="abstract-op" href="#abstract-opdef-toprimitive" id="ref-for-abstract-opdef-toprimitive"><span class="c1">ToPrimitive</span></a><span class="c1"> step 2.d.</span>
 <span class="c1"></span>
 String<span class="p">({</span>
   get <span class="p">[</span>Symbol<span class="p">.</span>toPrimitive<span class="p">]()</span> <span class="p">{</span>
@@ -2030,7 +2030,7 @@ String<span class="p">({</span>
 </pre>
 <pre class="highlight"><span class="c1">// Spec stack trace:</span>
 <span class="c1">//   </span><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-getmethod" id="ref-for-sec-getmethod①"><span class="c1">GetMethod</span></a><span class="c1"> step 4.</span>
-<span class="c1">//   </span><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toprimitive" id="ref-for-sec-toprimitive③"><span class="c1">ToPrimitive</span></a><span class="c1"> step 2.d.</span>
+<span class="c1">//   </span><a data-link-type="abstract-op" href="#abstract-opdef-toprimitive" id="ref-for-abstract-opdef-toprimitive①"><span class="c1">ToPrimitive</span></a><span class="c1"> step 2.d.</span>
 <span class="c1"></span>
 String<span class="p">({</span>
   get <span class="p">[</span>Symbol<span class="p">.</span>toPrimitive<span class="p">]()</span> <span class="p">{</span>
@@ -2039,7 +2039,7 @@ String<span class="p">({</span>
 <span class="p">});</span>
 </pre>
 <pre class="highlight"><span class="c1">// Spec stack trace:</span>
-<span class="c1">//   </span><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toprimitive" id="ref-for-sec-toprimitive④"><span class="c1">ToPrimitive</span></a><span class="c1"> step 2.e.i.</span>
+<span class="c1">//   </span><a data-link-type="abstract-op" href="#abstract-opdef-toprimitive" id="ref-for-abstract-opdef-toprimitive②"><span class="c1">ToPrimitive</span></a><span class="c1"> step 2.e.i.</span>
 <span class="c1"></span>
 String<span class="p">({</span>
   <span class="p">[</span>Symbol<span class="p">.</span>toPrimitive<span class="p">]()</span> <span class="p">{</span>
@@ -2048,7 +2048,7 @@ String<span class="p">({</span>
 <span class="p">});</span>
 </pre>
 <pre class="highlight"><span class="c1">// Spec stack trace:</span>
-<span class="c1">//   </span><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toprimitive" id="ref-for-sec-toprimitive⑤"><span class="c1">ToPrimitive</span></a><span class="c1"> step 2.e.iii.</span>
+<span class="c1">//   </span><a data-link-type="abstract-op" href="#abstract-opdef-toprimitive" id="ref-for-abstract-opdef-toprimitive③"><span class="c1">ToPrimitive</span></a><span class="c1"> step 2.e.iii.</span>
 <span class="c1"></span>
 String<span class="p">({</span>
   <span class="p">[</span>Symbol<span class="p">.</span>toPrimitive<span class="p">]()</span> <span class="p">{</span>
@@ -2058,7 +2058,7 @@ String<span class="p">({</span>
 </pre>
 <pre class="highlight"><span class="c1">// Spec stack trace:</span>
 <span class="c1">//   </span><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-ordinarytoprimitive" id="ref-for-sec-ordinarytoprimitive"><span class="c1">OrdinaryToPrimitive</span></a><span class="c1"> step 5.b.i.</span>
-<span class="c1">//   </span><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toprimitive" id="ref-for-sec-toprimitive⑥"><span class="c1">ToPrimitive</span></a><span class="c1"> step 2.g.</span>
+<span class="c1">//   </span><a data-link-type="abstract-op" href="#abstract-opdef-toprimitive" id="ref-for-abstract-opdef-toprimitive④"><span class="c1">ToPrimitive</span></a><span class="c1"> step 2.g.</span>
 <span class="c1"></span>
 String<span class="p">({</span>
   toString<span class="p">()</span> <span class="p">{</span>
@@ -2068,7 +2068,7 @@ String<span class="p">({</span>
 </pre>
 <pre class="highlight"><span class="c1">// Spec stack trace:</span>
 <span class="c1">//   </span><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-ordinarytoprimitive" id="ref-for-sec-ordinarytoprimitive①"><span class="c1">OrdinaryToPrimitive</span></a><span class="c1"> step 5.b.i.</span>
-<span class="c1">//   </span><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toprimitive" id="ref-for-sec-toprimitive⑦"><span class="c1">ToPrimitive</span></a><span class="c1"> step 2.g.</span>
+<span class="c1">//   </span><a data-link-type="abstract-op" href="#abstract-opdef-toprimitive" id="ref-for-abstract-opdef-toprimitive⑤"><span class="c1">ToPrimitive</span></a><span class="c1"> step 2.g.</span>
 <span class="c1"></span>
 String<span class="p">({</span>
   valueOf<span class="p">()</span> <span class="p">{</span>
@@ -2078,7 +2078,7 @@ String<span class="p">({</span>
 </pre>
 <pre class="highlight"><span class="c1">// Spec stack trace:</span>
 <span class="c1">//   </span><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-ordinarytoprimitive" id="ref-for-sec-ordinarytoprimitive②"><span class="c1">OrdinaryToPrimitive</span></a><span class="c1"> step 6.</span>
-<span class="c1">//   </span><a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toprimitive" id="ref-for-sec-toprimitive⑧"><span class="c1">ToPrimitive</span></a><span class="c1"> step 2.g.</span>
+<span class="c1">//   </span><a data-link-type="abstract-op" href="#abstract-opdef-toprimitive" id="ref-for-abstract-opdef-toprimitive⑥"><span class="c1">ToPrimitive</span></a><span class="c1"> step 2.g.</span>
 <span class="c1"></span>
 String<span class="p">(</span>Object<span class="p">.</span>create<span class="p">(</span><span class="kc">null</span><span class="p">));</span>
 </pre>
@@ -2090,7 +2090,82 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
     <p class="issue" id="issue-c1ad3571"><a class="self-link" href="#issue-c1ad3571"></a> To be written. <a href="https://github.com/TimothyGu/es-howto/issues/2">&lt;https://github.com/TimothyGu/es-howto/issues/2></a></p>
     <h2 class="no-num heading settled" id="glossary"><span class="content">Glossary</span><a class="self-link" href="#glossary"></a></h2>
     <h3 class="no-num heading settled" id="common-abstract-operations"><span class="content">Common abstract operations</span><a class="self-link" href="#common-abstract-operations"></a></h3>
-    <p class="issue" id="issue-c1ad3571①"><a class="self-link" href="#issue-c1ad3571①"></a> To be written. <a href="https://github.com/TimothyGu/es-howto/issues/3">&lt;https://github.com/TimothyGu/es-howto/issues/3></a></p>
+    <dl>
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-arraycreate">ArrayCreate<a class="self-link" href="#abstract-opdef-arraycreate"></a></dfn>(<var>length</var>[, <var>proto</var>]) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-arraycreate" id="ref-for-sec-arraycreate">spec</a>)
+     <dd data-md="">
+      <p>Create an array object of length <var>length</var>, with <var>proto</var> as the value of the [[Prototype]] <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot①④">internal slot</a>. If <var>proto</var> is not specified, <a class="idl-code" data-link-type="interface" href="https://tc39.github.io/ecma262/#sec-properties-of-the-array-prototype-object" id="ref-for-sec-properties-of-the-array-prototype-object">%ArrayPrototype%</a> in the <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#current-realm" id="ref-for-current-realm">current realm</a> is used. Equivalent to <code class="highlight"><span class="k">new</span> Array<span class="p">(</span><var>length</var><span class="p">)</span></code> if the <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects⑤">Array</a></code> constructor and all of its properties have not been monkeypatched, and <var>proto</var> is not specified or <a class="idl-code" data-link-type="interface" href="https://tc39.github.io/ecma262/#sec-properties-of-the-array-prototype-object" id="ref-for-sec-properties-of-the-array-prototype-object①">%ArrayPrototype%</a> in the <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#current-realm" id="ref-for-current-realm①">current realm</a>.</p>
+     <dt data-md=""><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export="" id="abstract-opdef-call">Call</dfn>(<var>F</var>, <var>V</var>[, <var>argumentsList</var>]) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-call" id="ref-for-sec-call①">spec</a>)
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-construct">Construct<a class="self-link" href="#abstract-opdef-construct"></a></dfn>(<var>F</var>[, <var>argumentsList</var>[, <var>newTarget</var>]]) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-construct" id="ref-for-sec-construct">spec</a>)
+     <dt data-md=""><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export="" id="abstract-opdef-get">Get</dfn>(<var>O</var>, <var>P</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-get-o-p" id="ref-for-sec-get-o-p">spec</a>)
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-hasproperty">HasProperty<a class="self-link" href="#abstract-opdef-hasproperty"></a></dfn>(<var>O</var>, <var>P</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-hasproperty" id="ref-for-sec-hasproperty">spec</a>)
+     <dd data-md="">
+      <p>Call the corresponding <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method①⓪">internal method</a> on <var>F</var> or <var>O</var> with the rest of the arguments forwarded. Equivalent to the corresponding method on the <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-reflect-object" id="ref-for-sec-reflect-object">Reflect</a></code> object.</p>
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-definepropertyorthrow">DefinePropertyOrThrow<a class="self-link" href="#abstract-opdef-definepropertyorthrow"></a></dfn>(<var>O</var>, <var>P</var>, <var>desc</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-definepropertyorthrow" id="ref-for-sec-definepropertyorthrow">spec</a>)
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-deletepropertyorthrow">DeletePropertyOrThrow<a class="self-link" href="#abstract-opdef-deletepropertyorthrow"></a></dfn>(<var>O</var>, <var>P</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-deletepropertyorthrow" id="ref-for-sec-deletepropertyorthrow">spec</a>)
+     <dd data-md="">
+      <p>Call the corresponding <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method①①">internal method</a> ([[DefineOwnProperty]] and [[Delete]], respectively) on <var>O</var> with the rest of the arguments forwarded, and throw an exception if the operation failed and the <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method①②">internal method</a> returned <strong>false</strong>.</p>
+     <dt data-md=""><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export="" id="abstract-opdef-getv">GetV</dfn>(<var>V</var>, <var>P</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-getv" id="ref-for-sec-getv">spec</a>)
+     <dd data-md="">
+      <p>Returns <a data-link-type="abstract-op" href="#abstract-opdef-get" id="ref-for-abstract-opdef-get">Get</a>(<var>V</var>, <var>P</var>), with <var>V</var> converted to an Object with <a data-link-type="abstract-op" href="#abstract-opdef-toobject" id="ref-for-abstract-opdef-toobject">ToObject</a> first if necessary. Equivalent to <code class="highlight"><var>V</var><span class="p">[</span><var>P</var><span class="p">]</span></code>.</p>
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-hasownproperty">HasOwnProperty<a class="self-link" href="#abstract-opdef-hasownproperty"></a></dfn>(<var>O</var>, <var>P</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-hasownproperty" id="ref-for-sec-hasownproperty">spec</a>)
+     <dd data-md="">
+      <p>Returns whether <var>O</var> has an own property named <var>P</var>, by calling <var>O</var>.[[GetOwnProperty]](<var>P</var>). Equivalent to <code class="highlight"><a class="idl-code" data-link-type="method" href="https://tc39.github.io/ecma262/#sec-object.prototype.hasownproperty" id="ref-for-sec-object.prototype.hasownproperty">Object<span class="p">.</span>prototype<span class="p">.</span>hasOwnProperty</a><span class="p">.</span>call<span class="p">(</span><var>O</var><span class="p">,</span> <var>P</var><span class="p">)</span></code>.</p>
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-invoke">Invoke<a class="self-link" href="#abstract-opdef-invoke"></a></dfn>(<var>V</var>, <var>P</var>[, <var>argumentsList</var>]) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-invoke" id="ref-for-sec-invoke">spec</a>)
+     <dd data-md="">
+      <p>Call the method named <var>P</var> on <var>V</var> using <var>argumentsList</var>. Equivalent to <code class="highlight"><var>V</var><span class="p">[</span><var>P</var><span class="p">](...</span><var>argumentsList</var><span class="p">)</span></code>. <span class="note">Unlike in <a data-link-type="abstract-op" href="#abstract-opdef-call" id="ref-for-abstract-opdef-call">Call</a>, <var>P</var> here is a property key.</span></p>
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-isarray">IsArray<a class="self-link" href="#abstract-opdef-isarray"></a></dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-isarray" id="ref-for-sec-isarray">spec</a>)
+     <dd data-md="">
+      <p>Returns whether <var>argument</var> is an <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects⑥">Array</a></code> <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object⑤">exotic object</a>, or if <var>argument</var> is a <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-proxy-objects" id="ref-for-sec-proxy-objects④">Proxy</a></code> <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object⑥">exotic object</a>, whether <var>argument</var>’s innermost [[ProxyTarget]] <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot①⑤">internal slot</a> is an <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects⑦">Array</a></code> <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object⑦">exotic object</a>. Equivalent to <code class="highlight"><a class="idl-code" data-link-type="method" href="https://tc39.github.io/ecma262/#sec-array.isarray" id="ref-for-sec-array.isarray">Array<span class="p">.</span>isArray</a><span class="p">(</span><var>argument</var><span class="p">)</span></code>.</p>
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-iscallable">IsCallable<a class="self-link" href="#abstract-opdef-iscallable"></a></dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-iscallable" id="ref-for-sec-iscallable">spec</a>)
+     <dd data-md="">
+      <p>Returns whether <var>argument</var> is a <a data-link-type="dfn" href="#callable-object" id="ref-for-callable-object">callable object</a>, otherwise known as a <a data-link-type="dfn" href="#function-object" id="ref-for-function-object">function object</a>. Equivalent to <code class="highlight"><span class="k">typeof</span> <var>argument</var> <span class="o">===</span> <span class="s1">'function'</span></code> (with the exception of <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all" id="ref-for-dom-document-all">document.all</a></code>, which is an exotic object with several special behaviors; see <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-IsHTMLDDA-internal-slot" id="ref-for-sec-IsHTMLDDA-internal-slot">§B.3.7 The [[IsHTMLDDA]] Internal Slot</a>).</p>
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-isconstructor">IsConstructor<a class="self-link" href="#abstract-opdef-isconstructor"></a></dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-isconstructor" id="ref-for-sec-isconstructor">spec</a>)
+     <dd data-md="">
+      <p>Returns whether <var>argument</var> is a <a data-link-type="dfn" href="#function-object" id="ref-for-function-object①">function object</a> with a [[Construct]] <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method①③">internal method</a>.</p>
+     <dt data-md=""><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export="" id="abstract-opdef-returnifabrupt">ReturnIfAbrupt</dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-returnifabrupt" id="ref-for-sec-returnifabrupt①">spec</a>)
+     <dd data-md="">
+      <p>Check if <var>argument</var> is an <a data-link-type="dfn" href="#abrupt-completion" id="ref-for-abrupt-completion③">abrupt completion</a> (like a thrown exception), and if so return that <a data-link-type="dfn" href="#abrupt-completion" id="ref-for-abrupt-completion④">abrupt completion</a> (and allows the exception to bubble up). Otherwise if <var>argument</var> is a <a data-link-type="dfn" href="#normal-completion" id="ref-for-normal-completion②">normal completion</a>, unwrap that <a data-link-type="dfn" href="#completion-record" id="ref-for-completion-record⑨">Completion Record</a> and set <var>argument</var> to <var>argument</var>.<a data-link-type="dfn" href="#completion-record-value" id="ref-for-completion-record-value①">[[Value]]</a>.</p>
+     <dd data-md="">
+      <p>See also: <a href="#completion-records-and-shorthands">§2.4 Completion Records; ? and !</a>.</p>
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-stringcreate">StringCreate<a class="self-link" href="#abstract-opdef-stringcreate"></a></dfn>(<var>value</var>, <var>prototype</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-stringcreate" id="ref-for-sec-stringcreate①">spec</a>)
+     <dd data-md="">
+      <p>Returns a boxed <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-string-constructor-string-value" id="ref-for-sec-string-constructor-string-value④">String</a></code> Object corresponding to the String <var>value</var>, with the [[Prototype]] internal slot of the resulting object being <var>prototype</var>. Equivalent to <code class="highlight"><span class="k">new</span> <a class="idl-code" data-link-type="method" href="https://tc39.github.io/ecma262/#sec-string-constructor-string-value" id="ref-for-sec-string-constructor-string-value⑤">String</a><span class="p">(</span>value<span class="p">)</span></code> if <var>prototype</var> is the <a class="idl-code" data-link-type="interface" href="https://tc39.github.io/ecma262/#sec-properties-of-the-string-prototype-object" id="ref-for-sec-properties-of-the-string-prototype-object">%StringPrototype%</a> of the <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#current-realm" id="ref-for-current-realm②">current realm</a>.</p>
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-toboolean">ToBoolean<a class="self-link" href="#abstract-opdef-toboolean"></a></dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toboolean" id="ref-for-sec-toboolean②">spec</a>)
+     <dd data-md="">
+      <p>Returns <var>argument</var> coerced to a Boolean. Equivalent to <code class="highlight"><span class="o">!!</span><var>argument</var></code>.</p>
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-tointeger">ToInteger<a class="self-link" href="#abstract-opdef-tointeger"></a></dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-tointeger" id="ref-for-sec-tointeger">spec</a>)
+     <dd data-md="">
+      <p>Returns <a data-link-type="abstract-op" href="#abstract-opdef-tonumber" id="ref-for-abstract-opdef-tonumber①">ToNumber</a>(<var>argument</var>), then truncated (i.e., rounded to 0) to become an integer. Equivalent to <code class="highlight"><a class="idl-code" data-link-type="method" href="https://tc39.github.io/ecma262/#sec-math.trunc" id="ref-for-sec-math.trunc">Math<span class="p">.</span>trunc</a><span class="p">(</span><var>argument</var><span class="p">)</span></code>.</p>
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-toint8">ToInt8<a class="self-link" href="#abstract-opdef-toint8"></a></dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toint8" id="ref-for-sec-toint8">spec</a>)
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-touint8">ToUint8<a class="self-link" href="#abstract-opdef-touint8"></a></dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-touint8" id="ref-for-sec-touint8">spec</a>)
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-toint16">ToInt16<a class="self-link" href="#abstract-opdef-toint16"></a></dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toint16" id="ref-for-sec-toint16">spec</a>)
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-touint16">ToUint16<a class="self-link" href="#abstract-opdef-touint16"></a></dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-touint16" id="ref-for-sec-touint16">spec</a>)
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-toint32">ToInt32<a class="self-link" href="#abstract-opdef-toint32"></a></dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toint32" id="ref-for-sec-toint32">spec</a>)
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-touint32">ToUint32<a class="self-link" href="#abstract-opdef-touint32"></a></dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-touint32" id="ref-for-sec-touint32">spec</a>)
+     <dd data-md="">
+      <p>Returns <var>argument</var> converted to an integer of the specified bits and signedness using truncation.</p>
+     <dt data-md=""><dfn data-dfn-type="abstract-op" data-export="" id="abstract-opdef-touint8clamp">ToUint8Clamp<a class="self-link" href="#abstract-opdef-touint8clamp"></a></dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-touint8clamp" id="ref-for-sec-touint8clamp">spec</a>)
+     <dd data-md="">
+      <p>Returns <var>argument</var> converted to an integer of the range [0, 255] using rounding and clamping.</p>
+     <dt data-md=""><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export="" id="abstract-opdef-tonumber">ToNumber</dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-tonumber" id="ref-for-sec-tonumber①">spec</a>)
+     <dd data-md="">
+      <p>Returns <var>argument</var> coerced to a Number. Equivalent to <code class="highlight"><span class="o">+</span><var>argument</var></code>.</p>
+     <dt data-md=""><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export="" id="abstract-opdef-toobject">ToObject</dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toobject" id="ref-for-sec-toobject">spec</a>)
+     <dd data-md="">
+      <p>Returns <var>argument</var> coerced to an Object, using boxed primitive objects if necessary. Equivalent to <code class="highlight"><a class="idl-code" data-link-type="method" href="https://tc39.github.io/ecma262/#sec-object-value" id="ref-for-sec-object-value">Object</a><span class="p">(</span><var>argument</var><span class="p">)</span></code> other than the cases where <var>argument</var> is <strong>undefined</strong> or <strong>null</strong>.</p>
+     <dt data-md=""><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export="" id="abstract-opdef-toprimitive">ToPrimitive</dfn>(<var>input</var>[, <var>PreferredType</var>]) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toprimitive" id="ref-for-sec-toprimitive②">spec</a>)
+     <dd data-md="">
+      <p>Returns <var>argument</var> coerced to a primitive (i.e., non-Object) value, optionally using the type hint given through <var>PreferredType</var>. Exact semantics of this abstract operation vary depending on the <var>PreferredType</var>.</p>
+     <dt data-md=""><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export="" id="abstract-opdef-tostring">ToString</dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-tostring" id="ref-for-sec-tostring③">spec</a>)
+     <dd data-md="">
+      <p>Returns <var>argument</var> coerced to a String. Equivalent to <code class="highlight"><span class="sb">`</span><span class="si">${</span><var>argument</var><span class="si">}</span><span class="sb">`</span></code>.</p>
+     <dd data-md="">
+      <div class="advisement">Care must be taken to realize that neither <code class="highlight">String<span class="p">(</span><var>argument</var><span class="p">)</span></code> nor <code class="highlight"><var>argument</var> <span class="o">+</span> <span class="s1">''</span></code> is fully equivalent to <a data-link-type="abstract-op" href="#abstract-opdef-tostring" id="ref-for-abstract-opdef-tostring②">ToString</a>. <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-string-constructor-string-value" id="ref-for-sec-string-constructor-string-value⑥">String()</a></code> converts Symbol values to their String descriptions, while <a data-link-type="abstract-op" href="#abstract-opdef-tostring" id="ref-for-abstract-opdef-tostring③">ToString</a> throws an exception on Symbol. The addition operator calls some other functions like <code class="highlight"><var>argument</var><span class="p">[</span>Symbol<span class="p">.</span>toPrimitive<span class="p">]</span></code> when attempting to convert the value to a String.</div>
+     <dt data-md=""><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export="" id="abstract-opdef-type">Type</dfn>(<var>argument</var>) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values" id="ref-for-sec-ecmascript-data-types-and-values①">spec</a>)
+     <dd data-md="">
+      <p>Returns the <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values" id="ref-for-sec-ecmascript-data-types-and-values②">type</a> of <var>argument</var>.</p>
+    </dl>
+    <p class="issue" id="issue-fa073151"><a class="self-link" href="#issue-fa073151"></a> To be completed. <a href="https://github.com/TimothyGu/es-howto/issues/3">&lt;https://github.com/TimothyGu/es-howto/issues/3></a></p>
    </div>
   </main>
 <script>
@@ -2229,24 +2304,53 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
    <li><a href="#question-mark">?</a><span>, in §2.4</span>
    <li><a href="#abrupt-completion">abrupt completion</a><span>, in §2.4</span>
    <li><a href="#abstract-operation">abstract operation</a><span>, in §2.2</span>
+   <li><a href="#abstract-opdef-arraycreate">ArrayCreate</a><span>, in §Unnumbered section</span>
    <li><a href="#dom-completion-record-type-break">break</a><span>, in §2.4</span>
+   <li><a href="#abstract-opdef-call">Call</a><span>, in §Unnumbered section</span>
    <li><a href="#callable-object">callable object</a><span>, in §2.5</span>
    <li><a href="#completion-record">Completion Record</a><span>, in §2.4</span>
+   <li><a href="#abstract-opdef-construct">Construct</a><span>, in §Unnumbered section</span>
    <li><a href="#dom-completion-record-type-continue">continue</a><span>, in §2.4</span>
+   <li><a href="#abstract-opdef-definepropertyorthrow">DefinePropertyOrThrow</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-deletepropertyorthrow">DeletePropertyOrThrow</a><span>, in §Unnumbered section</span>
    <li><a href="#double-brackets-notation">double brackets notation</a><span>, in §2.3</span>
    <li><a href="#exotic-object">exotic object</a><span>, in §2.5</span>
    <li><a href="#record-field">field</a><span>, in §2.3.1</span>
    <li><a href="#function-object">function object</a><span>, in §2.5</span>
+   <li><a href="#abstract-opdef-get">Get</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-getv">GetV</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-hasownproperty">HasOwnProperty</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-hasproperty">HasProperty</a><span>, in §Unnumbered section</span>
    <li><a href="#internal-method">internal method</a><span>, in §2.5</span>
    <li><a href="#internal-slot">internal slot</a><span>, in §2.5</span>
+   <li><a href="#abstract-opdef-invoke">Invoke</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-isarray">IsArray</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-iscallable">IsCallable</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-isconstructor">IsConstructor</a><span>, in §Unnumbered section</span>
    <li><a href="#abstract-opdef-newtarget">NewTarget</a><span>, in §2.7</span>
    <li><a href="#dom-completion-record-type-normal">normal</a><span>, in §2.4</span>
    <li><a href="#normal-completion">normal completion</a><span>, in §2.4</span>
    <li><a href="#ordinary-object">ordinary object</a><span>, in §2.5</span>
    <li><a href="#record">Record</a><span>, in §2.3.1</span>
    <li><a href="#dom-completion-record-type-return">return</a><span>, in §2.4</span>
+   <li><a href="#abstract-opdef-returnifabrupt">ReturnIfAbrupt</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-stringcreate">StringCreate</a><span>, in §Unnumbered section</span>
    <li><a href="#completion-record-target">[[Target]]</a><span>, in §2.4</span>
    <li><a href="#dom-completion-record-type-throw">throw</a><span>, in §2.4</span>
+   <li><a href="#abstract-opdef-toboolean">ToBoolean</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-toint16">ToInt16</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-toint32">ToInt32</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-toint8">ToInt8</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-tointeger">ToInteger</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-tonumber">ToNumber</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-toobject">ToObject</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-toprimitive">ToPrimitive</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-tostring">ToString</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-touint16">ToUint16</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-touint32">ToUint32</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-touint8">ToUint8</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-touint8clamp">ToUint8Clamp</a><span>, in §Unnumbered section</span>
+   <li><a href="#abstract-opdef-type">Type</a><span>, in §Unnumbered section</span>
    <li><a href="#completion-record-type">[[Type]]</a><span>, in §2.4</span>
    <li><a href="#completion-record-value">[[Value]]</a><span>, in §2.4</span>
   </ul>
@@ -2265,27 +2369,45 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
    <li>
     <a data-link-type="biblio">[ECMA-262]</a> defines the following terms:
     <ul>
+     <li><a href="https://tc39.github.io/ecma262/#sec-properties-of-the-array-prototype-object">%ArrayPrototype%</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-properties-of-the-string-prototype-object">%StringPrototype%</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-array-objects">Array</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-array.isarray">Array.isArray()</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-arraybuffer-objects">ArrayBuffer</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-arraycreate">ArrayCreate</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-boolean-constructor-boolean-value">Boolean()</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-call">Call</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-construct">Construct</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-definepropertyorthrow">DefinePropertyOrThrow</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-deletepropertyorthrow">DeletePropertyOrThrow</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-function-objects">Function</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-getmethod">GetMethod</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-getprototypefromconstructor">GetPrototypeFromConstructor</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-getv">GetV</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-hasownproperty">HasOwnProperty</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-hasproperty">HasProperty</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-invoke">Invoke</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-isarray">IsArray</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-iscallable">IsCallable</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-isconstructor">IsConstructor</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-isdatadescriptor">IsDataDescriptor</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-map-objects">Map</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-math-object">Math</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-math.trunc">Math.trunc()</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-number-objects">Number</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-numbertostring">NumberToString</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-object-objects">Object</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-object-value">Object()</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-object.getownpropertysymbols">Object.getOwnPropertySymbols()</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-object.prototype.hasownproperty">Object.prototype.hasOwnProperty()</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-ordinarycreatefromconstructor">OrdinaryCreateFromConstructor</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-ordinaryget">OrdinaryGet</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-ordinarygetprototypeof">OrdinaryGetPrototypeOf</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-ordinarytoprimitive">OrdinaryToPrimitive</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-proxy-objects">Proxy</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-reflect-object">Reflect</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-regexp-regular-expression-objects">RegExp</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible">RequireObjectCoercible</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-returnifabrupt">ReturnIfAbrupt</a>
@@ -2294,13 +2416,24 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
      <li><a href="https://tc39.github.io/ecma262/#sec-stringcreate">StringCreate</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-symboldescriptivestring">SymbolDescriptiveString</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-toboolean">ToBoolean</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-toint16">ToInt16</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-toint32">ToInt32</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-toint8">ToInt8</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-tointeger">ToInteger</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-tonumber">ToNumber</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-toobject">ToObject</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-toprimitive">ToPrimitive</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-touint16">ToUint16</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-touint32">ToUint32</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-touint8">ToUint8</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-touint8clamp">ToUint8Clamp</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-typedarray-objects">Uint8Array</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-proxy-object-internal-methods-and-internal-slots-getprototypeof">[[GetPrototypeOf]]</a>
+     <li><a href="https://tc39.github.io/ecma262/#current-realm">current realm</a>
      <li><a href="https://tc39.github.io/ecma262/#sec-property-descriptor-specification-type">property descriptor</a>
+     <li><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">type</a>
     </ul>
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
@@ -2309,6 +2442,7 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
      <li><a href="https://html.spec.whatwg.org/multipage/window-object.html#windowproxy">WindowProxy</a>
      <li><a href="https://html.spec.whatwg.org/multipage/workers.html#worker">Worker</a>
      <li><a href="https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-alert">alert(message)</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all">all</a>
      <li><a href="https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-confirm">confirm(message)</a>
      <li><a href="https://html.spec.whatwg.org/multipage/window-object.html#dom-document-2">document</a>
      <li><a href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window">window</a>
@@ -2367,7 +2501,7 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
   <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
    <div class="issue"> To be written. <a href="https://github.com/TimothyGu/es-howto/issues/2">&lt;https://github.com/TimothyGu/es-howto/issues/2></a><a href="#issue-c1ad3571"> ↵ </a></div>
-   <div class="issue"> To be written. <a href="https://github.com/TimothyGu/es-howto/issues/3">&lt;https://github.com/TimothyGu/es-howto/issues/3></a><a href="#issue-c1ad3571①"> ↵ </a></div>
+   <div class="issue"> To be completed. <a href="https://github.com/TimothyGu/es-howto/issues/3">&lt;https://github.com/TimothyGu/es-howto/issues/3></a><a href="#issue-fa073151"> ↵ </a></div>
   </div>
   <aside class="dfn-panel" data-for="double-brackets-notation">
    <b><a href="#double-brackets-notation">#double-brackets-notation</a></b><b>Referenced in:</b>
@@ -2397,6 +2531,7 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
    <b><a href="#completion-record">#completion-record</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-completion-record">2.4. Completion Records; ? and !</a> <a href="#ref-for-completion-record①">(2)</a> <a href="#ref-for-completion-record②">(3)</a> <a href="#ref-for-completion-record③">(4)</a> <a href="#ref-for-completion-record④">(5)</a> <a href="#ref-for-completion-record⑤">(6)</a> <a href="#ref-for-completion-record⑥">(7)</a> <a href="#ref-for-completion-record⑦">(8)</a> <a href="#ref-for-completion-record⑧">(9)</a>
+    <li><a href="#ref-for-completion-record⑨">Common abstract operations</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="completion-record-type">
@@ -2439,18 +2574,21 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
    <b><a href="#completion-record-value">#completion-record-value</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-completion-record-value">2.4. Completion Records; ? and !</a>
+    <li><a href="#ref-for-completion-record-value①">Common abstract operations</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="normal-completion">
    <b><a href="#normal-completion">#normal-completion</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-normal-completion">2.4. Completion Records; ? and !</a> <a href="#ref-for-normal-completion①">(2)</a>
+    <li><a href="#ref-for-normal-completion②">Common abstract operations</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abrupt-completion">
    <b><a href="#abrupt-completion">#abrupt-completion</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-abrupt-completion">2.4. Completion Records; ? and !</a> <a href="#ref-for-abrupt-completion①">(2)</a> <a href="#ref-for-abrupt-completion②">(3)</a>
+    <li><a href="#ref-for-abrupt-completion③">Common abstract operations</a> <a href="#ref-for-abrupt-completion④">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="question-mark">
@@ -2474,6 +2612,19 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
    <ul>
     <li><a href="#ref-for-internal-method">2.3.3. An internal method of a JavaScript Object</a> <a href="#ref-for-internal-method①">(2)</a> <a href="#ref-for-internal-method②">(3)</a> <a href="#ref-for-internal-method③">(4)</a>
     <li><a href="#ref-for-internal-method④">2.5. JavaScript Objects</a> <a href="#ref-for-internal-method⑤">(2)</a> <a href="#ref-for-internal-method⑥">(3)</a> <a href="#ref-for-internal-method⑦">(4)</a> <a href="#ref-for-internal-method⑧">(5)</a> <a href="#ref-for-internal-method⑨">(6)</a>
+    <li><a href="#ref-for-internal-method①⓪">Common abstract operations</a> <a href="#ref-for-internal-method①①">(2)</a> <a href="#ref-for-internal-method①②">(3)</a> <a href="#ref-for-internal-method①③">(4)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="function-object">
+   <b><a href="#function-object">#function-object</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-function-object">Common abstract operations</a> <a href="#ref-for-function-object①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="callable-object">
+   <b><a href="#callable-object">#callable-object</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-callable-object">Common abstract operations</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="ordinary-object">
@@ -2486,6 +2637,7 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
    <b><a href="#exotic-object">#exotic-object</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-exotic-object">2.5. JavaScript Objects</a> <a href="#ref-for-exotic-object①">(2)</a> <a href="#ref-for-exotic-object②">(3)</a> <a href="#ref-for-exotic-object③">(4)</a> <a href="#ref-for-exotic-object④">(5)</a>
+    <li><a href="#ref-for-exotic-object⑤">Common abstract operations</a> <a href="#ref-for-exotic-object⑥">(2)</a> <a href="#ref-for-exotic-object⑦">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="internal-slot">
@@ -2494,12 +2646,69 @@ String<span class="p">(</span>Object<span class="p">.</span>create<span class="p
     <li><a href="#ref-for-internal-slot">2.3.2. An internal slot of a JavaScript Object</a> <a href="#ref-for-internal-slot①">(2)</a> <a href="#ref-for-internal-slot②">(3)</a> <a href="#ref-for-internal-slot③">(4)</a> <a href="#ref-for-internal-slot④">(5)</a> <a href="#ref-for-internal-slot⑤">(6)</a> <a href="#ref-for-internal-slot⑥">(7)</a>
     <li><a href="#ref-for-internal-slot⑦">2.3.3. An internal method of a JavaScript Object</a>
     <li><a href="#ref-for-internal-slot⑧">2.5. JavaScript Objects</a> <a href="#ref-for-internal-slot⑨">(2)</a> <a href="#ref-for-internal-slot①⓪">(3)</a> <a href="#ref-for-internal-slot①①">(4)</a> <a href="#ref-for-internal-slot①②">(5)</a> <a href="#ref-for-internal-slot①③">(6)</a>
+    <li><a href="#ref-for-internal-slot①④">Common abstract operations</a> <a href="#ref-for-internal-slot①⑤">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abstract-opdef-newtarget">
    <b><a href="#abstract-opdef-newtarget">#abstract-opdef-newtarget</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-abstract-opdef-newtarget">2.7. Example: Can Boolean() and String() ever throw exceptions?</a> <a href="#ref-for-abstract-opdef-newtarget①">(2)</a> <a href="#ref-for-abstract-opdef-newtarget②">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="abstract-opdef-call">
+   <b><a href="#abstract-opdef-call">#abstract-opdef-call</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-call">Common abstract operations</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="abstract-opdef-get">
+   <b><a href="#abstract-opdef-get">#abstract-opdef-get</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-get">Common abstract operations</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="abstract-opdef-getv">
+   <b><a href="#abstract-opdef-getv">#abstract-opdef-getv</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-getv">2.7. Example: Can Boolean() and String() ever throw exceptions?</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="abstract-opdef-returnifabrupt">
+   <b><a href="#abstract-opdef-returnifabrupt">#abstract-opdef-returnifabrupt</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-returnifabrupt">2.4. Completion Records; ? and !</a> <a href="#ref-for-abstract-opdef-returnifabrupt①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="abstract-opdef-tonumber">
+   <b><a href="#abstract-opdef-tonumber">#abstract-opdef-tonumber</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-tonumber">2.4. Completion Records; ? and !</a>
+    <li><a href="#ref-for-abstract-opdef-tonumber①">Common abstract operations</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="abstract-opdef-toobject">
+   <b><a href="#abstract-opdef-toobject">#abstract-opdef-toobject</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-toobject">Common abstract operations</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="abstract-opdef-toprimitive">
+   <b><a href="#abstract-opdef-toprimitive">#abstract-opdef-toprimitive</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-toprimitive">2.7. Example: Can Boolean() and String() ever throw exceptions?</a> <a href="#ref-for-abstract-opdef-toprimitive①">(2)</a> <a href="#ref-for-abstract-opdef-toprimitive②">(3)</a> <a href="#ref-for-abstract-opdef-toprimitive③">(4)</a> <a href="#ref-for-abstract-opdef-toprimitive④">(5)</a> <a href="#ref-for-abstract-opdef-toprimitive⑤">(6)</a> <a href="#ref-for-abstract-opdef-toprimitive⑥">(7)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="abstract-opdef-tostring">
+   <b><a href="#abstract-opdef-tostring">#abstract-opdef-tostring</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-tostring">2.7. Example: Can Boolean() and String() ever throw exceptions?</a> <a href="#ref-for-abstract-opdef-tostring①">(2)</a>
+    <li><a href="#ref-for-abstract-opdef-tostring②">Common abstract operations</a> <a href="#ref-for-abstract-opdef-tostring③">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="abstract-opdef-type">
+   <b><a href="#abstract-opdef-type">#abstract-opdef-type</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-type">2.7. Example: Can Boolean() and String() ever throw exceptions?</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
