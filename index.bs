@@ -4,7 +4,7 @@ Status: LD
 URL: https://timothygu.me/es-howto/
 Shortname: es-howto
 Editor: Timothy Gu, timothygu99@gmail.com, https://timothygu.me/
-Abstract: The ECMAScript Language specification is a huge text that can be confusing and intimidating at first. This document aims to make it easier to get started with reading the best JavaScript language reference available.
+Abstract: The ECMAScript Language specification (aka. the JavaScript specification, or ECMA-262) is a great resource for learning the intricacies of how JavaScript works. However, it is a huge text that can be confusing and intimidating at first. This document aims to make it easier to get started with reading the best JavaScript language reference available.
 Indent: 2
 Editor Term: Author, Authors
 Default Ref Status: current
@@ -246,10 +246,11 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
 
 <pre class=biblio>
 {
-  "ECMA-262-2017": {
-    "href": "https://ecma-international.org/ecma-262/8.0/",
-    "title": "ECMAScript® 2017 Language Specification",
-    "publisher": "Ecma International"
+  "ECMA-262-2018": {
+    "href": "https://ecma-international.org/ecma-262/9.0/index.html",
+    "title": "ECMAScript 2018 Language Specification",
+    "publisher": "Ecma International",
+    "rawDate": "June 2018"
   },
   "ECMA-262-GLOBAL": {
     "href": "https://github.com/tc39/proposal-global",
@@ -420,11 +421,11 @@ Long version:
 
 The ECMAScript language specification is developed by a group of people from diverse backgrounds, known as the Ecma International Technical Committee 39 (or as they are more familiarly known, TC39 [[TC39]]). TC39 maintains the latest specification for the ECMAScript language at tc39.github.io [[ECMA-262]].
 
-What complicates the matter is that, every year, TC39 picks a point in time to take a snapshot of the spec to become the ECMAScript Language *Standard* of that year, along with an edition number. For example, the *ECMAScript® 2017 Language Specification (ECMA-262, 8th edition)* [[ECMA-262-2017]] (popularly known as ES8) is simply the spec as seen at tc39.github.io [[ECMA-262]] in June 2017, put into formaldehyde, properly shrinkwrapped and PDFified for permanent archives.
+What complicates the matter is that, every year, TC39 picks a point in time to take a snapshot of the spec to become the ECMAScript Language *Standard* of that year, along with an edition number. For example, the *ECMAScript® 2018 Language Specification (ECMA-262, 9th edition)* [[ECMA-262-2018]] (popularly known as ES9) is simply the spec as seen at tc39.github.io [[ECMA-262]] in June 2018, put into formaldehyde, properly shrinkwrapped and PDFified for the permanent archives.
 
-Because of that, unless you want your web application to run on only browsers from June 2017 that are put into formaldehyde, properly shrinkwrapped, and PDFified for permanent archives, you want to always look at the latest spec at tc39.github.io [[ECMA-262]]. But if you want to (or have to) support older browsers or Node.js versions, then referencing the older specifications may help.
+Because of that, unless you want your web application to run on only browsers from June 2018 that are put into formaldehyde, properly shrinkwrapped, and PDFified for the permanent archives, you want to always look at the latest spec at tc39.github.io [[ECMA-262]]. But if you want to (or have to) support older browsers or Node.js versions, then referencing the older specifications may help.
 
-Note: The ISO/IEC also republishes the ECMAScript Language Standard as ISO/IEC 16262 [[ISO-16262-2011]]. Don't worry about it though, since the text of the standard is exactly the same as the standards Ecma International publishes – the only difference being that you have to pay <a href="https://www.google.com/search?q=198+swiss+francs+in+my+currency">198 Swiss Francs</a>.
+Note: The ISO/IEC also republishes the ECMAScript Language Standard as ISO/IEC 16262 [[ISO-16262-2011]]. Don't worry about it though, since the text of the standard is exactly the same as the standard Ecma International publishes – the only difference being that you have to pay <a href="https://www.google.com/search?q=198+swiss+francs+in+my+currency">198 Swiss Francs</a>.
 
 ## Navigating the spec ## {#navigating-the-spec}
 
@@ -1046,75 +1047,75 @@ Issue(2): To be written.
 
 <h3 class=no-num id=common-abstract-operations>Common abstract operations</h3>
 
-: <dfn abstract-op>ArrayCreate</dfn>(|length|[, |proto|]) ([$ECMAScript/ArrayCreate|spec$])
+: <dfn abstract-op>ArrayCreate</dfn> (&nbsp;|length| [&nbsp;, |proto|&nbsp;]&nbsp;) ([$ECMAScript/ArrayCreate|spec$])
 :: Create an array object of length |length|, with |proto| as the value of the \[[Prototype]] [=internal slot=]. If |proto| is not specified, <a interface>%ArrayPrototype%</a> in the [=current realm=] is used. Equivalent to <code>new Array(|length|)</code> if the {{Array}} constructor and all of its properties have not been monkeypatched, and |proto| is not specified or <a interface>%ArrayPrototype%</a> in the [=current realm=].
 
-: <dfn abstract-op>Call</dfn>(|F|, |V|[, |argumentsList|]) ([$ECMAScript/Call|spec$])
-: <dfn abstract-op>Construct</dfn>(|F|[, |argumentsList|[, |newTarget|]]) ([$ECMAScript/Construct|spec$])
-: <dfn abstract-op>Get</dfn>(|O|, |P|) ([$ECMAScript/Get|spec$])
-: <dfn abstract-op>HasProperty</dfn>(|O|, |P|) ([$ECMAScript/HasProperty|spec$])
+: <dfn abstract-op>Call</dfn> (&nbsp;|F|, |V| [&nbsp;, |argumentsList|&nbsp;]&nbsp;) ([$ECMAScript/Call|spec$])
+: <dfn abstract-op>Construct</dfn> (&nbsp;|F| [&nbsp;, |argumentsList| [&nbsp;, |newTarget|&nbsp;]&nbsp;]&nbsp;) ([$ECMAScript/Construct|spec$])
+: <dfn abstract-op>Get</dfn> (&nbsp;|O|, |P|&nbsp;) ([$ECMAScript/Get|spec$])
+: <dfn abstract-op>HasProperty</dfn> (&nbsp;|O|, |P|&nbsp;) ([$ECMAScript/HasProperty|spec$])
 :: Call the corresponding [=internal method=] on |F| or |O| with the rest of the arguments forwarded. Equivalent to the corresponding method on the {{Reflect}} object.
 
-: <dfn abstract-op>DefinePropertyOrThrow</dfn>(|O|, |P|, |desc|) ([$ECMAScript/DefinePropertyOrThrow|spec$])
-: <dfn abstract-op>DeletePropertyOrThrow</dfn>(|O|, |P|) ([$ECMAScript/DeletePropertyOrThrow|spec$])
+: <dfn abstract-op>DefinePropertyOrThrow</dfn> (&nbsp;|O|, |P|, |desc|&nbsp;) ([$ECMAScript/DefinePropertyOrThrow|spec$])
+: <dfn abstract-op>DeletePropertyOrThrow</dfn> (&nbsp;|O|, |P|&nbsp;) ([$ECMAScript/DeletePropertyOrThrow|spec$])
 :: Call the corresponding [=internal method=] (\[[DefineOwnProperty]] and \[[Delete]], respectively) on |O| with the rest of the arguments forwarded, and throw an exception if the operation failed and the [=internal method=] returned **false**.
 
-: <dfn abstract-op>GetV</dfn>(|V|, |P|) ([$ECMAScript/GetV|spec$])
+: <dfn abstract-op>GetV</dfn> (&nbsp;|V|, |P|&nbsp;) ([$ECMAScript/GetV|spec$])
 :: Returns [$Get$](|V|, |P|), with |V| converted to an Object with [$ToObject$] first if necessary. Equivalent to <code>|V|[|P|]</code>.
 
-: <dfn abstract-op>HasOwnProperty</dfn>(|O|, |P|) ([$ECMAScript/HasOwnProperty|spec$])
+: <dfn abstract-op>HasOwnProperty</dfn> (&nbsp;|O|, |P|&nbsp;) ([$ECMAScript/HasOwnProperty|spec$])
 :: Returns whether |O| has an own property named |P|, by calling |O|.\[[GetOwnProperty]](|P|). Equivalent to <code><a method>Object.prototype.hasOwnProperty</a>.call(|O|, |P|)</code>.
 
-: <dfn abstract-op>Invoke</dfn>(|V|, |P|[, |argumentsList|]) ([$ECMAScript/Invoke|spec$])
+: <dfn abstract-op>Invoke</dfn> (&nbsp;|V|, |P| [&nbsp;, |argumentsList|&nbsp;]&nbsp;) ([$ECMAScript/Invoke|spec$])
 :: Call the method named |P| on |V| using |argumentsList|. Equivalent to <code>|V|[|P|](...|argumentsList|)</code>. <span class=note>Unlike in [$Call$], |P| here is a property key.</span>
 
-: <dfn abstract-op>IsArray</dfn>(|argument|) ([$ECMAScript/IsArray|spec$])
+: <dfn abstract-op>IsArray</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/IsArray|spec$])
 :: Returns whether |argument| is an {{Array}} [=exotic object=], or if |argument| is a {{Proxy}} [=exotic object=], whether |argument|'s innermost \[[ProxyTarget]] [=internal slot=] is an {{Array}} [=exotic object=]. Equivalent to <code><a method>Array.isArray</a>(|argument|)</code>.
 
-: <dfn abstract-op>IsCallable</dfn>(|argument|) ([$ECMAScript/IsCallable|spec$])
+: <dfn abstract-op>IsCallable</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/IsCallable|spec$])
 :: Returns whether |argument| is a [=callable object=], otherwise known as a [=function object=]. Equivalent to <code>typeof |argument| === 'function'</code> (with the exception of {{Document/all|document.all}}, which is an exotic object with several special behaviors; see [=§B.3.7 The [[IsHTMLDDA]] Internal Slot=]).
 
-: <dfn abstract-op>IsConstructor</dfn>(|argument|) ([$ECMAScript/IsConstructor|spec$])
+: <dfn abstract-op>IsConstructor</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/IsConstructor|spec$])
 :: Returns whether |argument| is a [=function object=] with a \[[Construct]] [=internal method=].
 
-: <dfn abstract-op>ReturnIfAbrupt</dfn>(|argument|) ([$ECMAScript/ReturnIfAbrupt|spec$])
+: <dfn abstract-op>ReturnIfAbrupt</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/ReturnIfAbrupt|spec$])
 :: Check if |argument| is an [=abrupt completion=] (like a thrown exception), and if so return that [=abrupt completion=] (and allows the exception to bubble up). Otherwise if |argument| is a [=normal completion=], unwrap that [=Completion Record=] and set |argument| to |argument|.[=Completion Record/[[Value]]=]</a>.
 :: See also: [[#completion-records-and-shorthands]].
 
-: <dfn abstract-op>StringCreate</dfn>(|value|, |prototype|) ([$ECMAScript/StringCreate|spec$])
+: <dfn abstract-op>StringCreate</dfn> (&nbsp;|value|, |prototype|&nbsp;) ([$ECMAScript/StringCreate|spec$])
 :: Returns a boxed {{String}} Object corresponding to the String |value|, with the \[[Prototype]] internal slot of the resulting object being |prototype|. Equivalent to <code>new <a method>String</a>(value)</code> if |prototype| is the <a interface>%StringPrototype%</a> of the [=current realm=].
 
-: <dfn abstract-op>ToBoolean</dfn>(|argument|) ([$ECMAScript/ToBoolean|spec$])
+: <dfn abstract-op>ToBoolean</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/ToBoolean|spec$])
 :: Returns |argument| coerced to a Boolean. Equivalent to <code>!!|argument|</code>.
 
-: <dfn abstract-op>ToInteger</dfn>(|argument|) ([$ECMAScript/ToInteger|spec$])
+: <dfn abstract-op>ToInteger</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/ToInteger|spec$])
 :: Returns [$ToNumber$](|argument|), then truncated (i.e., rounded to 0) to become an integer. Equivalent to <code><a method>Math.trunc</a>(|argument|)</code>.
 
-: <dfn abstract-op>ToInt8</dfn>(|argument|) ([$ECMAScript/ToInt8|spec$])
-: <dfn abstract-op>ToUint8</dfn>(|argument|) ([$ECMAScript/ToUint8|spec$])
-: <dfn abstract-op>ToInt16</dfn>(|argument|) ([$ECMAScript/ToInt16|spec$])
-: <dfn abstract-op>ToUint16</dfn>(|argument|) ([$ECMAScript/ToUint16|spec$])
-: <dfn abstract-op>ToInt32</dfn>(|argument|) ([$ECMAScript/ToInt32|spec$])
-: <dfn abstract-op>ToUint32</dfn>(|argument|) ([$ECMAScript/ToUint32|spec$])
+: <dfn abstract-op>ToInt8</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/ToInt8|spec$])
+: <dfn abstract-op>ToUint8</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/ToUint8|spec$])
+: <dfn abstract-op>ToInt16</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/ToInt16|spec$])
+: <dfn abstract-op>ToUint16</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/ToUint16|spec$])
+: <dfn abstract-op>ToInt32</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/ToInt32|spec$])
+: <dfn abstract-op>ToUint32</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/ToUint32|spec$])
 :: Returns |argument| converted to an integer of the specified bits and signedness using truncation.
 
-: <dfn abstract-op>ToUint8Clamp</dfn>(|argument|) ([$ECMAScript/ToUint8Clamp|spec$])
+: <dfn abstract-op>ToUint8Clamp</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/ToUint8Clamp|spec$])
 :: Returns |argument| converted to an integer of the range [0, 255] using rounding and clamping.
 
-: <dfn abstract-op>ToNumber</dfn>(|argument|) ([$ECMAScript/ToNumber|spec$])
+: <dfn abstract-op>ToNumber</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/ToNumber|spec$])
 :: Returns |argument| coerced to a Number. Equivalent to <code>+|argument|</code>.
 
-: <dfn abstract-op>ToObject</dfn>(|argument|) ([$ECMAScript/ToObject|spec$])
+: <dfn abstract-op>ToObject</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/ToObject|spec$])
 :: Returns |argument| coerced to an Object, using boxed primitive objects if necessary. Equivalent to <code><a method>Object</a>(|argument|)</code> other than the cases where |argument| is **undefined** or **null**.
 
-: <dfn abstract-op>ToPrimitive</dfn>(|input|[, |PreferredType|]) ([$ECMAScript/ToPrimitive|spec$])
+: <dfn abstract-op>ToPrimitive</dfn> (&nbsp;|input| [&nbsp;, |PreferredType|&nbsp;]&nbsp;) ([$ECMAScript/ToPrimitive|spec$])
 :: Returns |argument| coerced to a primitive (i.e., non-Object) value, optionally using the type hint given through |PreferredType|. Exact semantics of this abstract operation vary depending on the |PreferredType|.
 
-: <dfn abstract-op>ToString</dfn>(|argument|) ([$ECMAScript/ToString|spec$])
+: <dfn abstract-op>ToString</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/ToString|spec$])
 :: Returns |argument| coerced to a String. Equivalent to <code>&#96;${|argument|}&#96;</code>.
 :: <div class=advisement>Care must be taken to realize that neither <code>String(|argument|)</code> nor <code>|argument| + ''</code> is fully equivalent to [$ToString$]. {{String()}} converts Symbol values to their String descriptions, while [$ToString$] throws an exception on Symbol. The addition operator calls some other functions like <code>|argument|[Symbol.toPrimitive]</code> when attempting to convert the value to a String.</div>
 
-: <dfn abstract-op>Type</dfn>(|argument|) ([$ECMAScript/Type|spec$])
+: <dfn abstract-op>Type</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/Type|spec$])
 :: Returns the [=type=] of |argument|.
 
 </div>
