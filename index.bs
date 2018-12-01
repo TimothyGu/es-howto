@@ -254,7 +254,7 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
   },
   "ECMA-262-GLOBAL": {
     "href": "https://github.com/tc39/proposal-global",
-    "title": "tc39/proposal-global: ECMAScript Proposal, specs, and reference implementation for `global`",
+    "title": "tc39/proposal-global: ECMAScript Proposal, specs, and reference implementation for `globalThis`",
     "publisher": "GitHub Inc."
   },
   "ISO-16262-2011": {
@@ -404,7 +404,7 @@ Instead, what I'm going to do is list some things that are commonly seen in Java
 
 <sup>[2]</sup> These things are available in both browsers and Node.js, but are non-standard. For Node.js, they are documented/specified by [=Node.js/globals|its documentation=]. For browsers, {{/console}} is specified by the Console Standard [[CONSOLE]], while the rest is specified by the HTML Standard [[HTML]].
 
-<sup>[3]</sup> These are all Node.js-only globals, documented/specified by [=Node.js/globals|its documentation=]. \* <code class=idl>global</code> actually has a chance of becoming a part of ECMAScript and be implemented in browsers as well [[ECMA-262-GLOBAL]].
+<sup>[3]</sup> These are all Node.js-only globals, documented/specified by [=Node.js/globals|its documentation=]. \* Note that unliked <code class=idl>global</code>, <code class=idl>globalThis</code> actually has a chance of becoming a part of ECMAScript and be implemented in browsers as well [[ECMA-262-GLOBAL]].
 
 <sup>[4]</sup> These are Node.js-only module-wide "globals", documented/specified by [=Node.js/modules|its documentation=].
 
@@ -528,7 +528,7 @@ When the abstract operation IsDataDescriptor is called with [=Property Descripto
 
 </div>
 
-Another concrete example of [=Records=] can be found in the next section, [[#completion-records-and-shorthands]]. 
+Another concrete example of [=Records=] can be found in the next section, [[#completion-records-and-shorthands]].
 
 <p class=note>Further reading: [=§6.2.1 The List and Record Specification Types=]</p>
 
@@ -637,7 +637,7 @@ But to reduce these heavily boilerplated steps, editors of the ECMAScript spec a
 A few steps that call an abstract operation that may throw <strong><em>with [$ReturnIfAbrupt$]</em></strong>:
 
 1.  Let |result| be AbstractOp().
-    
+
     Note: Here, just like the step 1 in the previous example, |result| is a [=Completion Record=].
 
 1.  [$ECMAScript/ReturnIfAbrupt$](|result|).
