@@ -386,7 +386,7 @@ Instead, what I'm going to do is list some things that are commonly seen in Java
     <td>✘<sup>[2]</sup>
   </tr>
   <tr>
-    <td>{{Buffer}}, {{process}}, {{global}}*, {{setImmediate()}}, {{clearImmediate()}}
+    <td>{{Buffer}}, {{process}}, {{global}}*
     <td>✘<sup>[3]</sup>
   </tr>
   <tr>
