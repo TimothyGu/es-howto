@@ -109,6 +109,8 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
     text: %Promise%; url: sec-promise-constructor
     text: %SetPrototype%; url: sec-properties-of-the-set-prototype-object
     text: %StringPrototype%; url: sec-properties-of-the-string-prototype-object
+  type: attribute
+    text: globalThis; url: sec-globalthis
   type: exception
     text: Error; url: sec-error-objects
     text: SyntaxError; url: sec-native-error-types-used-in-this-standard-syntaxerror
@@ -252,11 +254,6 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
     "publisher": "Ecma International",
     "rawDate": "June 2018"
   },
-  "ECMA-262-GLOBAL": {
-    "href": "https://github.com/tc39/proposal-global",
-    "title": "tc39/proposal-global: ECMAScript Proposal, specs, and reference implementation for `global`",
-    "publisher": "GitHub Inc."
-  },
   "ISO-16262-2011": {
     "href": "https://www.iso.org/standard/55755.html",
     "title": "ISO/IEC 16262:2011 - Information technology – Programming languages, their environments and system software interfaces – ECMAScript language specification",
@@ -378,7 +375,7 @@ Instead, what I'm going to do is list some things that are commonly seen in Java
     <td>❓<sup>[1]</sup>
   </tr>
   <tr>
-    <td>{{Object}}, {{Array}}, {{Function}}, {{Number}}, {{Math}}, {{RegExp}}, {{Proxy}}, {{Map}}, {{Promise}}, {{ArrayBuffer}}, {{Uint8Array}}, ...
+    <td>{{Object}}, {{Array}}, {{Function}}, {{Number}}, {{Math}}, {{RegExp}}, {{Proxy}}, {{Map}}, {{Promise}}, {{ArrayBuffer}}, {{Uint8Array}}, {{globalThis}}, ...
     <td>✔
   </tr>
   <tr>
@@ -404,7 +401,7 @@ Instead, what I'm going to do is list some things that are commonly seen in Java
 
 <sup>[2]</sup> These things are available in both browsers and Node.js, but are non-standard. For Node.js, they are documented/specified by [=Node.js/globals|its documentation=]. For browsers, {{/console}} is specified by the Console Standard [[CONSOLE]], while the rest is specified by the HTML Standard [[HTML]].
 
-<sup>[3]</sup> These are all Node.js-only globals, documented/specified by [=Node.js/globals|its documentation=]. \* <code class=idl>global</code> actually has a chance of becoming a part of ECMAScript and be implemented in browsers as well [[ECMA-262-GLOBAL]].
+<sup>[3]</sup> These are all Node.js-only globals, documented/specified by [=Node.js/globals|its documentation=]. \* Note that unlike <code class=idl>global</code>, {{globalThis}} is a part of ECMAScript and implemented in browsers as well.
 
 <sup>[4]</sup> These are Node.js-only module-wide "globals", documented/specified by [=Node.js/modules|its documentation=].
 
@@ -528,7 +525,7 @@ When the abstract operation IsDataDescriptor is called with [=Property Descripto
 
 </div>
 
-Another concrete example of [=Records=] can be found in the next section, [[#completion-records-and-shorthands]]. 
+Another concrete example of [=Records=] can be found in the next section, [[#completion-records-and-shorthands]].
 
 <p class=note>Further reading: [=§6.2.1 The List and Record Specification Types=]</p>
 
@@ -637,7 +634,7 @@ But to reduce these heavily boilerplated steps, editors of the ECMAScript spec a
 A few steps that call an abstract operation that may throw <strong><em>with [$ReturnIfAbrupt$]</em></strong>:
 
 1.  Let |result| be AbstractOp().
-    
+
     Note: Here, just like the step 1 in the previous example, |result| is a [=Completion Record=].
 
 1.  [$ECMAScript/ReturnIfAbrupt$](|result|).

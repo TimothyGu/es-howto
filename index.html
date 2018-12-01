@@ -1029,7 +1029,7 @@ Possible extra rowspan handling
 		}
 	/* } */
 
-	@supports (display:grid) {
+	@supports (display:grid) and (display:contents) {
 		/* Use #toc over .toc to override non-@supports rules. */
 		#toc {
 			display: grid;
@@ -1167,6 +1167,18 @@ Possible extra rowspan handling
 		margin-left: auto;
 		margin-right: auto;
 	}
+	.overlarge {
+		/* Magic to create good table positioning:
+		   "content column" is 50ems wide at max; less on smaller screens.
+		   Extra space (after ToC + content) is empty on the right.
+
+		   1. When table < content column, centers table in column.
+		   2. When content < table < available, left-aligns.
+		   3. When table > available, fills available + scroll bar.
+		*/ 
+		display: grid;
+		grid-template-columns: minmax(0, 50em);
+	}
 	.overlarge > table {
 		/* limit preferred width of table */
 		max-width: 50em;
@@ -1176,7 +1188,6 @@ Possible extra rowspan handling
 
 	@media (min-width: 55em) {
 		.overlarge {
-			margin-left: calc(13px + 26.5rem - 50vw);
 			margin-right: calc(13px + 26.5rem - 50vw);
 			max-width: none;
 		}
@@ -1184,14 +1195,12 @@ Possible extra rowspan handling
 	@media screen and (min-width: 78em) {
 		body:not(.toc-inline) .overlarge {
 			/* 30.5em body padding 50em content area */
-			margin-left: calc(40em - 50vw) !important;
 			margin-right: calc(40em - 50vw) !important;
 		}
 	}
 	@media screen and (min-width: 90em) {
 		body:not(.toc-inline) .overlarge {
 			/* 4em html margin 30.5em body padding 50em content area */
-			margin-left: 0 !important;
 			margin-right: calc(84.5em - 100vw) !important;
 		}
 	}
@@ -1212,9 +1221,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 9c6ae748322940994300e90a77c34437364b40a6" name="generator">
+  <meta content="Bikeshed version 37152ad9022478b169f6117a5dabcb1b2fd8a9ba" name="generator">
   <link href="https://timothygu.me/es-howto/" rel="canonical">
-  <meta content="cd7a11bd39532deeea4ba450f56fe39081d5b534" name="document-revision">
+  <meta content="6419072b1c5cc3b3d91a07ffc4f2645cee1bb54d" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1472,7 +1481,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">How to Read the ECMAScript Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2019-01-21">21 January 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2020-02-01">1 February 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1585,7 +1594,7 @@ Set <c- p>{}</c->
        <td><code class="highlight"><c- kr>import</c-> a from <c- t>'a'</c-><c- p>;</c-></code> 
        <td>❓<sup>[1]</sup> 
       <tr>
-       <td><code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-object-objects" id="ref-for-sec-object-objects">Object</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects">Array</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-function-objects" id="ref-for-sec-function-objects">Function</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-number-objects" id="ref-for-sec-number-objects">Number</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-math-object" id="ref-for-sec-math-object">Math</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-regexp-regular-expression-objects" id="ref-for-sec-regexp-regular-expression-objects">RegExp</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-proxy-objects" id="ref-for-sec-proxy-objects">Proxy</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-map-objects" id="ref-for-sec-map-objects">Map</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-promise-objects" id="ref-for-sec-promise-objects">Promise</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-arraybuffer-objects" id="ref-for-sec-arraybuffer-objects">ArrayBuffer</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-typedarray-objects" id="ref-for-sec-typedarray-objects">Uint8Array</a></code>, ... 
+       <td><code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-object-objects" id="ref-for-sec-object-objects">Object</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects">Array</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-function-objects" id="ref-for-sec-function-objects">Function</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-number-objects" id="ref-for-sec-number-objects">Number</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-math-object" id="ref-for-sec-math-object">Math</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-regexp-regular-expression-objects" id="ref-for-sec-regexp-regular-expression-objects">RegExp</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-proxy-objects" id="ref-for-sec-proxy-objects">Proxy</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-map-objects" id="ref-for-sec-map-objects">Map</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-promise-objects" id="ref-for-sec-promise-objects">Promise</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-arraybuffer-objects" id="ref-for-sec-arraybuffer-objects">ArrayBuffer</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-typedarray-objects" id="ref-for-sec-typedarray-objects">Uint8Array</a></code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-globalthis" id="ref-for-sec-globalthis">globalThis</a></code>, ... 
        <td>✔ 
       <tr>
        <td><code class="idl highlight">console</code>, <code class="idl highlight">setTimeout<c- p>()</c-></code>, <code class="idl highlight">setInterval<c- p>()</c-></code>, <code class="idl highlight">clearTimeout<c- p>()</c-></code>, <code class="idl highlight">clearInterval<c- p>()</c-></code> 
@@ -1603,7 +1612,7 @@ Set <c- p>{}</c->
     <div class="note" role="note">
       <sup>[1]</sup> The ECMAScript spec specifies the syntax of such declarations and what they are supposed to mean, but does not specify how the module is loaded. 
      <p><sup>[2]</sup> These things are available in both browsers and Node.js, but are non-standard. For Node.js, they are documented/specified by <a data-link-type="dfn" href="https://nodejs.org/api/globals.html#globals_global_objects" id="ref-for-globals_global_objects">its documentation</a>. For browsers, <code class="idl"><a data-link-type="idl" href="https://console.spec.whatwg.org/#namespacedef-console" id="ref-for-namespacedef-console">console</a></code> is specified by the Console Standard <a data-link-type="biblio" href="#biblio-console">[CONSOLE]</a>, while the rest is specified by the HTML Standard <a data-link-type="biblio" href="#biblio-html">[HTML]</a>.</p>
-     <p><sup>[3]</sup> These are all Node.js-only globals, documented/specified by <a data-link-type="dfn" href="https://nodejs.org/api/globals.html#globals_global_objects" id="ref-for-globals_global_objects①">its documentation</a>. * <code class="idl highlight">global</code> actually has a chance of becoming a part of ECMAScript and be implemented in browsers as well <a data-link-type="biblio" href="#biblio-ecma-262-global">[ECMA-262-GLOBAL]</a>.</p>
+     <p><sup>[3]</sup> These are all Node.js-only globals, documented/specified by <a data-link-type="dfn" href="https://nodejs.org/api/globals.html#globals_global_objects" id="ref-for-globals_global_objects①">its documentation</a>. * Note that unlike <code class="idl highlight">global</code>, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-globalthis" id="ref-for-sec-globalthis①">globalThis</a></code> is a part of ECMAScript and implemented in browsers as well.</p>
      <p><sup>[4]</sup> These are Node.js-only module-wide "globals", documented/specified by <a data-link-type="dfn" href="https://nodejs.org/api/modules.html#modules_modules" id="ref-for-modules_modules">its documentation</a>.</p>
      <p><sup>[5]</sup> These are all browser-only things.</p>
     </div>
@@ -1728,11 +1737,11 @@ Set <c- p>{}</c->
       </ol>
      </div>
     </div>
-    <p>Another concrete example of <a data-link-type="dfn" href="#record" id="ref-for-record④">Records</a> can be found in the next section, <a href="#completion-records-and-shorthands">§2.4 Completion Records; ? and !</a>.</p>
+    <p>Another concrete example of <a data-link-type="dfn" href="#record" id="ref-for-record④">Records</a> can be found in the next section, <a href="#completion-records-and-shorthands">§ 2.4 Completion Records; ? and !</a>.</p>
     <p class="note" role="note">Further reading: <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-list-and-record-specification-type" id="ref-for-sec-list-and-record-specification-type">§6.2.1 The List and Record Specification Types</a></p>
     <h4 class="heading settled" data-level="2.3.2" id="double-brackets-internal-slot-of-javascript-object"><span class="secno">2.3.2. </span><span class="content">An internal slot of a JavaScript Object</span><a class="self-link" href="#double-brackets-internal-slot-of-javascript-object"></a></h4>
     <p>JavaScript Objects may have so-called <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot">internal slots</a> that the specification uses to keep data in them. Like <a data-link-type="dfn" href="#record-field" id="ref-for-record-field②">Record fields</a>, these <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot①">internal slots</a> also cannot be observed using JavaScript, but some of them may be exposed through implementation-specific tools like Google Chrome’s DevTools. Thus, it makes sense also to use the <a data-link-type="dfn" href="#double-brackets-notation" id="ref-for-double-brackets-notation①">[[Notation]]</a> to describe <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot②">internal slots</a>.</p>
-    <p>The specifics of <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot③">internal slots</a> will be covered in <a href="#javascript-objects">§2.5 JavaScript Objects</a>. For now, don’t worry too much about what they are used for, but do note the following example.</p>
+    <p>The specifics of <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot③">internal slots</a> will be covered in <a href="#javascript-objects">§ 2.5 JavaScript Objects</a>. For now, don’t worry too much about what they are used for, but do note the following example.</p>
     <div class="example" id="example-dd7c3217">
      <a class="self-link" href="#example-dd7c3217"></a> 
      <p>Most JavaScript Objects have an internal slot [[Prototype]] that refers to the Object they inherit from. The value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot④">internal slot</a> is usually the value that <code class="idl"><a data-link-type="idl" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf#">Object.getPrototypeOf()</a></code> returns. In the <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-ordinarygetprototypeof" id="ref-for-sec-ordinarygetprototypeof">OrdinaryGetPrototypeOf</a> abstract operation, the value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑤">internal slot</a> is accessed:</p>
@@ -1747,7 +1756,7 @@ Set <c- p>{}</c->
     <p class="note" role="note"><span>Note:</span> <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑥">Internal slots</a> of Objects and <a data-link-type="dfn" href="#record-field" id="ref-for-record-field③">Record fields</a> are identical in appearance, but they can be disambiguated by looking at the precedent of this notation (the part that came before the dot), whether it is an Object or a <a data-link-type="dfn" href="#record" id="ref-for-record⑤">Record</a>. This is usually fairly obvious from the surrounding context.</p>
     <h4 class="heading settled" data-level="2.3.3" id="double-brackets-internal-method-of-javascript-object"><span class="secno">2.3.3. </span><span class="content">An internal method of a JavaScript Object</span><a class="self-link" href="#double-brackets-internal-method-of-javascript-object"></a></h4>
     <p>JavaScript Objects may also have so-called <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method">internal methods</a>. Like <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑦">internal slots</a>, these <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method①">internal methods</a> are not directly observable through JavaScript. Thus, it makes sense also to use the <a data-link-type="dfn" href="#double-brackets-notation" id="ref-for-double-brackets-notation②">[[Notation]]</a> to describe <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method②">internal methods</a>.</p>
-    <p>The specifics of <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method③">internal methods</a> will be covered in <a href="#javascript-objects">§2.5 JavaScript Objects</a>. For now, don’t worry too much about what they are used for, but do note the following example.</p>
+    <p>The specifics of <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method③">internal methods</a> will be covered in <a href="#javascript-objects">§ 2.5 JavaScript Objects</a>. For now, don’t worry too much about what they are used for, but do note the following example.</p>
     <div class="example" id="example-bdf195eb">
      <a class="self-link" href="#example-bdf195eb"></a> 
      <p>All JavaScript functions have an internal method [[Call]] that runs that function. The <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-call" id="ref-for-sec-call">Call</a> abstract operation has the following step:</p>
@@ -1770,7 +1779,7 @@ Set <c- p>{}</c->
      <li data-md>
       <p>if the <a data-link-type="dfn" href="#completion-record-type" id="ref-for-completion-record-type①">[[Type]]</a> is <code class="idl"><a data-link-type="idl" href="#dom-completion-record-type-break" id="ref-for-dom-completion-record-type-break">break</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-completion-record-type-continue" id="ref-for-dom-completion-record-type-continue">continue</a></code>, then it can optionally carry a <a data-link-type="dfn" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label#">label</a> known as <dfn data-dfn-for="Completion Record" data-dfn-type="dfn" data-noexport id="completion-record-target">[[Target]]<a class="self-link" href="#completion-record-target"></a></dfn> that script execution breaks from/continues to as a result of this runtime semantic</p>
     </ul>
-    <p class="note" role="note"><span>Note:</span> Two brackets are used to denote <a data-link-type="dfn" href="#record-field" id="ref-for-record-field⑤">fields</a> of <a data-link-type="dfn" href="#record" id="ref-for-record⑦">Records</a>. See <a href="#double-brackets-field-of-record">§2.3.1 A field of a Record</a> for a primer on <a data-link-type="dfn" href="#record" id="ref-for-record⑧">Records</a> and the notations associated with them.</p>
+    <p class="note" role="note"><span>Note:</span> Two brackets are used to denote <a data-link-type="dfn" href="#record-field" id="ref-for-record-field⑤">fields</a> of <a data-link-type="dfn" href="#record" id="ref-for-record⑦">Records</a>. See <a href="#double-brackets-field-of-record">§ 2.3.1 A field of a Record</a> for a primer on <a data-link-type="dfn" href="#record" id="ref-for-record⑧">Records</a> and the notations associated with them.</p>
     <p>A <a data-link-type="dfn" href="#completion-record" id="ref-for-completion-record①">Completion Record</a> whose <a data-link-type="dfn" href="#completion-record-type" id="ref-for-completion-record-type②">[[Type]]</a> is <code class="idl"><a data-link-type="idl" href="#dom-completion-record-type-normal" id="ref-for-dom-completion-record-type-normal①">normal</a></code> is called a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="normal-completion">normal completion</dfn>. Every <a data-link-type="dfn" href="#completion-record" id="ref-for-completion-record②">Completion Record</a> other than a <a data-link-type="dfn" href="#normal-completion" id="ref-for-normal-completion">normal completion</a> is also known as an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="abrupt-completion">abrupt completion</dfn>.</p>
     <p>Most of the time, you are only going to deal with <a data-link-type="dfn" href="#abrupt-completion" id="ref-for-abrupt-completion">abrupt completions</a> whose <a data-link-type="dfn" href="#completion-record-type" id="ref-for-completion-record-type③">[[Type]]</a> is <code class="idl"><a data-link-type="idl" href="#dom-completion-record-type-throw" id="ref-for-dom-completion-record-type-throw①">throw</a></code>. The other three abrupt completion types are only useful in seeing how a specific syntactic element is evaluated. In fact, you will never see any of those other types in the definition of a built-in function, since <code class="highlight"><c- k>break</c-></code>/<code class="highlight"><c- k>continue</c-></code>/<code class="highlight"><c- k>return</c-></code> don’t work across function boundaries.</p>
     <p class="note" role="note">Further reading: <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-completion-record-specification-type" id="ref-for-sec-completion-record-specification-type">§6.2.3 The Completion Record Specification Type</a></p>
@@ -1910,7 +1919,7 @@ Set <c- p>{}</c->
     <hr>
     <p>JavaScript Objects may also have <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="internal slot" data-noexport id="internal-slot">internal slots</dfn> defined to contain certain types of values. I tend to think of <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑧">internal slots</a> as Symbol-named properties that are hidden even to <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-object.getownpropertysymbols" id="ref-for-sec-object.getownpropertysymbols">Object.getOwnPropertySymbols()</a></code>. Both <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object②">ordinary objects</a> and <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object②">exotic objects</a> are allowed to have <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑨">internal slots</a>.</p>
     <div class="note" role="note">
-     <p>In <a href="#double-brackets-internal-slot-of-javascript-object">§2.3.2 An internal slot of a JavaScript Object</a>, I mentioned an <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot①⓪">internal slot</a> called [[Prototype]] that most Objects have. (In fact, all <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object③">ordinary objects</a> and even some <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object③">exotic objects</a> like <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects④">Array</a></code> objects have it.) But we also know that there is an <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑥">internal method</a> called [[GetPrototypeOf]] that I briefly described above. What is the difference?</p>
+     <p>In <a href="#double-brackets-internal-slot-of-javascript-object">§ 2.3.2 An internal slot of a JavaScript Object</a>, I mentioned an <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot①⓪">internal slot</a> called [[Prototype]] that most Objects have. (In fact, all <a data-link-type="dfn" href="#ordinary-object" id="ref-for-ordinary-object③">ordinary objects</a> and even some <a data-link-type="dfn" href="#exotic-object" id="ref-for-exotic-object③">exotic objects</a> like <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-array-objects" id="ref-for-sec-array-objects④">Array</a></code> objects have it.) But we also know that there is an <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑥">internal method</a> called [[GetPrototypeOf]] that I briefly described above. What is the difference?</p>
      <p>The keyword here is <em>most</em>: while <em>most</em> objects have the [[Prototype]] internal slot, <em>all</em> objects implement the [[GetPrototypeOf]] internal method. Notably, <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-proxy-objects" id="ref-for-sec-proxy-objects②">Proxy</a></code> objects do not have their own [[Prototype]], and its <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-proxy-object-internal-methods-and-internal-slots-getprototypeof" id="ref-for-sec-proxy-object-internal-methods-and-internal-slots-getprototypeof">[[GetPrototypeOf]]</a> internal method instead defer to either the registered handler or the prototype of its target, stored in the [[ProxyTarget]] internal slot of the <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-proxy-objects" id="ref-for-sec-proxy-objects③">Proxy</a></code> object.</p>
      <p>For this reason, when dealing with Objects, it is almost always a good idea to refer to the appropriate <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method⑦">internal method</a> rather than directly looking at the value of an <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot①①">internal slot</a>.</p>
     </div>
@@ -2173,7 +2182,7 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
      <dd data-md>
       <p>Check if <var>argument</var> is an <a data-link-type="dfn" href="#abrupt-completion" id="ref-for-abrupt-completion③">abrupt completion</a> (like a thrown exception), and if so return that <a data-link-type="dfn" href="#abrupt-completion" id="ref-for-abrupt-completion④">abrupt completion</a> (and allows the exception to bubble up). Otherwise if <var>argument</var> is a <a data-link-type="dfn" href="#normal-completion" id="ref-for-normal-completion②">normal completion</a>, unwrap that <a data-link-type="dfn" href="#completion-record" id="ref-for-completion-record⑨">Completion Record</a> and set <var>argument</var> to <var>argument</var>.<a data-link-type="dfn" href="#completion-record-value" id="ref-for-completion-record-value①">[[Value]]</a>.</p>
      <dd data-md>
-      <p>See also: <a href="#completion-records-and-shorthands">§2.4 Completion Records; ? and !</a>.</p>
+      <p>See also: <a href="#completion-records-and-shorthands">§ 2.4 Completion Records; ? and !</a>.</p>
      <dt data-md><dfn data-dfn-type="abstract-op" data-export id="abstract-opdef-stringcreate">StringCreate<a class="self-link" href="#abstract-opdef-stringcreate"></a></dfn> ( <var>value</var>, <var>prototype</var> ) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-stringcreate" id="ref-for-sec-stringcreate①">spec</a>)
      <dd data-md>
       <p>Returns a boxed <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-string-constructor-string-value" id="ref-for-sec-string-constructor-string-value④">String</a></code> Object corresponding to the String <var>value</var>, with the [[Prototype]] internal slot of the resulting object being <var>prototype</var>. Equivalent to <code class="highlight"><c- k>new</c-> <a class="idl-code" data-link-type="method" href="https://tc39.github.io/ecma262/#sec-string-constructor-string-value" id="ref-for-sec-string-constructor-string-value⑤">String</a><c- p>(</c->value<c- p>)</c-></code> if <var>prototype</var> is the <a class="idl-code" data-link-type="interface" href="https://tc39.github.io/ecma262/#sec-properties-of-the-string-prototype-object" id="ref-for-sec-properties-of-the-string-prototype-object">%StringPrototype%</a> of the <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#current-realm" id="ref-for-current-realm②">current realm</a>.</p>
@@ -2806,6 +2815,12 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
     <li><a href="#ref-for-current-realm">Common abstract operations</a> <a href="#ref-for-current-realm①">(2)</a> <a href="#ref-for-current-realm②">(3)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-sec-globalthis">
+   <a href="https://tc39.github.io/ecma262/#sec-globalthis">https://tc39.github.io/ecma262/#sec-globalthis</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-sec-globalthis">1.2. What belongs to the ECMAScript specification, and what does not</a> <a href="#ref-for-sec-globalthis①">(2)</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-sec-property-descriptor-specification-type">
    <a href="https://tc39.github.io/ecma262/#sec-property-descriptor-specification-type">https://tc39.github.io/ecma262/#sec-property-descriptor-specification-type</a><b>Referenced in:</b>
    <ul>
@@ -3005,6 +3020,7 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
      <li><span class="dfn-paneled" id="term-for-sec-typedarray-objects" style="color:initial">Uint8Array</span>
      <li><span class="dfn-paneled" id="term-for-sec-proxy-object-internal-methods-and-internal-slots-getprototypeof" style="color:initial">[[GetPrototypeOf]]</span>
      <li><span class="dfn-paneled" id="term-for-current-realm" style="color:initial">current realm</span>
+     <li><span class="dfn-paneled" id="term-for-sec-globalthis" style="color:initial">globalThis</span>
      <li><span class="dfn-paneled" id="term-for-sec-property-descriptor-specification-type" style="color:initial">property descriptor</span>
      <li><span class="dfn-paneled" id="term-for-sec-ecmascript-data-types-and-values①" style="color:initial">type</span>
     </ul>
@@ -3043,11 +3059,9 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
    <dt id="biblio-dom">[DOM]
    <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/">DOM Standard</a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-ecma-262">[ECMA-262]
-   <dd><a href="https://tc39.github.io/ecma262/">ECMAScript Language Specification</a>. URL: <a href="https://tc39.github.io/ecma262/">https://tc39.github.io/ecma262/</a>
+   <dd><a href="https://tc39.es/ecma262/">ECMAScript Language Specification</a>. URL: <a href="https://tc39.es/ecma262/">https://tc39.es/ecma262/</a>
    <dt id="biblio-ecma-262-2018">[ECMA-262-2018]
    <dd><a href="https://ecma-international.org/ecma-262/9.0/index.html">ECMAScript 2018 Language Specification</a>. URL: <a href="https://ecma-international.org/ecma-262/9.0/index.html">https://ecma-international.org/ecma-262/9.0/index.html</a>
-   <dt id="biblio-ecma-262-global">[ECMA-262-GLOBAL]
-   <dd><a href="https://github.com/tc39/proposal-global">tc39/proposal-global: ECMAScript Proposal, specs, and reference implementation for `global`</a>. URL: <a href="https://github.com/tc39/proposal-global">https://github.com/tc39/proposal-global</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-iso-16262-2011">[ISO-16262-2011]
