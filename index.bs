@@ -400,7 +400,7 @@ Instead, what I'm going to do is list some things that are commonly seen in Java
 </table>
 
 <div class=note>
-<sup>[1]</sup> The ECMAScript spec specifies the syntax of such declarations and what are supposed to mean, but does not specify how the module is loaded.
+<sup>[1]</sup> The ECMAScript spec specifies the syntax of such declarations and what they are supposed to mean, but does not specify how the module is loaded.
 
 <sup>[2]</sup> These things are available in both browsers and Node.js, but are non-standard. For Node.js, they are documented/specified by [=Node.js/globals|its documentation=]. For browsers, {{/console}} is specified by the Console Standard [[CONSOLE]], while the rest is specified by the HTML Standard [[HTML]].
 
