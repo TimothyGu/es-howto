@@ -283,7 +283,7 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
     "publisher": "Node.js Foundation"
   },
   "TC39": {
-    "href": "https://www.ecma-international.org/memento/TC39.htm",
+    "href": "https://www.ecma-international.org/memento/tc39.htm",
     "title": "TC39 - ECMAScript",
     "publisher": "Ecma International"
   },
