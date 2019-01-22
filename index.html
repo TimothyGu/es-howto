@@ -1212,9 +1212,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version db3f42f38318d417fb038711a846849b7a68ff34" name="generator">
+  <meta content="Bikeshed version 9c6ae748322940994300e90a77c34437364b40a6" name="generator">
   <link href="https://timothygu.me/es-howto/" rel="canonical">
-  <meta content="97c7f8165ba73b507688d7c08f82427608504d0d" name="document-revision">
+  <meta content="ccadfc17e20c982c27aad7baeb5c1bfaf8062145" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1472,7 +1472,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">How to Read the ECMAScript Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2018-09-09">9 September 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, <time class="dt-updated" datetime="2019-01-21">21 January 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1591,7 +1591,7 @@ Set <c- p>{}</c->
        <td><code class="idl highlight">console</code>, <code class="idl highlight">setTimeout<c- p>()</c-></code>, <code class="idl highlight">setInterval<c- p>()</c-></code>, <code class="idl highlight">clearTimeout<c- p>()</c-></code>, <code class="idl highlight">clearInterval<c- p>()</c-></code> 
        <td>✘<sup>[2]</sup> 
       <tr>
-       <td><code class="idl"><a data-link-type="idl" href="https://nodejs.org/api/buffer.html#buffer_class_buffer" id="ref-for-buffer_class_buffer">Buffer</a></code>, <code class="idl"><a data-link-type="idl" href="https://nodejs.org/api/globals.html#globals_process" id="ref-for-globals_process">process</a></code>, <code class="idl"><a data-link-type="idl" href="https://nodejs.org/api/globals.html#globals_global" id="ref-for-globals_global">global</a></code>*, <code class="idl"><a data-link-type="idl" href="https://nodejs.org/api/globals.html#globals_setimmediate_callback_args" id="ref-for-globals_setimmediate_callback_args">setImmediate()</a></code>, <code class="idl"><a data-link-type="idl" href="https://nodejs.org/api/globals.html#globals_clearimmediate_immediateobject" id="ref-for-globals_clearimmediate_immediateobject">clearImmediate()</a></code> 
+       <td><code class="idl"><a data-link-type="idl" href="https://nodejs.org/api/buffer.html#buffer_class_buffer" id="ref-for-buffer_class_buffer">Buffer</a></code>, <code class="idl"><a data-link-type="idl" href="https://nodejs.org/api/globals.html#globals_process" id="ref-for-globals_process">process</a></code>, <code class="idl"><a data-link-type="idl" href="https://nodejs.org/api/globals.html#globals_global" id="ref-for-globals_global">global</a></code>* 
        <td>✘<sup>[3]</sup> 
       <tr>
        <td><code class="idl"><a data-link-type="idl" href="https://nodejs.org/api/modules.html#modules_module" id="ref-for-modules_module">module</a></code>, <code class="idl"><a data-link-type="idl" href="https://nodejs.org/api/modules.html#modules_exports" id="ref-for-modules_exports">exports</a></code>, <code class="idl"><a data-link-type="idl" href="https://nodejs.org/api/modules.html#modules_require" id="ref-for-modules_require">require()</a></code>, <code class="idl"><a data-link-type="idl" href="https://nodejs.org/api/modules.html#modules_dirname" id="ref-for-modules_dirname">__dirname</a></code>, <code class="idl"><a data-link-type="idl" href="https://nodejs.org/api/modules.html#modules_filename" id="ref-for-modules_filename">__filename</a></code> 
@@ -1601,7 +1601,7 @@ Set <c- p>{}</c->
        <td>✘<sup>[5]</sup> 
     </table>
     <div class="note" role="note">
-      <sup>[1]</sup> The ECMAScript spec specifies the syntax of such declarations and what are supposed to mean, but does not specify how the module is loaded. 
+      <sup>[1]</sup> The ECMAScript spec specifies the syntax of such declarations and what they are supposed to mean, but does not specify how the module is loaded. 
      <p><sup>[2]</sup> These things are available in both browsers and Node.js, but are non-standard. For Node.js, they are documented/specified by <a data-link-type="dfn" href="https://nodejs.org/api/globals.html#globals_global_objects" id="ref-for-globals_global_objects">its documentation</a>. For browsers, <code class="idl"><a data-link-type="idl" href="https://console.spec.whatwg.org/#namespacedef-console" id="ref-for-namespacedef-console">console</a></code> is specified by the Console Standard <a data-link-type="biblio" href="#biblio-console">[CONSOLE]</a>, while the rest is specified by the HTML Standard <a data-link-type="biblio" href="#biblio-html">[HTML]</a>.</p>
      <p><sup>[3]</sup> These are all Node.js-only globals, documented/specified by <a data-link-type="dfn" href="https://nodejs.org/api/globals.html#globals_global_objects" id="ref-for-globals_global_objects①">its documentation</a>. * <code class="idl highlight">global</code> actually has a chance of becoming a part of ECMAScript and be implemented in browsers as well <a data-link-type="biblio" href="#biblio-ecma-262-global">[ECMA-262-GLOBAL]</a>.</p>
      <p><sup>[4]</sup> These are Node.js-only module-wide "globals", documented/specified by <a data-link-type="dfn" href="https://nodejs.org/api/modules.html#modules_modules" id="ref-for-modules_modules">its documentation</a>.</p>
@@ -2885,12 +2885,6 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
     <li><a href="#ref-for-modules_filename">1.2. What belongs to the ECMAScript specification, and what does not</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-globals_clearimmediate_immediateobject">
-   <a href="https://nodejs.org/api/globals.html#globals_clearimmediate_immediateobject">https://nodejs.org/api/globals.html#globals_clearimmediate_immediateobject</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-globals_clearimmediate_immediateobject">1.2. What belongs to the ECMAScript specification, and what does not</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="term-for-modules_exports">
    <a href="https://nodejs.org/api/modules.html#modules_exports">https://nodejs.org/api/modules.html#modules_exports</a><b>Referenced in:</b>
    <ul>
@@ -2931,12 +2925,6 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
    <a href="https://nodejs.org/api/modules.html#modules_require">https://nodejs.org/api/modules.html#modules_require</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-modules_require">1.2. What belongs to the ECMAScript specification, and what does not</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-globals_setimmediate_callback_args">
-   <a href="https://nodejs.org/api/globals.html#globals_setimmediate_callback_args">https://nodejs.org/api/globals.html#globals_setimmediate_callback_args</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-globals_setimmediate_callback_args">1.2. What belongs to the ECMAScript specification, and what does not</a>
    </ul>
   </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
@@ -3038,7 +3026,6 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
      <li><span class="dfn-paneled" id="term-for-buffer_class_buffer" style="color:initial">Buffer</span>
      <li><span class="dfn-paneled" id="term-for-modules_dirname" style="color:initial">__dirname</span>
      <li><span class="dfn-paneled" id="term-for-modules_filename" style="color:initial">__filename</span>
-     <li><span class="dfn-paneled" id="term-for-globals_clearimmediate_immediateobject" style="color:initial">clearImmediate()</span>
      <li><span class="dfn-paneled" id="term-for-modules_exports" style="color:initial">exports</span>
      <li><span class="dfn-paneled" id="term-for-globals_global" style="color:initial">global</span>
      <li><span class="dfn-paneled" id="term-for-globals_global_objects" style="color:initial">globals</span>
@@ -3046,7 +3033,6 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
      <li><span class="dfn-paneled" id="term-for-modules_modules" style="color:initial">modules</span>
      <li><span class="dfn-paneled" id="term-for-globals_process" style="color:initial">process</span>
      <li><span class="dfn-paneled" id="term-for-modules_require" style="color:initial">require()</span>
-     <li><span class="dfn-paneled" id="term-for-globals_setimmediate_callback_args" style="color:initial">setImmediate()</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
