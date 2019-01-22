@@ -404,7 +404,7 @@ Instead, what I'm going to do is list some things that are commonly seen in Java
 
 <sup>[2]</sup> These things are available in both browsers and Node.js, but are non-standard. For Node.js, they are documented/specified by [=Node.js/globals|its documentation=]. For browsers, {{/console}} is specified by the Console Standard [[CONSOLE]], while the rest is specified by the HTML Standard [[HTML]].
 
-<sup>[3]</sup> These are all Node.js-only globals, documented/specified by [=Node.js/globals|its documentation=]. \* Note that unliked <code class=idl>global</code>, <code class=idl>globalThis</code> actually has a chance of becoming a part of ECMAScript and be implemented in browsers as well [[ECMA-262-GLOBAL]].
+<sup>[3]</sup> These are all Node.js-only globals, documented/specified by [=Node.js/globals|its documentation=]. \* Note that unlike <code class=idl>global</code>, <code class=idl>globalThis</code> actually has a chance of becoming a part of ECMAScript and be implemented in browsers as well [[ECMA-262-GLOBAL]].
 
 <sup>[4]</sup> These are Node.js-only module-wide "globals", documented/specified by [=Node.js/modules|its documentation=].
 
