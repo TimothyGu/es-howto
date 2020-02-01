@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 37152ad9022478b169f6117a5dabcb1b2fd8a9ba" name="generator">
   <link href="https://timothygu.me/es-howto/" rel="canonical">
-  <meta content="5e923ea190b885b01b22af995872d85e40177f36" name="document-revision">
+  <meta content="224fe0eb1bed160c1779735587677aa389496815" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1710,12 +1710,13 @@ Set <c- p>{}</c->
      <p>When <code class="idl highlight">Boolean</code> is called with argument <var>value</var>, the following steps are taken:</p>
      <ol>
       <li data-md>
-       <p>Let <var>b</var> be <a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-toboolean" id="ref-for-sec-toboolean">ToBoolean</a>(<var>value</var>).</p>
+       <p>Let <var>b</var> be ! <a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-toboolean" id="ref-for-sec-toboolean">ToBoolean</a>(<var>value</var>).</p>
       <li data-md>
        <p>...</p>
      </ol>
     </div>
     <p>That "ToBoolean" function is called an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="abstract-operation">abstract operation</dfn>: it’s abstract because it is not actually exposed as a function to JavaScript code. It is simply a notation spec writers invented to allow them to not write the same things over and over again.</p>
+    <p class="note" role="note"><span>Note:</span> For now, don’t worry about the ! that comes before ToBoolean. We’ll talk about it later, in [[##completion-records-and-shorthands]].</p>
     <p class="note" role="note">Further reading: <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-algorithm-conventions-abstract-operations" id="ref-for-sec-algorithm-conventions-abstract-operations">§5.2.1 Abstract Operations</a></p>
     <h3 class="heading settled" data-level="2.3" id="what-is-this"><span class="secno">2.3. </span><span class="content">What is [[This]]</span><a class="self-link" href="#what-is-this"></a></h3>
     <p>From time to time, you may see the <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="double brackets notation" data-noexport id="double-brackets-notation">[[Notation]]</dfn> being used like "Let <var>proto</var> be <var>obj</var>.[[Prototype]]." This notation can technically mean several different things depending on the context in which it appears, but you would go a long way with the understanding that this notation refers to some internal property that is not observable through JavaScript code.</p>
@@ -1860,15 +1861,15 @@ Set <c- p>{}</c->
     </div>
     <div class="advisement no-marker">
      <div class="marker">CAUTION</div>
-     <p>The <a data-link-type="dfn" href="#exclamation-mark" id="ref-for-exclamation-mark②">!</a> can admittedly become pretty confusing if it is part of a comparison:</p>
+     <p>The <a data-link-type="dfn" href="#exclamation-mark" id="ref-for-exclamation-mark②">!</a> can admittedly become pretty confusing if it looks like a valid JavaScript expression:</p>
      <blockquote>
-      <ol start="5">
+      <ol>
        <li data-md>
-        <p>..., return the result of the comparison ! <a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-tonumber" id="ref-for-sec-tonumber">ToNumber</a>(<var>x</var>) == <var>y</var>.</p>
+        <p>Let <var>b</var> be ! <a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-toboolean" id="ref-for-sec-toboolean①">ToBoolean</a>(<var>value</var>).</p>
       </ol>
-      <p><cite>— Excerpted from <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-abstract-equality-comparison" id="ref-for-sec-abstract-equality-comparison">§7.2.15 Abstract Equality Comparison</a>.</cite></p>
+      <p><cite>— Excerpted from <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/#sec-boolean-constructor-boolean-value" id="ref-for-sec-boolean-constructor-boolean-value①">Boolean()</a></code>.</cite></p>
      </blockquote>
-     <p>Here, the <a data-link-type="dfn" href="#exclamation-mark" id="ref-for-exclamation-mark③">!</a> just means that we are certain that this call to <a data-link-type="abstract-op" href="#abstract-opdef-tonumber" id="ref-for-abstract-opdef-tonumber">ToNumber</a> will never return an exception, <em>not</em> that the comparison is inverted!</p>
+     <p>Here, the <a data-link-type="dfn" href="#exclamation-mark" id="ref-for-exclamation-mark③">!</a> just means that we are certain that this call to <a data-link-type="abstract-op" href="#abstract-opdef-toboolean" id="ref-for-abstract-opdef-toboolean">ToBoolean</a> will never return an exception, <em>not</em> that the result is inverted!</p>
     </div>
     <p class="note" role="note">Further reading: <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-returnifabrupt-shorthands" id="ref-for-sec-returnifabrupt-shorthands">§5.2.3.4 ReturnIfAbrupt Shorthands</a>.</p>
     <h3 class="heading settled" data-level="2.5" id="javascript-objects"><span class="secno">2.5. </span><span class="content">JavaScript Objects</span><a class="self-link" href="#javascript-objects"></a></h3>
@@ -1985,16 +1986,16 @@ Set <c- p>{}</c->
     <h3 class="heading settled" data-level="2.7" id="example-can-boolean-and-string-ever-throw-exceptions"><span class="secno">2.7. </span><span class="content">Example: Can <code class="idl highlight">Boolean<c- p>()</c-></code> and <code class="idl highlight">String<c- p>()</c-></code> ever throw exceptions?</span><a class="self-link" href="#example-can-boolean-and-string-ever-throw-exceptions"></a></h3>
     <p>When writing mission-critical code, one must put exception handling at the forefront in programming. As such, the question of "can <em>some built-in function</em> ever throw an exception?" may be oft-pondered.</p>
     <p>In this example, we shall try to answer this question for two language built-in functions, <code class="idl highlight">Boolean<c- p>()</c-></code> and <code class="idl highlight">String<c- p>()</c-></code>. We will only look at direct calls to those functions, not the cases of <code class="highlight"><c- k>new</c-> Boolean<c- p>()</c-></code> and <code class="highlight"><c- k>new</c-> String<c- p>()</c-></code> which form boxed objects – easily one of the <a href="https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch3.md#object-wrapper-gotchas">most undesirable features in JavaScript</a> and a very much discouraged practice in pretty much all JS style guides out there <a data-link-type="biblio" href="#biblio-ydkjs">[YDKJS]</a>.</p>
-    <p>After navigating to the section for <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/#sec-boolean-constructor-boolean-value" id="ref-for-sec-boolean-constructor-boolean-value①">Boolean()</a></code> in the spec, we see that the algorithm seems to be fairly short:</p>
+    <p>After navigating to the section for <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/#sec-boolean-constructor-boolean-value" id="ref-for-sec-boolean-constructor-boolean-value②">Boolean()</a></code> in the spec, we see that the algorithm seems to be fairly short:</p>
     <div class="algorithm" data-algorithm="to execute Boolean()">
      <p>When <code class="idl highlight">Boolean</code> is called with argument <var>value</var>, the following steps are taken:</p>
      <ol>
       <li data-md>
-       <p>Let <var>b</var> be <a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-toboolean" id="ref-for-sec-toboolean①">ToBoolean</a>(<var>value</var>).</p>
+       <p>Let <var>b</var> be ! <a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-toboolean" id="ref-for-sec-toboolean②">ToBoolean</a>(<var>value</var>).</p>
       <li data-md>
        <p>If NewTarget is <strong>undefined</strong>, return <var>b</var>.</p>
       <li data-md>
-       <p>Let <var>O</var> be ? <a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-ordinarycreatefromconstructor" id="ref-for-sec-ordinarycreatefromconstructor">OrdinaryCreateFromConstructor</a>(NewTarget, <code class="highlight"><c- u>"%BooleanPrototype%"</c-></code>, « [[BooleanData]] »).</p>
+       <p>Let <var>O</var> be ? <a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-ordinarycreatefromconstructor" id="ref-for-sec-ordinarycreatefromconstructor">OrdinaryCreateFromConstructor</a>(NewTarget, <strong>"%BooleanPrototype%"</strong>, « [[BooleanData]] »).</p>
       <li data-md>
        <p>Set <var>O</var>.[[BooleanData]] to <var>b</var>.</p>
       <li data-md>
@@ -2026,7 +2027,7 @@ Set <c- p>{}</c->
        <p>Return ? <a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-stringcreate" id="ref-for-sec-stringcreate">StringCreate</a>(<var>s</var>, ? <a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-getprototypefromconstructor" id="ref-for-sec-getprototypefromconstructor">GetPrototypeFromConstructor</a>(NewTarget, <code class="highlight"><c- u>"%StringPrototype%"</c-></code>)).</p>
      </ol>
     </div>
-    <p>From our experience with doing the same kind of analysis with the <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/#sec-boolean-constructor-boolean-value" id="ref-for-sec-boolean-constructor-boolean-value②">Boolean()</a></code> function, we know that <a data-link-type="abstract-op" href="#abstract-opdef-newtarget" id="ref-for-abstract-opdef-newtarget②">NewTarget</a> will always be <strong>undefined</strong> for our case, and therefore the last step can be skipped from our consideration. We also know that <a data-link-type="abstract-op" href="#abstract-opdef-type" id="ref-for-abstract-opdef-type">Type</a> and <a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-symboldescriptivestring" id="ref-for-sec-symboldescriptivestring①">SymbolDescriptiveString</a> are safe as well, since abrupt completions are not handled for either of them. Yet, there is still a tell-tale <a data-link-type="dfn" href="#question-mark" id="ref-for-question-mark⑧">?</a> preceding the call to the <a data-link-type="abstract-op" href="#abstract-opdef-tostring" id="ref-for-abstract-opdef-tostring">ToString</a> <a data-link-type="dfn" href="#abstract-operation" id="ref-for-abstract-operation⑦">abstract operation</a>. Let’s take a closer look.</p>
+    <p>From our experience with doing the same kind of analysis with the <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/#sec-boolean-constructor-boolean-value" id="ref-for-sec-boolean-constructor-boolean-value③">Boolean()</a></code> function, we know that <a data-link-type="abstract-op" href="#abstract-opdef-newtarget" id="ref-for-abstract-opdef-newtarget②">NewTarget</a> will always be <strong>undefined</strong> for our case, and therefore the last step can be skipped from our consideration. We also know that <a data-link-type="abstract-op" href="#abstract-opdef-type" id="ref-for-abstract-opdef-type">Type</a> and <a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-symboldescriptivestring" id="ref-for-sec-symboldescriptivestring①">SymbolDescriptiveString</a> are safe as well, since abrupt completions are not handled for either of them. Yet, there is still a tell-tale <a data-link-type="dfn" href="#question-mark" id="ref-for-question-mark⑧">?</a> preceding the call to the <a data-link-type="abstract-op" href="#abstract-opdef-tostring" id="ref-for-abstract-opdef-tostring">ToString</a> <a data-link-type="dfn" href="#abstract-operation" id="ref-for-abstract-operation⑦">abstract operation</a>. Let’s take a closer look.</p>
     <p>Like <a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-requireobjectcoercible" id="ref-for-sec-requireobjectcoercible⑤">RequireObjectCoercible</a> we looked at earlier, <a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-tostring" id="ref-for-sec-tostring①">ToString</a>(<var>argument</var>) is also defined with a table:</p>
     <blockquote>
      <table class="data">
@@ -2186,12 +2187,12 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
      <dt data-md><dfn data-dfn-type="abstract-op" data-export id="abstract-opdef-stringcreate">StringCreate<a class="self-link" href="#abstract-opdef-stringcreate"></a></dfn> ( <var>value</var>, <var>prototype</var> ) (<a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-stringcreate" id="ref-for-sec-stringcreate①">spec</a>)
      <dd data-md>
       <p>Returns a boxed <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/#sec-string-constructor-string-value" id="ref-for-sec-string-constructor-string-value④">String</a></code> Object corresponding to the String <var>value</var>, with the [[Prototype]] internal slot of the resulting object being <var>prototype</var>. Equivalent to <code class="highlight"><c- k>new</c-> <a class="idl-code" data-link-type="method" href="https://tc39.es/ecma262/#sec-string-constructor-string-value" id="ref-for-sec-string-constructor-string-value⑤">String</a><c- p>(</c->value<c- p>)</c-></code> if <var>prototype</var> is the <a class="idl-code" data-link-type="interface" href="https://tc39.es/ecma262/#sec-properties-of-the-string-prototype-object" id="ref-for-sec-properties-of-the-string-prototype-object">%StringPrototype%</a> of the <a data-link-type="dfn" href="https://tc39.es/ecma262/#current-realm" id="ref-for-current-realm②">current realm</a>.</p>
-     <dt data-md><dfn data-dfn-type="abstract-op" data-export id="abstract-opdef-toboolean">ToBoolean<a class="self-link" href="#abstract-opdef-toboolean"></a></dfn> ( <var>argument</var> ) (<a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-toboolean" id="ref-for-sec-toboolean②">spec</a>)
+     <dt data-md><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-toboolean">ToBoolean</dfn> ( <var>argument</var> ) (<a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-toboolean" id="ref-for-sec-toboolean③">spec</a>)
      <dd data-md>
       <p>Returns <var>argument</var> coerced to a Boolean. Equivalent to <code class="highlight"><c- o>!!</c-><var>argument</var></code>.</p>
      <dt data-md><dfn data-dfn-type="abstract-op" data-export id="abstract-opdef-tointeger">ToInteger<a class="self-link" href="#abstract-opdef-tointeger"></a></dfn> ( <var>argument</var> ) (<a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-tointeger" id="ref-for-sec-tointeger">spec</a>)
      <dd data-md>
-      <p>Returns <a data-link-type="abstract-op" href="#abstract-opdef-tonumber" id="ref-for-abstract-opdef-tonumber①">ToNumber</a>(<var>argument</var>), then truncated (i.e., rounded to 0) to become an integer. Equivalent to <code class="highlight"><a class="idl-code" data-link-type="method" href="https://tc39.es/ecma262/#sec-math.trunc" id="ref-for-sec-math.trunc">Math<c- p>.</c->trunc</a><c- p>(</c-><var>argument</var><c- p>)</c-></code>.</p>
+      <p>Returns <a data-link-type="abstract-op" href="#abstract-opdef-tonumber" id="ref-for-abstract-opdef-tonumber">ToNumber</a>(<var>argument</var>), then truncated (i.e., rounded to 0) to become an integer. Equivalent to <code class="highlight"><a class="idl-code" data-link-type="method" href="https://tc39.es/ecma262/#sec-math.trunc" id="ref-for-sec-math.trunc">Math<c- p>.</c->trunc</a><c- p>(</c-><var>argument</var><c- p>)</c-></code>.</p>
      <dt data-md><dfn data-dfn-type="abstract-op" data-export id="abstract-opdef-toint8">ToInt8<a class="self-link" href="#abstract-opdef-toint8"></a></dfn> ( <var>argument</var> ) (<a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-toint8" id="ref-for-sec-toint8">spec</a>)
      <dt data-md><dfn data-dfn-type="abstract-op" data-export id="abstract-opdef-touint8">ToUint8<a class="self-link" href="#abstract-opdef-touint8"></a></dfn> ( <var>argument</var> ) (<a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-touint8" id="ref-for-sec-touint8">spec</a>)
      <dt data-md><dfn data-dfn-type="abstract-op" data-export id="abstract-opdef-toint16">ToInt16<a class="self-link" href="#abstract-opdef-toint16"></a></dfn> ( <var>argument</var> ) (<a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-toint16" id="ref-for-sec-toint16">spec</a>)
@@ -2203,7 +2204,7 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
      <dt data-md><dfn data-dfn-type="abstract-op" data-export id="abstract-opdef-touint8clamp">ToUint8Clamp<a class="self-link" href="#abstract-opdef-touint8clamp"></a></dfn> ( <var>argument</var> ) (<a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-touint8clamp" id="ref-for-sec-touint8clamp">spec</a>)
      <dd data-md>
       <p>Returns <var>argument</var> converted to an integer of the range [0, 255] using rounding and clamping.</p>
-     <dt data-md><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-tonumber">ToNumber</dfn> ( <var>argument</var> ) (<a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-tonumber" id="ref-for-sec-tonumber①">spec</a>)
+     <dt data-md><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-tonumber">ToNumber</dfn> ( <var>argument</var> ) (<a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-tonumber" id="ref-for-sec-tonumber">spec</a>)
      <dd data-md>
       <p>Returns <var>argument</var> coerced to a Number. Equivalent to <code class="highlight"><c- o>+</c-><var>argument</var></code>.</p>
      <dt data-md><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-toobject">ToObject</dfn> ( <var>argument</var> ) (<a data-link-type="abstract-op" href="https://tc39.es/ecma262/#sec-toobject" id="ref-for-sec-toobject">spec</a>)
@@ -2463,7 +2464,8 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
    <a href="https://tc39.es/ecma262/#sec-boolean-constructor-boolean-value">https://tc39.es/ecma262/#sec-boolean-constructor-boolean-value</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-sec-boolean-constructor-boolean-value">2.2. Abstract operations</a>
-    <li><a href="#ref-for-sec-boolean-constructor-boolean-value①">2.7. Example: Can Boolean() and String() ever throw exceptions?</a> <a href="#ref-for-sec-boolean-constructor-boolean-value②">(2)</a>
+    <li><a href="#ref-for-sec-boolean-constructor-boolean-value①">2.4. Completion Records; ? and !</a>
+    <li><a href="#ref-for-sec-boolean-constructor-boolean-value②">2.7. Example: Can Boolean() and String() ever throw exceptions?</a> <a href="#ref-for-sec-boolean-constructor-boolean-value③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-sec-call">
@@ -2711,8 +2713,9 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
    <a href="https://tc39.es/ecma262/#sec-toboolean">https://tc39.es/ecma262/#sec-toboolean</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-sec-toboolean">2.2. Abstract operations</a>
-    <li><a href="#ref-for-sec-toboolean①">2.7. Example: Can Boolean() and String() ever throw exceptions?</a>
-    <li><a href="#ref-for-sec-toboolean②">Common abstract operations</a>
+    <li><a href="#ref-for-sec-toboolean①">2.4. Completion Records; ? and !</a>
+    <li><a href="#ref-for-sec-toboolean②">2.7. Example: Can Boolean() and String() ever throw exceptions?</a>
+    <li><a href="#ref-for-sec-toboolean③">Common abstract operations</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-sec-toint16">
@@ -2742,8 +2745,7 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
   <aside class="dfn-panel" data-for="term-for-sec-tonumber">
    <a href="https://tc39.es/ecma262/#sec-tonumber">https://tc39.es/ecma262/#sec-tonumber</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-sec-tonumber">2.4. Completion Records; ? and !</a>
-    <li><a href="#ref-for-sec-tonumber①">Common abstract operations</a>
+    <li><a href="#ref-for-sec-tonumber">Common abstract operations</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-sec-toobject">
@@ -3275,11 +3277,16 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
     <li><a href="#ref-for-abstract-opdef-returnifabrupt">2.4. Completion Records; ? and !</a> <a href="#ref-for-abstract-opdef-returnifabrupt①">(2)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="abstract-opdef-toboolean">
+   <b><a href="#abstract-opdef-toboolean">#abstract-opdef-toboolean</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-opdef-toboolean">2.4. Completion Records; ? and !</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="abstract-opdef-tonumber">
    <b><a href="#abstract-opdef-tonumber">#abstract-opdef-tonumber</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-abstract-opdef-tonumber">2.4. Completion Records; ? and !</a>
-    <li><a href="#ref-for-abstract-opdef-tonumber①">Common abstract operations</a>
+    <li><a href="#ref-for-abstract-opdef-tonumber">Common abstract operations</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="abstract-opdef-toobject">

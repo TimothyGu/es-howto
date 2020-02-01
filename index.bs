@@ -67,7 +67,6 @@ urlPrefix: https://tc39.es/ecma262/; for: ECMA-262; type: dfn
   text: §6.1.7.2 Object Internal Methods and Internal Slots; url: sec-object-internal-methods-and-internal-slots
   text: §6.2.1 The List and Record Specification Types; url: sec-list-and-record-specification-type
   text: §6.2.3 The Completion Record Specification Type; url: sec-completion-record-specification-type
-  text: §7.2.15 Abstract Equality Comparison; url: sec-abstract-equality-comparison
   text: §9 Ordinary and Exotic Objects Behaviours; url: sec-ordinary-and-exotic-objects-behaviours
   text: §9.1 Ordinary Object Internal Methods and Internal Slots; url: sec-ordinary-object-internal-methods-and-internal-slots
   text: §9.1.8 [[Get]] ( P, Receiver ); url: sec-ordinary-object-internal-methods-and-internal-slots-get-p-receiver
@@ -486,12 +485,14 @@ You will sometimes see a function-like thing being called in the spec. The first
 
 When <code class=idl>Boolean</code> is called with argument |value|, the following steps are taken:
 
-1.  Let <var ignore>b</var> be [$ECMAScript/ToBoolean$](|value|).
+1.  Let <var ignore>b</var> be ! [$ECMAScript/ToBoolean$](|value|).
 1.  ...
 
 </div>
 
 That "ToBoolean" function is called an <dfn>abstract operation</dfn>: it's abstract because it is not actually exposed as a function to JavaScript code. It is simply a notation spec writers invented to allow them to not write the same things over and over again.
+
+Note: For now, don't worry about the ! that comes before ToBoolean. We'll talk about it later, in [[##completion-records-and-shorthands]].
 
 <p class=note>Further reading: [=§5.2.1 Abstract Operations=]</p>
 
@@ -683,13 +684,13 @@ A few steps that call an abstract operation that cannot ever throw <strong><em>w
 
 <div class=advisement heading=CAUTION>
 
-The [=!=] can admittedly become pretty confusing if it is part of a comparison:
+The [=!=] can admittedly become pretty confusing if it looks like a valid JavaScript expression:
 
-> 5.  ..., return the result of the comparison ! [$ECMAScript/ToNumber$](<var ignore>x</var>) == <var ignore>y</var>.
+> 1.  Let <var ignore>b</var> be ! [$ECMAScript/ToBoolean$](|value|).
 >
-> <cite>— Excerpted from [=§7.2.15 Abstract Equality Comparison=].</cite>
+> <cite>— Excerpted from {{Boolean()}}.</cite>
 
-Here, the [=!=] just means that we are certain that this call to [$ToNumber$] will never return an exception, *not* that the comparison is inverted!
+Here, the [=!=] just means that we are certain that this call to [$ToBoolean$] will never return an exception, *not* that the result is inverted!
 
 </div>
 
@@ -854,9 +855,9 @@ After navigating to the section for {{ECMAScript/Boolean()}} in the spec, we see
 
 When <code class=idl>Boolean</code> is called with argument |value|, the following steps are taken:
 
-1.  Let |b| be [$ECMAScript/ToBoolean$](|value|).
+1.  Let |b| be ! [$ECMAScript/ToBoolean$](|value|).
 1.  If NewTarget is **undefined**, return |b|.
-1.  Let |O| be ? [$ECMAScript/OrdinaryCreateFromConstructor$](NewTarget, `"%BooleanPrototype%"`, « \[[BooleanData]] »).
+1.  Let |O| be ? [$ECMAScript/OrdinaryCreateFromConstructor$](NewTarget, **"%BooleanPrototype%"**, « \[[BooleanData]] »).
 1.  Set |O|.\[[BooleanData]] to |b|.
 1.  Return |O|.
 
