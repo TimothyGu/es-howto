@@ -59,7 +59,7 @@ urlPrefix: https://nodejs.org/api/; spec: NODEJS; for: Node.js
     for: NodeJSModuleScope; urlPrefix: modules.html
       text: require(); url: #modules_require
 
-urlPrefix: https://tc39.github.io/ecma262/; for: ECMA-262; type: dfn
+urlPrefix: https://tc39.es/ecma262/; for: ECMA-262; type: dfn
   text: §5 Notational Conventions; url: sec-notational-conventions
   text: §5.2 Algorithm Conventions; url: sec-algorithm-conventions
   text: §5.2.1 Abstract Operations; url: sec-algorithm-conventions-abstract-operations
@@ -67,7 +67,7 @@ urlPrefix: https://tc39.github.io/ecma262/; for: ECMA-262; type: dfn
   text: §6.1.7.2 Object Internal Methods and Internal Slots; url: sec-object-internal-methods-and-internal-slots
   text: §6.2.1 The List and Record Specification Types; url: sec-list-and-record-specification-type
   text: §6.2.3 The Completion Record Specification Type; url: sec-completion-record-specification-type
-  text: §7.2.14 Abstract Equality Comparison; url: sec-abstract-equality-comparison
+  text: §7.2.15 Abstract Equality Comparison; url: sec-abstract-equality-comparison
   text: §9 Ordinary and Exotic Objects Behaviours; url: sec-ordinary-and-exotic-objects-behaviours
   text: §9.1 Ordinary Object Internal Methods and Internal Slots; url: sec-ordinary-object-internal-methods-and-internal-slots
   text: §9.1.8 [[Get]] ( P, Receiver ); url: sec-ordinary-object-internal-methods-and-internal-slots-get-p-receiver
@@ -79,11 +79,11 @@ urlPrefix: https://tc39.github.io/ecma262/; for: ECMA-262; type: dfn
   text: §13.7 Iteration Statements; url: sec-iteration-statements
   text: §15 ECMAScript Language: Scripts and Modules; url: sec-ecmascript-language-scripts-and-modules
   text: §18 The Global Object; url: sec-global-object
-  text: §21.1.3.21 String.prototype.substring ( start, end ); url: sec-string.prototype.substring
+  text: §21.1.3.22 String.prototype.substring ( start, end ); url: sec-string.prototype.substring
   text: §26 Reflection; url: sec-reflection
   text: §B.3.7 The [[IsHTMLDDA]] Internal Slot; url: sec-IsHTMLDDA-internal-slot
 
-urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
+urlPrefix: https://tc39.es/ecma262/; spec: ECMA-262; for: ECMAScript
   type: interface
     text: Array; url: sec-array-objects
     text: ArrayBuffer; url: sec-arraybuffer-objects
@@ -248,16 +248,17 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
 
 <pre class=biblio>
 {
-  "ECMA-262-2018": {
-    "href": "https://ecma-international.org/ecma-262/9.0/index.html",
-    "title": "ECMAScript 2018 Language Specification",
+  "ECMA-262-2019": {
+    "href": "https://ecma-international.org/ecma-262/10.0/",
+    "title": "ECMAScript 2019 Language Specification",
     "publisher": "Ecma International",
-    "rawDate": "June 2018"
+    "rawDate": "June 2019"
   },
-  "ISO-16262-2011": {
-    "href": "https://www.iso.org/standard/55755.html",
-    "title": "ISO/IEC 16262:2011 - Information technology – Programming languages, their environments and system software interfaces – ECMAScript language specification",
-    "publisher": "ISO/IEC"
+  "ISO-22275-2018": {
+    "href": "https://www.iso.org/standard/73002.html",
+    "title": "ISO/IEC 22275:2018 - Information technology — Programming languages, their environments, and system software interfaces — ECMAScript® Specification Suite",
+    "publisher": "ISO/IEC",
+    "rawDate": "May 2018"
   },
   "JOHNNY-FIVE": {
     "href": "http://johnny-five.io/",
@@ -272,11 +273,6 @@ urlPrefix: https://tc39.github.io/ecma262/; spec: ECMA-262; for: ECMAScript
   "NODEJS": {
     "href": "https://nodejs.org/",
     "title": "Node.js",
-    "publisher": "Node.js Foundation"
-  },
-  "NODEJS-NASA": {
-    "href": "https://foundation.nodejs.org/wp-content/uploads/sites/50/2017/09/Node_CaseStudy_Nasa_FNL.pdf",
-    "title": "Node.js Helps NASA Keep Astronauts Safe and Data Accessible",
     "publisher": "Node.js Foundation"
   },
   "TC39": {
@@ -323,7 +319,7 @@ Note: In this document, I will only use the term "ECMAScript" to refer to the sp
 
 ## Why should I read the ECMAScript specification ## {#why-should-i-read-the-ecmascript-specification}
 
-The ECMAScript specification is the authoritative source of the behavior of all JavaScript implementations, whether it be in your browser [[WHATISMYBROWSER]], on your server through Node.js [[NODEJS]], in spacesuits [[NODEJS-NASA]], or on your IoT device [[JOHNNY-FIVE]]. All developers of JavaScript engines depend on the spec to make sure their shiny new feature works as intended, in the same way other JavaScript engines do.
+The ECMAScript specification is the authoritative source of the behavior of all JavaScript implementations, whether it be in your browser [[WHATISMYBROWSER]], on your server through Node.js [[NODEJS]], or on your IoT device [[JOHNNY-FIVE]]. All developers of JavaScript engines depend on the spec to make sure their shiny new feature works as intended, in the same way other JavaScript engines do.
 
 But I claim that the utility of the spec extends beyond the mythical creatures known as "developers of JavaScript engines." In fact, I say that **it is useful to you, the average JavaScript coder, and you just haven't realized it.**
 
@@ -412,17 +408,17 @@ Instead, what I'm going to do is list some things that are commonly seen in Java
 
 When you <a href="https://www.google.com/search?q=ecmascript+specification">Google "ECMAScript specification"</a> you see *so many results,* all claiming to be the legitimate specification. Which one should you read??
 
-**Tl;dr, more likely than not, the specification published at tc39.github.io/ecma262/ is the one you want** [[ECMA-262]].
+**Tl;dr, more likely than not, the specification published at tc39.es/ecma262/ is the one you want** [[ECMA-262]].
 
 Long version:
 
-The ECMAScript language specification is developed by a group of people from diverse backgrounds, known as the Ecma International Technical Committee 39 (or as they are more familiarly known, TC39 [[TC39]]). TC39 maintains the latest specification for the ECMAScript language at tc39.github.io [[ECMA-262]].
+The ECMAScript language specification is developed by a group of people from diverse backgrounds, known as the Ecma International Technical Committee 39 (or as they are more familiarly known, TC39 [[TC39]]). TC39 maintains the latest specification for the ECMAScript language at tc39.es [[ECMA-262]].
 
-What complicates the matter is that, every year, TC39 picks a point in time to take a snapshot of the spec to become the ECMAScript Language *Standard* of that year, along with an edition number. For example, the *ECMAScript® 2018 Language Specification (ECMA-262, 9th edition)* [[ECMA-262-2018]] (popularly known as ES9) is simply the spec as seen at tc39.github.io [[ECMA-262]] in June 2018, put into formaldehyde, properly shrinkwrapped and PDFified for the permanent archives.
+What complicates the matter is that, every year, TC39 picks a point in time to take a snapshot of the spec to become the ECMAScript Language *Standard* of that year, along with an edition number. For example, the <cite>ECMAScript® 2019 Language Specification (ECMA-262, 10<sup>th</sup> edition)</cite> [[ECMA-262-2019]] (popularly known as ES10 or ES2019) is simply the spec as seen at tc39.es [[ECMA-262]] in June 2019, put into formaldehyde, properly shrinkwrapped and PDFified for the permanent archives.
 
-Because of that, unless you want your web application to run on only browsers from June 2018 that are put into formaldehyde, properly shrinkwrapped, and PDFified for the permanent archives, you want to always look at the latest spec at tc39.github.io [[ECMA-262]]. But if you want to (or have to) support older browsers or Node.js versions, then referencing the older specifications may help.
+Because of that, unless you want your web application to run on only browsers from June 2019 that are put into formaldehyde, properly shrinkwrapped, and PDFified for the permanent archives, you want to always look at the latest spec at tc39.es [[ECMA-262]]. But if you want to (or have to) support older browsers or Node.js versions, then referencing the older specifications may help.
 
-Note: The ISO/IEC also republishes the ECMAScript Language Standard as ISO/IEC 16262 [[ISO-16262-2011]]. Don't worry about it though, since the text of the standard is exactly the same as the standard Ecma International publishes – the only difference being that you have to pay <a href="https://www.google.com/search?q=198+swiss+francs+in+my+currency">198 Swiss Francs</a>.
+Note: The ISO/IEC also republishes the ECMAScript Language Standard as ISO/IEC 22275 [[ISO-22275-2018]]. Don't worry about it though, since the standard is basically a hyperlink to [[ECMA-262]].
 
 ## Navigating the spec ## {#navigating-the-spec}
 
@@ -691,7 +687,7 @@ The [=!=] can admittedly become pretty confusing if it is part of a comparison:
 
 > 5.  ..., return the result of the comparison ! [$ECMAScript/ToNumber$](<var ignore>x</var>) == <var ignore>y</var>.
 >
-> <cite>— Excerpted from [=§7.2.14 Abstract Equality Comparison=].</cite>
+> <cite>— Excerpted from [=§7.2.15 Abstract Equality Comparison=].</cite>
 
 Here, the [=!=] just means that we are certain that this call to [$ToNumber$] will never return an exception, *not* that the comparison is inverted!
 
@@ -794,7 +790,7 @@ This is a pretty tricky question. It seems that there are two plausible outcomes
 
 Unfortunately, <a method for=MDN lt="String.prototype.substring()">MDN</a> also doesn't really offer any insights on how the function behaves when the **this** value isn't a string.
 
-*Spec to the rescue!* After typing in `substring` in the search box in the top-left corner on the spec [[ECMA-262]], we arrive at <a>§21.1.3.21 String.prototype.substring ( <var ignore>start</var>, <var ignore>end</var> )</a>, which is the normative specification of how the function works.
+*Spec to the rescue!* After typing in `substring` in the search box in the top-left corner on the spec [[ECMA-262]], we arrive at <a>§21.1.3.22 String.prototype.substring ( <var ignore>start</var>, <var ignore>end</var> )</a>, which is the normative specification of how the function works.
 
 Before reading the algorithm steps, let's think about what we know first. I assume we have a basic understanding of how `str.substring()` ordinarily works, which is to return a part of the given string. What we are not really sure of right now, is how it acts with the **this** value being **undefined**. So, we would specifically look for algorithm steps that address the **this** value.
 
