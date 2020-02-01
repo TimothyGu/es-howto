@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 37152ad9022478b169f6117a5dabcb1b2fd8a9ba" name="generator">
   <link href="https://timothygu.me/es-howto/" rel="canonical">
-  <meta content="6419072b1c5cc3b3d91a07ffc4f2645cee1bb54d" name="document-revision">
+  <meta content="0b4b7b4fb802f4d0dc25120ac88805f3eff84fbf" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1575,7 +1575,7 @@ Set <c- p>{}</c->
 </pre>
     <p>and are very confused why a method works on its prototype, but another method does not work on <em>its</em> prototype. <a href="https://www.google.com/search?q=array+prototype+push+on+prototype">Google unfortunately always fails when you need it the most</a>, and <a href="https://stackoverflow.com/search?q=array+prototype+push+on+prototype">so does the ever-helpful Stack Overflow</a>.</p>
     <p>Reading the spec can help.</p>
-    <p>Or, you might wonder just how the heck does the notorious <a data-link-type="dfn" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators#Equality_operators" id="ref-for-Equality_operators">loose equality operator</a> (<code class="highlight"><c- o>==</c-></code>) actually function (using the word "function" <em>loosely</em> here <a data-link-type="biblio" href="#biblio-wat">[WAT]</a>). Ever the studious software engineer, you look it up on MDN, only to find its <a data-link-type="dfn" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators#Using_the_Equality_Operators" id="ref-for-Using_the_Equality_Operators">paragraphs of explanation</a> hurt your eyes more than they help.</p>
+    <p>Or, you might wonder just how the heck does the notorious <a data-link-type="dfn" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators#Equality_operators" id="ref-for-Equality_operators">loose equality operator</a> (<code class="highlight"><c- o>==</c-></code>) actually function (using the word "function" <em>loosely</em> here <a data-link-type="biblio" href="#biblio-wat">[WAT]</a>). Ever the studious software engineer, you look it up on MDN, only to find its <a data-link-type="dfn" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators#Using_the_Equality_Operators" id="ref-for-Using_the_Equality_Operators">paragraphs of explanation</a> hurt your eyes more than they help <a data-link-type="biblio" href="#biblio-mdn">[MDN]</a>.</p>
     <p>Reading the spec can help.</p>
     <p>On the other hand, I do not recommend reading the ECMAScript specification to developers new to JavaScript. If you are new to JavaScript, then play around with the web! build some web apps! or some JavaScript-based nannycams! or anything! and consider returning to this document when you have either experienced enough JavaScript warts or gotten rich enough to not have to worry about JavaScript.</p>
     <p>Okay, now you know specifications can be very helpful tools in helping you understand the intricacies in a language or platform. But what exactly falls into in the realm of the ECMAScript specification?</p>
@@ -1715,7 +1715,7 @@ Set <c- p>{}</c->
        <p>...</p>
      </ol>
     </div>
-    <p>That "ToBoolean" function is called an <dfn data-dfn-type="dfn" data-noexport id="abstract-operation">abstract operation<a class="self-link" href="#abstract-operation"></a></dfn>: it’s abstract because it is not actually exposed as a function to JavaScript code. It is simply a notation spec writers invented to allow them to not write the same things over and over again.</p>
+    <p>That "ToBoolean" function is called an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="abstract-operation">abstract operation</dfn>: it’s abstract because it is not actually exposed as a function to JavaScript code. It is simply a notation spec writers invented to allow them to not write the same things over and over again.</p>
     <p class="note" role="note">Further reading: <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-algorithm-conventions-abstract-operations" id="ref-for-sec-algorithm-conventions-abstract-operations">§5.2.1 Abstract Operations</a></p>
     <h3 class="heading settled" data-level="2.3" id="what-is-this"><span class="secno">2.3. </span><span class="content">What is [[This]]</span><a class="self-link" href="#what-is-this"></a></h3>
     <p>From time to time, you may see the <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="double brackets notation" data-noexport id="double-brackets-notation">[[Notation]]</dfn> being used like "Let <var>proto</var> be <var>obj</var>.[[Prototype]]." This notation can technically mean several different things depending on the context in which it appears, but you would go a long way with the understanding that this notation refers to some internal property that is not observable through JavaScript code.</p>
@@ -1724,7 +1724,7 @@ Set <c- p>{}</c->
     <p>The ECMAScript spec uses the term <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="record">Record</dfn> to refer to a key-value map with a fixed set of keys – a bit like a structure in C-like languages. Each key-value pair of a <a data-link-type="dfn" href="#record" id="ref-for-record">Record</a> is called a <dfn class="dfn-paneled" data-dfn-for="Record" data-dfn-type="dfn" data-noexport id="record-field">field</dfn>. Because <a data-link-type="dfn" href="#record" id="ref-for-record①">Records</a> can only appear in specifications and not in actual JavaScript code, it makes sense to use the <a data-link-type="dfn" href="#double-brackets-notation" id="ref-for-double-brackets-notation">[[Notation]]</a> to refer to <a data-link-type="dfn" href="#record-field" id="ref-for-record-field">fields</a> of a <a data-link-type="dfn" href="#record" id="ref-for-record②">Record</a>.</p>
     <div class="example" id="example-20fef1ef">
      <a class="self-link" href="#example-20fef1ef"></a> 
-     <p>Notably, <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-property-descriptor-specification-type" id="ref-for-sec-property-descriptor-specification-type">Property Descriptors</a> are also modeled as <a data-link-type="dfn" href="#record" id="ref-for-record③">Records</a> with <a data-link-type="dfn" href="#record-field" id="ref-for-record-field①">fields</a> [[Value]], [[Writable]], [[Get]], [[Set]], [[Enumerable]], and [[Configurable]]. The <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-isdatadescriptor" id="ref-for-sec-isdatadescriptor">IsDataDescriptor</a> abstract operation uses this notation extensively:</p>
+     <p>Notably, <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-property-descriptor-specification-type" id="ref-for-sec-property-descriptor-specification-type">Property Descriptors</a> are also modeled as <a data-link-type="dfn" href="#record" id="ref-for-record③">Records</a> with <a data-link-type="dfn" href="#record-field" id="ref-for-record-field①">fields</a> [[Value]], [[Writable]], [[Get]], [[Set]], [[Enumerable]], and [[Configurable]]. The <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-isdatadescriptor" id="ref-for-sec-isdatadescriptor">IsDataDescriptor</a> <a data-link-type="dfn" href="#abstract-operation" id="ref-for-abstract-operation">abstract operation</a> uses this notation extensively:</p>
      <div class="algorithm" data-algorithm="to call the abstract operation IsDataDescriptor">
       <p>When the abstract operation IsDataDescriptor is called with <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-property-descriptor-specification-type" id="ref-for-sec-property-descriptor-specification-type①">Property Descriptor</a> <var>Desc</var>, the following steps are taken:</p>
       <ol>
@@ -1744,7 +1744,7 @@ Set <c- p>{}</c->
     <p>The specifics of <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot③">internal slots</a> will be covered in <a href="#javascript-objects">§ 2.5 JavaScript Objects</a>. For now, don’t worry too much about what they are used for, but do note the following example.</p>
     <div class="example" id="example-dd7c3217">
      <a class="self-link" href="#example-dd7c3217"></a> 
-     <p>Most JavaScript Objects have an internal slot [[Prototype]] that refers to the Object they inherit from. The value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot④">internal slot</a> is usually the value that <code class="idl"><a data-link-type="idl" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf#">Object.getPrototypeOf()</a></code> returns. In the <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-ordinarygetprototypeof" id="ref-for-sec-ordinarygetprototypeof">OrdinaryGetPrototypeOf</a> abstract operation, the value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑤">internal slot</a> is accessed:</p>
+     <p>Most JavaScript Objects have an internal slot [[Prototype]] that refers to the Object they inherit from. The value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot④">internal slot</a> is usually the value that <code class="idl"><a data-link-type="idl" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf#">Object.getPrototypeOf()</a></code> returns. In the <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-ordinarygetprototypeof" id="ref-for-sec-ordinarygetprototypeof">OrdinaryGetPrototypeOf</a> <a data-link-type="dfn" href="#abstract-operation" id="ref-for-abstract-operation①">abstract operation</a>, the value of this <a data-link-type="dfn" href="#internal-slot" id="ref-for-internal-slot⑤">internal slot</a> is accessed:</p>
      <div class="algorithm" data-algorithm="to call the abstract operation OrdinaryGetPrototypeOf">
       <p>When the abstract operation OrdinaryGetPrototypeOf is called with Object <var>O</var>, the following steps are taken:</p>
       <ol>
@@ -1759,7 +1759,7 @@ Set <c- p>{}</c->
     <p>The specifics of <a data-link-type="dfn" href="#internal-method" id="ref-for-internal-method③">internal methods</a> will be covered in <a href="#javascript-objects">§ 2.5 JavaScript Objects</a>. For now, don’t worry too much about what they are used for, but do note the following example.</p>
     <div class="example" id="example-bdf195eb">
      <a class="self-link" href="#example-bdf195eb"></a> 
-     <p>All JavaScript functions have an internal method [[Call]] that runs that function. The <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-call" id="ref-for-sec-call">Call</a> abstract operation has the following step:</p>
+     <p>All JavaScript functions have an internal method [[Call]] that runs that function. The <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-call" id="ref-for-sec-call">Call</a> <a data-link-type="dfn" href="#abstract-operation" id="ref-for-abstract-operation②">abstract operation</a> has the following step:</p>
      <blockquote>
       <ol start="3">
        <li data-md>
@@ -1785,7 +1785,7 @@ Set <c- p>{}</c->
     <p class="note" role="note">Further reading: <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-completion-record-specification-type" id="ref-for-sec-completion-record-specification-type">§6.2.3 The Completion Record Specification Type</a></p>
     <hr>
     <p>Because of the definition of <a data-link-type="dfn" href="#completion-record" id="ref-for-completion-record③">Completion Records</a>, niceties in JavaScript like bubbling errors until a <code class="highlight"><c- k>try</c-></code>-<code class="highlight"><c- k>catch</c-></code> block don’t exist in the spec. In fact, errors (or more precisely abrupt completions) are handled explicitly.</p>
-    <p>Without any shorthands, the spec text for an ordinary call to an abstract operation that may either return a computation result or throw an error would look like:</p>
+    <p>Without any shorthands, the spec text for an ordinary call to an <a data-link-type="dfn" href="#abstract-operation" id="ref-for-abstract-operation③">abstract operation</a> that may either return a computation result or throw an error would look like:</p>
     <div class="example" id="example-273b7f6b">
      <a class="self-link" href="#example-273b7f6b"></a> 
      <div class="algorithm" data-algorithm="to call an abstract operation that may throw without any shorthands">
@@ -1952,8 +1952,8 @@ Set <c- p>{}</c->
        <p>Let <em>O</em> be ? <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible" id="ref-for-sec-requireobjectcoercible">RequireObjectCoercible</a>(<strong>this</strong> value).</p>
      </ol>
     </blockquote>
-    <p>The <a data-link-type="dfn" href="#question-mark" id="ref-for-question-mark④">?</a> shorthand allows us to conclude that there may be some cases where the <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible" id="ref-for-sec-requireobjectcoercible①">RequireObjectCoercible</a> abstract operation may actually throw exceptions, since otherwise <a data-link-type="dfn" href="#exclamation-mark" id="ref-for-exclamation-mark④">!</a> would have been used instead. In fact, if it throws an error it would correspond with our second hypothesis above! With hope, we look into what <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible" id="ref-for-sec-requireobjectcoercible②">RequireObjectCoercible</a> does by clicking on the hyperlink.</p>
-    <p>The <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible" id="ref-for-sec-requireobjectcoercible③">RequireObjectCoercible</a> abstract operation is a little odd. Unlike most abstract operations, it is defined through a table rather than steps:</p>
+    <p>The <a data-link-type="dfn" href="#question-mark" id="ref-for-question-mark④">?</a> shorthand allows us to conclude that there may be some cases where the <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible" id="ref-for-sec-requireobjectcoercible①">RequireObjectCoercible</a> <a data-link-type="dfn" href="#abstract-operation" id="ref-for-abstract-operation④">abstract operation</a> may actually throw exceptions, since otherwise <a data-link-type="dfn" href="#exclamation-mark" id="ref-for-exclamation-mark④">!</a> would have been used instead. In fact, if it throws an error it would correspond with our second hypothesis above! With hope, we look into what <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible" id="ref-for-sec-requireobjectcoercible②">RequireObjectCoercible</a> does by clicking on the hyperlink.</p>
+    <p>The <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible" id="ref-for-sec-requireobjectcoercible③">RequireObjectCoercible</a> <a data-link-type="dfn" href="#abstract-operation" id="ref-for-abstract-operation⑤">abstract operation</a> is a little odd. Unlike most <a data-link-type="dfn" href="#abstract-operation" id="ref-for-abstract-operation⑥">abstract operations</a>, it is defined through a table rather than steps:</p>
     <blockquote>
      <table class="data">
       <tbody>
@@ -2026,7 +2026,7 @@ Set <c- p>{}</c->
        <p>Return ? <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-stringcreate" id="ref-for-sec-stringcreate">StringCreate</a>(<var>s</var>, ? <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-getprototypefromconstructor" id="ref-for-sec-getprototypefromconstructor">GetPrototypeFromConstructor</a>(NewTarget, <code class="highlight"><c- u>"%StringPrototype%"</c-></code>)).</p>
      </ol>
     </div>
-    <p>From our experience with doing the same kind of analysis with the <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-boolean-constructor-boolean-value" id="ref-for-sec-boolean-constructor-boolean-value②">Boolean()</a></code> function, we know that <a data-link-type="abstract-op" href="#abstract-opdef-newtarget" id="ref-for-abstract-opdef-newtarget②">NewTarget</a> will always be <strong>undefined</strong> for our case, and therefore the last step can be skipped from our consideration. We also know that <a data-link-type="abstract-op" href="#abstract-opdef-type" id="ref-for-abstract-opdef-type">Type</a> and <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-symboldescriptivestring" id="ref-for-sec-symboldescriptivestring①">SymbolDescriptiveString</a> are safe as well, since abrupt completions are not handled for either of them. Yet, there is still a tell-tale <a data-link-type="dfn" href="#question-mark" id="ref-for-question-mark⑧">?</a> preceding the call to the <a data-link-type="abstract-op" href="#abstract-opdef-tostring" id="ref-for-abstract-opdef-tostring">ToString</a> abstract operation. Let’s take a closer look.</p>
+    <p>From our experience with doing the same kind of analysis with the <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-boolean-constructor-boolean-value" id="ref-for-sec-boolean-constructor-boolean-value②">Boolean()</a></code> function, we know that <a data-link-type="abstract-op" href="#abstract-opdef-newtarget" id="ref-for-abstract-opdef-newtarget②">NewTarget</a> will always be <strong>undefined</strong> for our case, and therefore the last step can be skipped from our consideration. We also know that <a data-link-type="abstract-op" href="#abstract-opdef-type" id="ref-for-abstract-opdef-type">Type</a> and <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-symboldescriptivestring" id="ref-for-sec-symboldescriptivestring①">SymbolDescriptiveString</a> are safe as well, since abrupt completions are not handled for either of them. Yet, there is still a tell-tale <a data-link-type="dfn" href="#question-mark" id="ref-for-question-mark⑧">?</a> preceding the call to the <a data-link-type="abstract-op" href="#abstract-opdef-tostring" id="ref-for-abstract-opdef-tostring">ToString</a> <a data-link-type="dfn" href="#abstract-operation" id="ref-for-abstract-operation⑦">abstract operation</a>. Let’s take a closer look.</p>
     <p>Like <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible" id="ref-for-sec-requireobjectcoercible⑤">RequireObjectCoercible</a> we looked at earlier, <a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-tostring" id="ref-for-sec-tostring①">ToString</a>(<var>argument</var>) is also defined with a table:</p>
     <blockquote>
      <table class="data">
@@ -2211,7 +2211,7 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
       <p>Returns <var>argument</var> coerced to an Object, using boxed primitive objects if necessary. Equivalent to <code class="highlight"><a class="idl-code" data-link-type="method" href="https://tc39.github.io/ecma262/#sec-object-value" id="ref-for-sec-object-value">Object</a><c- p>(</c-><var>argument</var><c- p>)</c-></code> other than the cases where <var>argument</var> is <strong>undefined</strong> or <strong>null</strong>.</p>
      <dt data-md><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-toprimitive">ToPrimitive</dfn> ( <var>input</var> [ , <var>PreferredType</var> ] ) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-toprimitive" id="ref-for-sec-toprimitive②">spec</a>)
      <dd data-md>
-      <p>Returns <var>argument</var> coerced to a primitive (i.e., non-Object) value, optionally using the type hint given through <var>PreferredType</var>. Exact semantics of this abstract operation vary depending on the <var>PreferredType</var>.</p>
+      <p>Returns <var>input</var> coerced to a primitive (i.e., non-Object) value, optionally using the type hint given through <var>PreferredType</var>. Exact semantics of this <a data-link-type="dfn" href="#abstract-operation" id="ref-for-abstract-operation⑧">abstract operation</a> vary depending on the <var>PreferredType</var>.</p>
      <dt data-md><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-export id="abstract-opdef-tostring">ToString</dfn> ( <var>argument</var> ) (<a data-link-type="abstract-op" href="https://tc39.github.io/ecma262/#sec-tostring" id="ref-for-sec-tostring③">spec</a>)
      <dd data-md>
       <p>Returns <var>argument</var> coerced to a String. Equivalent to <code class="highlight"><c- sb>`</c-><c- si>${</c-><var>argument</var><c- si>}</c-><c- sb>`</c-></code>.</p>
@@ -3068,6 +3068,8 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
    <dd><a href="https://www.iso.org/standard/55755.html">ISO/IEC 16262:2011 - Information technology – Programming languages, their environments and system software interfaces – ECMAScript language specification</a>. URL: <a href="https://www.iso.org/standard/55755.html">https://www.iso.org/standard/55755.html</a>
    <dt id="biblio-johnny-five">[JOHNNY-FIVE]
    <dd><a href="http://johnny-five.io/">Johnny-Five: The JavaScript Robotics &amp; IoT Platform</a>. URL: <a href="http://johnny-five.io/">http://johnny-five.io/</a>
+   <dt id="biblio-mdn">[MDN]
+   <dd><a href="https://developer.mozilla.org/en-US/">Mozilla Developer Network</a>. URL: <a href="https://developer.mozilla.org/en-US/">https://developer.mozilla.org/en-US/</a>
    <dt id="biblio-nodejs">[NODEJS]
    <dd><a href="https://nodejs.org/">Node.js</a>. URL: <a href="https://nodejs.org/">https://nodejs.org/</a>
    <dt id="biblio-nodejs-nasa">[NODEJS-NASA]
@@ -3087,6 +3089,18 @@ String<c- p>(</c->Object<c- p>.</c->create<c- p>(</c-><c- kc>null</c-><c- p>));<
   <div style="counter-reset:issue">
    <div class="issue"> To be written. <a href="https://github.com/TimothyGu/es-howto/issues/2">&lt;https://github.com/TimothyGu/es-howto/issues/2></a><a href="#issue-c1ad3571"> ↵ </a></div>
   </div>
+  <aside class="dfn-panel" data-for="abstract-operation">
+   <b><a href="#abstract-operation">#abstract-operation</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-abstract-operation">2.3.1. A field of a Record</a>
+    <li><a href="#ref-for-abstract-operation①">2.3.2. An internal slot of a JavaScript Object</a>
+    <li><a href="#ref-for-abstract-operation②">2.3.3. An internal method of a JavaScript Object</a>
+    <li><a href="#ref-for-abstract-operation③">2.4. Completion Records; ? and !</a>
+    <li><a href="#ref-for-abstract-operation④">2.6. Example: String.prototype.substring()</a> <a href="#ref-for-abstract-operation⑤">(2)</a> <a href="#ref-for-abstract-operation⑥">(3)</a>
+    <li><a href="#ref-for-abstract-operation⑦">2.7. Example: Can Boolean() and String() ever throw exceptions?</a>
+    <li><a href="#ref-for-abstract-operation⑧">Common abstract operations</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="double-brackets-notation">
    <b><a href="#double-brackets-notation">#double-brackets-notation</a></b><b>Referenced in:</b>
    <ul>

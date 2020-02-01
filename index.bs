@@ -347,7 +347,7 @@ and are very confused why a method works on its prototype, but another method do
 
 Reading the spec can help.
 
-Or, you might wonder just how the heck does the notorious [=MDN/equality operators|loose equality operator=] (`==`) actually function (using the word "function" *loosely* here [[WAT]]). Ever the studious software engineer, you look it up on MDN, only to find its [=MDN/abstract equality algorithm|paragraphs of explanation=] hurt your eyes more than they help.
+Or, you might wonder just how the heck does the notorious [=MDN/equality operators|loose equality operator=] (`==`) actually function (using the word "function" *loosely* here [[WAT]]). Ever the studious software engineer, you look it up on MDN, only to find its [=MDN/abstract equality algorithm|paragraphs of explanation=] hurt your eyes more than they help [[MDN]].
 
 Reading the spec can help.
 
@@ -490,7 +490,7 @@ You will sometimes see a function-like thing being called in the spec. The first
 
 When <code class=idl>Boolean</code> is called with argument |value|, the following steps are taken:
 
-1.  Let |b| be [$ECMAScript/ToBoolean$](|value|).
+1.  Let <var ignore>b</var> be [$ECMAScript/ToBoolean$](|value|).
 1.  ...
 
 </div>
@@ -501,7 +501,7 @@ That "ToBoolean" function is called an <dfn>abstract operation</dfn>: it's abstr
 
 ## What is \[[This]] ## {#what-is-this}
 
-From time to time, you may see the <dfn lt="double brackets notation">\[[Notation]]</dfn> being used like "Let |proto| be |obj|.\[[Prototype]]." This notation can technically mean several different things depending on the context in which it appears, but you would go a long way with the understanding that this notation refers to some internal property that is not observable through JavaScript code.
+From time to time, you may see the <dfn lt="double brackets notation">\[[Notation]]</dfn> being used like "Let <var ignore>proto</var> be <var ignore>obj</var>.\[[Prototype]]." This notation can technically mean several different things depending on the context in which it appears, but you would go a long way with the understanding that this notation refers to some internal property that is not observable through JavaScript code.
 
 Precisely, it can mean three different things, which I will illustrate with examples from the specification. Feel free to skip them for now, however.
 
@@ -511,7 +511,7 @@ The ECMAScript spec uses the term <dfn>Record</dfn> to refer to a key-value map 
 
 <div class=example>
 
-Notably, [=Property Descriptors=] are also modeled as [=Records=] with [=fields=] \[[Value]], \[[Writable]], \[[Get]], \[[Set]], \[[Enumerable]], and \[[Configurable]]. The [$ECMAScript/IsDataDescriptor$] abstract operation uses this notation extensively:
+Notably, [=Property Descriptors=] are also modeled as [=Records=] with [=fields=] \[[Value]], \[[Writable]], \[[Get]], \[[Set]], \[[Enumerable]], and \[[Configurable]]. The [$ECMAScript/IsDataDescriptor$] [=abstract operation=] uses this notation extensively:
 
 <div algorithm="to call the abstract operation IsDataDescriptor">
 
@@ -537,7 +537,7 @@ The specifics of [=internal slots=] will be covered in [[#javascript-objects]]. 
 
 <div class=example>
 
-Most JavaScript Objects have an internal slot \[[Prototype]] that refers to the Object they inherit from. The value of this [=internal slot=] is usually the value that {{MDN/Object.getPrototypeOf()}} returns. In the [$ECMAScript/OrdinaryGetPrototypeOf$] abstract operation, the value of this [=internal slot=] is accessed:
+Most JavaScript Objects have an internal slot \[[Prototype]] that refers to the Object they inherit from. The value of this [=internal slot=] is usually the value that {{MDN/Object.getPrototypeOf()}} returns. In the [$ECMAScript/OrdinaryGetPrototypeOf$] [=abstract operation=], the value of this [=internal slot=] is accessed:
 
 <div algorithm="to call the abstract operation OrdinaryGetPrototypeOf">
 
@@ -559,7 +559,7 @@ The specifics of [=internal methods=] will be covered in [[#javascript-objects]]
 
 <div class=example>
 
-All JavaScript functions have an internal method \[[Call]] that runs that function. The [$ECMAScript/Call$] abstract operation has the following step:
+All JavaScript functions have an internal method \[[Call]] that runs that function. The [$ECMAScript/Call$] [=abstract operation=] has the following step:
 
 > 3.  Return ? |F|.\[[Call]](|V|, |argumentsList|).
 
@@ -589,7 +589,7 @@ Most of the time, you are only going to deal with [=abrupt completions=] whose [
 
 Because of the definition of [=Completion Records=], niceties in JavaScript like bubbling errors until a `try`-`catch` block don't exist in the spec. In fact, errors (or more precisely abrupt completions) are handled explicitly.
 
-Without any shorthands, the spec text for an ordinary call to an abstract operation that may either return a computation result or throw an error would look like:
+Without any shorthands, the spec text for an ordinary call to an [=abstract operation=] that may either return a computation result or throw an error would look like:
 
 <div class=example>
 
@@ -689,7 +689,7 @@ A few steps that call an abstract operation that cannot ever throw <strong><em>w
 
 The [=!=] can admittedly become pretty confusing if it is part of a comparison:
 
-> 5.  ..., return the result of the comparison ! [$ECMAScript/ToNumber$](|x|) == |y|.
+> 5.  ..., return the result of the comparison ! [$ECMAScript/ToNumber$](<var ignore>x</var>) == <var ignore>y</var>.
 >
 > <cite>— Excerpted from [=§7.2.14 Abstract Equality Comparison=].</cite>
 
@@ -794,7 +794,7 @@ This is a pretty tricky question. It seems that there are two plausible outcomes
 
 Unfortunately, <a method for=MDN lt="String.prototype.substring()">MDN</a> also doesn't really offer any insights on how the function behaves when the **this** value isn't a string.
 
-*Spec to the rescue!* After typing in `substring` in the search box in the top-left corner on the spec [[ECMA-262]], we arrive at <a>§21.1.3.21 String.prototype.substring ( <var>start</var>, <var>end</var> )</a>, which is the normative specification of how the function works.
+*Spec to the rescue!* After typing in `substring` in the search box in the top-left corner on the spec [[ECMA-262]], we arrive at <a>§21.1.3.21 String.prototype.substring ( <var ignore>start</var>, <var ignore>end</var> )</a>, which is the normative specification of how the function works.
 
 Before reading the algorithm steps, let's think about what we know first. I assume we have a basic understanding of how `str.substring()` ordinarily works, which is to return a part of the given string. What we are not really sure of right now, is how it acts with the **this** value being **undefined**. So, we would specifically look for algorithm steps that address the **this** value.
 
@@ -802,9 +802,9 @@ Lucky for us, the first step of the algorithm for {{ECMAScript/String.prototype.
 
 > 1.  Let *O* be ? [$ECMAScript/RequireObjectCoercible$](**this** value).
 
-The [=?=] shorthand allows us to conclude that there may be some cases where the [$RequireObjectCoercible$] abstract operation may actually throw exceptions, since otherwise [=!=] would have been used instead. In fact, if it throws an error it would correspond with our second hypothesis above! With hope, we look into what [$RequireObjectCoercible$] does by clicking on the hyperlink.
+The [=?=] shorthand allows us to conclude that there may be some cases where the [$RequireObjectCoercible$] [=abstract operation=] may actually throw exceptions, since otherwise [=!=] would have been used instead. In fact, if it throws an error it would correspond with our second hypothesis above! With hope, we look into what [$RequireObjectCoercible$] does by clicking on the hyperlink.
 
-The [$ECMAScript/RequireObjectCoercible$] abstract operation is a little odd. Unlike most abstract operations, it is defined through a table rather than steps:
+The [$ECMAScript/RequireObjectCoercible$] [=abstract operation=] is a little odd. Unlike most [=abstract operations=], it is defined through a table rather than steps:
 
 > <table class="data">
 >  <tr>
@@ -870,7 +870,7 @@ But on the other hand, it's not totally straightforward, with some complex acrob
 
 Step 1 casts |value| (the function argument) to a Boolean value. Interestingly there isn't a [=?=] or [=!=] shorthand for this step, but usually not having a Completion Record shorthand means the same thing as [=!=]. So step 1 cannot throw an exception.
 
-Step 2 checks if something called [$NewTarget$] is **undefined**. <dfn abstract-op>NewTarget</dfn> is the spec equivalent for the {{MDN/new.target}} meta property that was first added in ES2015, allowing the spec to distinguish between a `new Boolean()` call (where it is `Boolean`) and a `Boolean()` call (where it is **undefined**). Because we are only looking at direct calls to `Boolean()` at this moment, we know that [$NewTarget$] is always going to be **undefined**, and the algorithm will always return |b| straightaway without any additional processing.
+Step 2 checks if something called [$NewTarget$] is **undefined**. <dfn abstract-op>NewTarget</dfn> is the spec equivalent for the {{MDN/new.target}} meta property that was first added in ES2015, allowing the spec to distinguish between a `new Boolean()` call (where it is `Boolean`) and a `Boolean()` call (where it is **undefined**). Because we are only looking at direct calls to `Boolean()` at this moment, we know that [$NewTarget$] is always going to be **undefined**, and the algorithm will always return <var ignore>b</var> straightaway without any additional processing.
 
 Because calling `Boolean()` without `new` can only access the first two steps in the algorithm for `Boolean()`, neither of which can throw exceptions, we conclude that <strong><code class=idl>Boolean()</code> never throws exceptions</strong> no matter what the input is.
 
@@ -891,7 +891,7 @@ When <code class=idl>String</code> is called with argument |value|, the followin
 
 </div>
 
-From our experience with doing the same kind of analysis with the {{ECMAScript/Boolean()}} function, we know that [$NewTarget$] will always be **undefined** for our case, and therefore the last step can be skipped from our consideration. We also know that [$Type$] and [$SymbolDescriptiveString$] are safe as well, since abrupt completions are not handled for either of them. Yet, there is still a tell-tale [=?=] preceding the call to the [$ToString$] abstract operation. Let's take a closer look.
+From our experience with doing the same kind of analysis with the {{ECMAScript/Boolean()}} function, we know that [$NewTarget$] will always be **undefined** for our case, and therefore the last step can be skipped from our consideration. We also know that [$Type$] and [$SymbolDescriptiveString$] are safe as well, since abrupt completions are not handled for either of them. Yet, there is still a tell-tale [=?=] preceding the call to the [$ToString$] [=abstract operation=]. Let's take a closer look.
 
 Like [$RequireObjectCoercible$] we looked at earlier, [$ECMAScript/ToString$](|argument|) is also defined with a table:
 
@@ -1048,12 +1048,12 @@ Issue(2): To be written.
 :: Create an array object of length |length|, with |proto| as the value of the \[[Prototype]] [=internal slot=]. If |proto| is not specified, <a interface>%ArrayPrototype%</a> in the [=current realm=] is used. Equivalent to <code>new Array(|length|)</code> if the {{Array}} constructor and all of its properties have not been monkeypatched, and |proto| is not specified or <a interface>%ArrayPrototype%</a> in the [=current realm=].
 
 : <dfn abstract-op>Call</dfn> (&nbsp;|F|, |V| [&nbsp;, |argumentsList|&nbsp;]&nbsp;) ([$ECMAScript/Call|spec$])
-: <dfn abstract-op>Construct</dfn> (&nbsp;|F| [&nbsp;, |argumentsList| [&nbsp;, |newTarget|&nbsp;]&nbsp;]&nbsp;) ([$ECMAScript/Construct|spec$])
+: <dfn abstract-op>Construct</dfn> (&nbsp;|F| [&nbsp;, |argumentsList| [&nbsp;, <var ignore>newTarget</var>&nbsp;]&nbsp;]&nbsp;) ([$ECMAScript/Construct|spec$])
 : <dfn abstract-op>Get</dfn> (&nbsp;|O|, |P|&nbsp;) ([$ECMAScript/Get|spec$])
 : <dfn abstract-op>HasProperty</dfn> (&nbsp;|O|, |P|&nbsp;) ([$ECMAScript/HasProperty|spec$])
 :: Call the corresponding [=internal method=] on |F| or |O| with the rest of the arguments forwarded. Equivalent to the corresponding method on the {{Reflect}} object.
 
-: <dfn abstract-op>DefinePropertyOrThrow</dfn> (&nbsp;|O|, |P|, |desc|&nbsp;) ([$ECMAScript/DefinePropertyOrThrow|spec$])
+: <dfn abstract-op>DefinePropertyOrThrow</dfn> (&nbsp;|O|, |P|, <var ignore>desc</var>&nbsp;) ([$ECMAScript/DefinePropertyOrThrow|spec$])
 : <dfn abstract-op>DeletePropertyOrThrow</dfn> (&nbsp;|O|, |P|&nbsp;) ([$ECMAScript/DeletePropertyOrThrow|spec$])
 :: Call the corresponding [=internal method=] (\[[DefineOwnProperty]] and \[[Delete]], respectively) on |O| with the rest of the arguments forwarded, and throw an exception if the operation failed and the [=internal method=] returned **false**.
 
@@ -1106,7 +1106,7 @@ Issue(2): To be written.
 :: Returns |argument| coerced to an Object, using boxed primitive objects if necessary. Equivalent to <code><a method>Object</a>(|argument|)</code> other than the cases where |argument| is **undefined** or **null**.
 
 : <dfn abstract-op>ToPrimitive</dfn> (&nbsp;|input| [&nbsp;, |PreferredType|&nbsp;]&nbsp;) ([$ECMAScript/ToPrimitive|spec$])
-:: Returns |argument| coerced to a primitive (i.e., non-Object) value, optionally using the type hint given through |PreferredType|. Exact semantics of this abstract operation vary depending on the |PreferredType|.
+:: Returns |input| coerced to a primitive (i.e., non-Object) value, optionally using the type hint given through |PreferredType|. Exact semantics of this [=abstract operation=] vary depending on the |PreferredType|.
 
 : <dfn abstract-op>ToString</dfn> (&nbsp;|argument|&nbsp;) ([$ECMAScript/ToString|spec$])
 :: Returns |argument| coerced to a String. Equivalent to <code>&#96;${|argument|}&#96;</code>.
