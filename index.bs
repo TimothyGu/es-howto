@@ -492,7 +492,7 @@ When <code class=idl>Boolean</code> is called with argument |value|, the followi
 
 That "ToBoolean" function is called an <dfn>abstract operation</dfn>: it's abstract because it is not actually exposed as a function to JavaScript code. It is simply a notation spec writers invented to allow them to not write the same things over and over again.
 
-Note: For now, don't worry about the ! that comes before ToBoolean. We'll talk about it later, in [[##completion-records-and-shorthands]].
+Note: For now, don't worry about the ! that comes before ToBoolean. We'll talk about it later, in [[#completion-records-and-shorthands]].
 
 <p class=note>Further reading: [=§5.2.1 Abstract Operations=]</p>
 
