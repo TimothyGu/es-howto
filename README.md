@@ -17,7 +17,7 @@ submitting pull request that change this file.
 
 To view the result of any changes to `index.bs`, you can locally regenerate
 `index.html` by [installing](https://tabatkins.github.io/bikeshed/#installing)
-Bikeshed first, and then running `make` from the project root directory. 
+Bikeshed first, and then running `make` from the project root directory.
 
 If you do not want to install Bikeshed locally, then `make` will still work, by
 uploading your local copy of `index.bs` to
