@@ -670,7 +670,7 @@ if (result < 0)                         // Step 2
 
 <div algorithm="to call an abstract operation that cannot ever throw with a ReturnIfAbrupt shorthand">
 
-通过加一个感叹号<strong><em>with an [=!|exclamation mark (!)=]</em></strong>，该抽象操作的abrupt completions将永远不会被抛出，分为下面这几个步::
+通过加一个感叹号<strong><em>with an [=!|exclamation mark (!)=]</em></strong>，该抽象操作的abrupt completions将永远不会被抛出，分为下面这几个步:
 
 1.  Let |result| be ! AbstractOp().
 
