@@ -670,7 +670,7 @@ if (result < 0)                         // Step 2
 
 <div algorithm="to call an abstract operation that cannot ever throw with a ReturnIfAbrupt shorthand">
 
-通过加一个感叹号<strong><em>with an [=!|exclamation mark (!)=]</em></strong>，该抽象操作的abrupt completions将永远不会被抛出，分为下面这几个步::
+通过加一个感叹号<strong><em>with an [=!|exclamation mark (!)=]</em></strong>，该抽象操作的abrupt completions将永远不会被抛出，分为下面这几个步:
 
 1.  Let |result| be ! AbstractOp().
 
@@ -710,7 +710,7 @@ Here, the [=!=] j仅仅意味着我们确信对 [$ToBoolean$] 的调用永远不
 
 根据这个定义，<dfn lt="function object">function objects</dfn>(或者说“functions”)也只是些简单的对象，只不过这些对象另外具有\[[Call]]内部方法，也可能还有\[[Construct]]内部方法。也因此它们被称为 <dfn lt="callable object">callable objects</dfn>。
 
-该规范将所有对象分为两个大块: [=ordinary objects=]（普通对象） and [=exotic objects=]（特殊对象）. 你遇到的大多数对象都是 <dfn lt="ordinary object">ordinary objects</dfn>, 这意味着它们所有 [=internal methods=] 都是 [=§9.1 Ordinary Object Internal Methods and Internal Slots=]中规定的默认方法.
+该规范将所有对象分为两个大块: [=ordinary objects=]（普通对象） and [=exotic objects=]（特殊对象）。你遇到的大多数对象都是 <dfn lt="ordinary object">ordinary objects</dfn>, 这意味着它们所有 [=internal methods=] 都是 [=§9.1 Ordinary Object Internal Methods and Internal Slots=]中规定的默认方法。
 
 然而，ECMAScript规范还定义了几种 <dfn lt="exotic object">exotic objects</dfn>，这些对象可能重写了这些内部方法的默认实现。对于这些特殊对象允许做什么，规范是有一些明确的最低限度的限制的。然而通常在不违背规范的情况下，重写内部方法已经可以玩出很多花样来了。  
 
