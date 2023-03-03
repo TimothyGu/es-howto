@@ -394,11 +394,11 @@ OK，现在你知道了，规范是非常有用的工具，而且可以帮助你
 <div class=note>
 <sup>[1]</sup> ECMAScript规范指定了这些声明的语法以及它们的含义，但没有指定模块应该如何加载。
 
-<sup>[2]</sup>  这些东西在浏览器和Node.js中都可用，但都是非标准的。对于Node.js，它们是由 [=Node.js/globals|its documentation=]. 对于浏览器， {{/console}} 由Console标准 [[CONSOLE]]制定，而其余的由HTML标准 [[HTML]]制定。
+<sup>[2]</sup>  这些东西在浏览器和Node.js中都可用，但都是非标准的。对于Node.js，它们是由[=Node.js/globals|这份文档=]制定。 对于浏览器， {{/console}} 由Console标准 [[CONSOLE]]制定，而其余的由HTML标准 [[HTML]]制定。
 
-<sup>[3]</sup> 这些都是仅限于node .js的全局变量，由其对应文档指定[=Node.js/globals|its documentation=]. \* *请注意，与<code class=idl>global</code>不同的是, {{globalThis}} 是ECMAScript的一部分，并且浏览器中也实现了。
+<sup>[3]</sup> 这些都是仅限于Node.js的全局变量，由[=Node.js/globals|这份文档=]制定。 \* *请注意，与<code class=idl>global</code>不同的是, {{globalThis}} 是ECMAScript的一部分，并且浏览器中也实现了。
 
-<sup>[4]</sup> 这些是仅限于node .js模块范围的“globals”，由其 [=Node.js/modules|its documentation=]制定.
+<sup>[4]</sup> 这些是仅限于Node.js模块范围的“globals”，由[=Node.js/modules|这份文档=]制定。
 
 <sup>[5]</sup> 这些都是仅针对浏览器的内容。
 </div>
@@ -425,13 +425,13 @@ ECMAScript规范谈论了**非常多**的东西。即使它的作者尽力把它
 
 我个人而言，喜欢将规范分为五个部分:  
 
-- 约定和基础 (“什么是Number?当规范说‘抛出TypeError异常’时，它是什么意思?”)
+- 约定和基础 (“什么是Number?当规范说'throw a **TypeError** exception'时，它是什么意思?”)
 - 该语言的语法产物(“如何编写for-in循环?”)
 - 语言的静态语义(“如何在var语句中确定变量名?”)
 - 语言的运行时语义(“for-in循环是如何执行的?”)
 - APIs ("what does <code class=idl>String.prototype.substring()</code> do?")
 
-但是规范并不是这样组织的。相反，第一个要点它在 [=§5 Notational Conventions=] through [=§9 Ordinary and Exotic Objects Behaviours=], 接着的三个要点是在 [=§10 ECMAScript Language: Source Code=] through [=§15 ECMAScript Language: Scripts and Modules=], like
+但是规范并不是这样组织的。相反，第一个要点它在 [=§5 Notational Conventions=] 至 [=§9 Ordinary and Exotic Objects Behaviours=]章, 接着的三个要点是在 [=§10 ECMAScript Language: Source Code=] 至 [=§15 ECMAScript Language: Scripts and Modules=]章, 比如
 
 > - <a>§13.6 The <code>if</code> Statement</a> **Grammar productions**
 >   - §13.6.1-6 **Static semantics**
@@ -498,7 +498,7 @@ Note: 现在，不要担心看不懂在ToBoolean之前的!。我们将后面讨�
 
 ## 什么是 \[[This]] ## {#what-is-this}
 
-有时候，你可能会看到 <dfn lt="double brackets notation">\[[Notation]]</dfn> 被用于像 "Let <var ignore>proto</var> be <var ignore>obj</var>.\[[Prototype]]." 根据它出现的上下文，这个符号在技术上可以表示几种不同的东西，但你可能要花费很长时间才能理解，其实这个符号指的是某些无法通过JavaScript代码观察到的内部属性。  
+有时候，你可能会看到 <dfn lt="double brackets notation">\[[Notation]]</dfn> 被用于像 "Let <var ignore>proto</var> be <var ignore>obj</var>.\[[Prototype]]." 根据其上下文，这个符号在技术上可以表示几种不同的东西，不过把它当成“无法通过JavaScript代码观察到的内部属性”会很有助于你的理解。  
 
 准确地说，它可以表示三种不同的东西，我将用规范中的示例来说明这一点。不过，现在也可以暂且跳过。
 
@@ -560,7 +560,7 @@ JavaScript对象也有所谓的 [=internal methods=]. 像 [=internal slots=], �
 
 > 3.  Return ? |F|.\[[Call]](|V|, |argumentsList|).
 
-|F| i其中F是一个JavaScript函数对象。在这种情况下，F的 \[[Call]] 内部方法通过用参数V和argumentsList调用自身。  
+这个 |F| 是一个JavaScript函数对象。在这种情况下，F的 \[[Call]] 内部方法用参数 |V| 和 |argumentsList| 调用自身。  
 
 </div>
 
@@ -822,7 +822,7 @@ The [$ECMAScript/RequireObjectCoercible$] [=abstract operation=] 看起来有点
 
 <div class=note>
 
-该规范只规定了抛出的Error类型，而并包含具体的Error message。这意味着具体实现可以有不同的Error message，甚至可能是本地化的Error message。
+该规范只规定了抛出的Error类型，而并没有包含具体的Error message。这意味着具体实现可以有不同的Error message，甚至可能是本地化的Error message。
 
 例如，在谷歌的V8 6.4上(包含在谷歌Chrome 64中)，message是
 
@@ -889,7 +889,7 @@ OK，让我们把注意力再转向 {{ECMAScript/String()}}:
 
 </div>
 
-根据分析 {{ECMAScript/Boolean()}} 函数的相关经验，我们可以知道 [$NewTarget$] 也始终应该为**undefined**，因此最后一步可以跳过。同时我们还知道 [$Type$] and [$SymbolDescriptiveString$] 也是安全的因为它们都不会处理abrupt completions。然而，在调用[$ToString$] [=abstract operation=]前有一个 [=?=] . 让我们来仔细看看吧。
+根据分析 {{ECMAScript/Boolean()}} 函数的相关经验，我们可以知道 [$NewTarget$] 也始终应该为**undefined**，因此最后一步可以跳过。同时我们还知道 [$Type$] and [$SymbolDescriptiveString$] 也是安全的因为它们都不会产生abrupt completions。然而，在调用[$ToString$] [=abstract operation=]前有一个 [=?=] . 让我们来仔细看看吧。
 
 就像我们早些时候看到的 [$RequireObjectCoercible$], [$ECMAScript/ToString$](|argument|) 也是用一个表定义的:
 
