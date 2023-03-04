@@ -342,7 +342,7 @@ Set {}
 
 但阅读ECMAScript规范会帮助到你哦！
 
-或者，你可能想知道‘臭名昭著’的 [=MDN/equality operators|loose equality operator=] (`==`) 是如何真正function的 (“function”这个词这里也是松散使用 [[WAT]])。而当曾经那个勤奋的你在MDN上找到它时，只会发现它的 [=MDN/abstract equality algorithm|解释段落=] 伤眼而又无助 [[MDN]].
+或者，你可能想知道‘臭名昭著’的 [=MDN/equality operators|loose equality operator=] (`==`) 是如何真正function的 (“function”这个词我也是loosely使用 [[WAT]])。而当曾经那个勤奋的你在MDN上找到它时，只会发现它的 [=MDN/abstract equality algorithm|解释段落=] 伤眼而又无助 [[MDN]].
 
 但阅读ECMAScript规范会帮助到你！
 
@@ -889,7 +889,7 @@ OK，让我们把注意力再转向 {{ECMAScript/String()}}:
 
 </div>
 
-根据分析 {{ECMAScript/Boolean()}} 函数的相关经验，我们可以知道 [$NewTarget$] 也始终应该为**undefined**，因此最后一步可以跳过。同时我们还知道 [$Type$] and [$SymbolDescriptiveString$] 也是安全的因为它们都不会产生abrupt completions。然而，在调用[$ToString$] [=abstract operation=]前有一个 [=?=] . 让我们来仔细看看吧。
+根据分析 {{ECMAScript/Boolean()}} 函数的相关经验，我们可以知道 [$NewTarget$] 也始终应该为**undefined**，因此最后一步可以跳过。同时我们还知道 [$Type$] and [$SymbolDescriptiveString$] 也是安全的，因为都没有为其处理abrupt completion（前方没有?或!）。然而，在调用[$ToString$] [=abstract operation=]前有一个 [=?=] . 让我们来仔细看看吧。
 
 就像我们早些时候看到的 [$RequireObjectCoercible$], [$ECMAScript/ToString$](|argument|) 也是用一个表定义的:
 
